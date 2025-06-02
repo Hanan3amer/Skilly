@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import Winner from "../winner/Winner";
+import Winner from "../../Components/winner/Winner";
 const RequestService = () => {
   const [imageFiles, setImageFiles] = useState([]);
   const [videoFile, setVideoFile] = useState(null);
