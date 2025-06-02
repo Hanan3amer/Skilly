@@ -1,5 +1,5 @@
 import { useState } from "react";
-import vector from "../../assets/vector.svg";
+// import vector from "../../assets/vector.svg";
 import { useFormik } from "formik";
 import { useTypeContext } from "../../Context/UserType";
 import * as Yup from "yup";
@@ -165,7 +165,7 @@ export default function Signup() {
             </div>
             <div className="relative z-0 w-full mb-5 group">
               <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
-                <img src={vector} />
+                {/* <img src={vector} /> */}
               </div>
               <input
                 dir="rtl"
