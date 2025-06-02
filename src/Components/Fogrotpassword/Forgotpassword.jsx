@@ -1,5 +1,5 @@
 import { useState } from "react";
-import vector from "../../assets/Vector.svg";
+// import vector from "../../assets/Vector.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
@@ -94,7 +94,7 @@ export default function Forgotpassword() {
                 {activeOption === "phone" ? (
                   <>
                     <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
-                      <img src={vector} />
+                      {/* <img src={vector} /> */}
                     </div>
                     <input
                       type="text"
