@@ -1,4 +1,4 @@
-import vector from "../../assets/vector.svg";
+// import vector from "../../assets/vector.svg";
 import Hide from "../../assets/Hide.svg";
 import google from "../../assets/google.svg";
 import or from "../../assets/or.svg";
@@ -94,7 +94,7 @@ export default function Signin() {
           <div className="mb-5 ">
             <div className="relative">
               <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
-                <img src={vector} />
+                {/* <img src={vector} /> */}
               </div>
               <input
                 name="phoneNumber"
