@@ -1,5 +1,5 @@
 import { useState } from "react";
-import vector from "../../assets/vector.svg";
+import vector from "../../assets/Vector.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
