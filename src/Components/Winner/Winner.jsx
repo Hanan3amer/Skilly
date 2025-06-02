@@ -1,7 +1,7 @@
 import { GiStarsStack } from "react-icons/gi";
 import PropTypes from "prop-types";
 
-export default function Winner({ onClose }) {
+function Winner({ onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div className="relative p-4 w-full max-w-md">
@@ -32,3 +32,4 @@ export default function Winner({ onClose }) {
 Winner.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
+export default Winner;
