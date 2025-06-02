@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import Winner from "../../Components/winner/Winner";
+// import Winner from "../../Components/winner/Winner";
 const RequestService = () => {
   const [imageFiles, setImageFiles] = useState([]);
   const [videoFile, setVideoFile] = useState(null);
@@ -573,7 +573,8 @@ const RequestService = () => {
         </div>
       )}
       {showSuccessPopup && (
-        <Winner onClose={() => setShowSuccessPopup(false)} />
+        // <Winner onClose={() => setShowSuccessPopup(false)} />
+        <></>
       )}
     </div>
   );
