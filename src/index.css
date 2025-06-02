@@ -1,1 +1,77 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html {
+    font-family: "Cairo", sans-serif;
+  }
+
+  body {
+    @apply bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200;
+  }
+} */
+
+body::selection {
+  background-color: #75c6ec;
+  color: white;
+}
+.bg {
+  background-image: url(./assets/bg.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loader {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+  margin: 15px auto;
+  position: relative;
+  color: #75c6ec;
+  left: -100px;
+  box-sizing: border-box;
+  animation: shadowRolling 2s linear infinite;
+}
+
+@keyframes shadowRolling {
+  0% {
+    box-shadow: 0px 0 #75c6ec9f, 0px 0 #75c6ec9f, 0px 0 #75c6ec9f,
+      0px 0 #75c6ec9f;
+  }
+  12% {
+    box-shadow: 100px 0 #75c6ec, 0px 0 #75c6ec9f, 0px 0 #75c6ec9f,
+      0px 0 #75c6ec9f;
+  }
+  25% {
+    box-shadow: 110px 0 #75c6ec, 100px 0 #75c6ec, 0px 0 #75c6ec9f,
+      0px 0 #75c6ec9f;
+  }
+  36% {
+    box-shadow: 120px 0 #75c6ec, 110px 0 #75c6ec, 100px 0 #75c6ec,
+      0px 0 #75c6ec9f;
+  }
+  50% {
+    box-shadow: 130px 0 #75c6ec, 120px 0 #75c6ec, 110px 0 #75c6ec,
+      100px 0 #75c6ec;
+  }
+  62% {
+    box-shadow: 200px 0 #75c6ec9f, 130px 0 #75c6ec, 120px 0 #75c6ec,
+      110px 0 #75c6ec;
+  }
+  75% {
+    box-shadow: 200px 0 #75c6ec9f, 200px 0 #75c6ec9f, 130px 0 #75c6ec,
+      120px 0 #75c6ec;
+  }
+  87% {
+    box-shadow: 200px 0 #75c6ec9f, 200px 0 #75c6ec9f, 200px 0 #75c6ec9f,
+      130px 0 #75c6ec;
+  }
+  100% {
+    box-shadow: 200px 0 #75c6ec9f, 200px 0 #75c6ec9f, 200px 0 #75c6ec9f,
+      200px 0 #75c6ec9f;
+  }
+}
