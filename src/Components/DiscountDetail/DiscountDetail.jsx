@@ -46,8 +46,8 @@ export default function DiscountDetail() {
                 <Slider {...settings} className="mb-10">
                   {service.images.map((img) => (
                     <img
-                      key={img}
-                      src={img}
+                      key={img.id}
+                      src={img.img}
                       className="mx-auto rounded-lg h-[200px] w-full"
                     />
                   ))}
@@ -141,27 +141,20 @@ export default function DiscountDetail() {
                     الفيديو
                   </label>
 
-                  {service?.images?.some((media) => media.endsWith(".mp4")) ? (
-                    service.images.map((media, index) =>
-                      media.endsWith(".mp4") ? (
-                        <motion.video
-                          key={index}
-                          whileHover={{ scale: 0.9 }}
-                          whileTap={{ scale: 0.8 }}
-                          src={media}
-                          className="rounded-xl cursor-pointer h-60 w-full object-cover mb-3"
-                          controls
-                          autoPlay
-                          loop
-                          muted
-                        />
-                      ) : null
-                    )
-                  ) : (
-                    <div className="bg-gray-100 p-5 rounded-xl ">
+                  <motion.video
+                    whileHover={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.8 }}
+                    src={service.video}
+                    className="rounded-xl cursor-pointer h-60 w-full object-cover mb-3"
+                    controls
+                    autoPlay
+                    loop
+                    muted
+                  />
+
+                  {/* <div className="bg-gray-100 p-5 rounded-xl ">
                       <RiFileVideoLine className="w-10 h-10 mx-auto" />
-                    </div>
-                  )}
+                    </div> */}
                 </div>
                 <div className="mb-5">
                   <div className="flex items-center justify-between">
