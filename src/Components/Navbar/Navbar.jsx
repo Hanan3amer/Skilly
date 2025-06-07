@@ -154,7 +154,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-white w-full sticky top-0 dark:bg-slate-400 z-[49] ">
+      <nav className="bg-white w-full sticky top-0  z-[49] ">
         <div className="mx-auto sm:px-0 md:px-3">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -381,12 +381,12 @@ export default function Navbar() {
             </div>
           </div>
           {toggle && (
-            <div className="absolute top-16 left-0 w-full bg-white shadow-md dark:bg-gray-800 sm:hidden">
+            <div className="absolute top-16 left-0 w-full bg-white shadow-md  sm:hidden">
               <ul className="flex flex-col space-y-2 p-4">
                 <li>
                   <NavLink
                     to="/contactus"
-                    className="block py-2 px-3 text-gray-600 dark:text-white"
+                    className="block py-2 px-3 text-gray-600 "
                   >
                     تواصل معنا
                   </NavLink>
@@ -404,7 +404,7 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     to="/aboutus"
-                    className="block py-2 px-3 text-gray-600 dark:text-white"
+                    className="block py-2 px-3 text-gray-600 "
                   >
                     من نحن
                   </NavLink>
@@ -412,7 +412,7 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     to="/ourservices"
-                    className="block py-2 px-3 text-gray-600 dark:text-white"
+                    className="block py-2 px-3 text-gray-600 "
                   >
                     خدماتنا
                   </NavLink>
