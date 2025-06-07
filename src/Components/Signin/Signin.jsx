@@ -1,4 +1,3 @@
-import or from "../../assets/or.svg";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,9 +6,10 @@ import { AuthContext } from "../../Context/Authcontext";
 import * as Yup from "yup";
 import Loading from "../Loading/Loading";
 import { getCurrentUser } from "../../utils/hooks/useCurrentUser";
-import vector from "../../assets/vector.svg";
+import vector from "../../assets/Vector.svg";
 import Hide from "../../assets/Hide.svg";
 import google from "../../assets/google.svg";
+import or from "../../assets/or.svg";
 export default function Signin() {
   const navigate = useNavigate();
   const { setUserLogin } = useContext(AuthContext);
