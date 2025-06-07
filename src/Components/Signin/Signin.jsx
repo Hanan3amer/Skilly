@@ -1,6 +1,3 @@
-// import vector from "../../assets/vector.svg";
-import Hide from "../../assets/Hide.svg";
-import google from "../../assets/google.svg";
 import or from "../../assets/or.svg";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,11 +7,20 @@ import { AuthContext } from "../../Context/Authcontext";
 import * as Yup from "yup";
 import Loading from "../Loading/Loading";
 import { getCurrentUser } from "../../utils/hooks/useCurrentUser";
+import vector from "../../assets/vector.svg";
+import Hide from "../../assets/Hide.svg";
+import google from "../../assets/google.svg";
 export default function Signin() {
   const navigate = useNavigate();
   const { setUserLogin } = useContext(AuthContext);
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   function HandleLogin(formValues) {
     setLoading(true);
     setApiError("");
@@ -94,7 +100,7 @@ export default function Signin() {
           <div className="mb-5 ">
             <div className="relative">
               <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
-                {/* <img src={vector} /> */}
+                <img src={vector} />
               </div>
               <input
                 name="phoneNumber"
@@ -116,25 +122,28 @@ export default function Signin() {
           </div>
           <div className="mb-5">
             <div className="relative">
-              <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
-                <img src={Hide} />
+              <div
+                className="absolute inset-y-0 end-2 flex items-center ps-3.5 cursor-pointer"
+                onClick={togglePassword}
+              >
+                <img src={Hide} alt="toggle password" />
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
                 autoComplete="current-password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
-                placeholder=" كلمة المرور"
+                className="bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                placeholder="كلمة المرور"
               />
-              {formik.touched.password && formik.errors.password ? (
-                <div className="text-red-500 text-sm">
+              {formik.touched.password && formik.errors.password && (
+                <div className="text-red-500 text-sm mt-1">
                   {formik.errors.password}
                 </div>
-              ) : null}
+              )}
             </div>
           </div>
           <div className="flex items-center mb-5">
