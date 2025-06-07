@@ -1,16 +1,12 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../Context/Authcontext";
-export default function Categories() {
+export default function Categories({ categories, userLogin }) {
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  const { userLogin } = useContext(AuthContext);
+    setFilteredResults(categories);
+  }, [categories]);
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-  const [categories, setCategories] = useState([]);
   function searchItem(inputValue) {
     setSearchInput(inputValue);
     if (searchInput !== "") {
@@ -25,16 +21,6 @@ export default function Categories() {
       setFilteredResults(categories);
     }
   }
-  useEffect(() => {
-    axios
-      .get(`https://skilly.runasp.net/api/Category/getAllCategories`)
-      .then((apiResponse) => {
-        setCategories(apiResponse.data.categories);
-      })
-      .catch((apiError) => {
-        console.log(apiError);
-      });
-  }, []);
   return (
     <>
       <div className="container">
@@ -96,7 +82,7 @@ export default function Categories() {
           </h2>
           <div className="row flex flex-wrap my-10">
             {searchInput.length > 1
-              ? filteredResults.map((category) => (
+              ? filteredResults?.map((category) => (
                   <div
                     key={category?.id}
                     className="sm:w-1/2 lg:w-1/4 mx-auto p-2"
@@ -118,7 +104,7 @@ export default function Categories() {
                     </Link>
                   </div>
                 ))
-              : categories.map((category) => (
+              : categories?.map((category) => (
                   <div
                     key={category?.id}
                     className="sm:w-1/2 lg:w-1/4 mx-auto p-2"

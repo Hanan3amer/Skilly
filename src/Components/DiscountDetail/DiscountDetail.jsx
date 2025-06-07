@@ -1,7 +1,5 @@
-import { motion } from "motion/react";
 import { Link, useLocation } from "react-router-dom";
 import Slider from "react-slick";
-import { RiFileVideoLine } from "react-icons/ri";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -151,10 +149,6 @@ export default function DiscountDetail() {
                     loop
                     muted
                   />
-
-                  {/* <div className="bg-gray-100 p-5 rounded-xl ">
-                      <RiFileVideoLine className="w-10 h-10 mx-auto" />
-                    </div> */}
                 </div>
                 <div className="mb-5">
                   <div className="flex items-center justify-between">

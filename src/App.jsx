@@ -47,6 +47,7 @@ import NotificationsModal from "./Components/Notifiction/NotificationModal";
 import AllReviews from "./Components/AllReviews/AllReviews";
 import ProviderProfileUser from "./Components/UserProviderProfile/ProviderProfileUser";
 import { ChatProvider } from "./Context/ChatContext";
+import CategoriesProvider from "./Context/CategoriesContext";
 function App() {
   const router = createHashRouter([
     {
@@ -101,19 +102,21 @@ function App() {
   ]);
   return (
     <>
-      <ChatProvider>
-        <UserDataProvider>
-          <ProviderContextProvider>
-            <UserContextProvider>
-              <TypeContextProvider>
-                <AuthContextprovider>
-                  <RouterProvider router={router}></RouterProvider>
-                </AuthContextprovider>
-              </TypeContextProvider>
-            </UserContextProvider>
-          </ProviderContextProvider>
-        </UserDataProvider>
-      </ChatProvider>
+      <CategoriesProvider>
+        <ChatProvider>
+          <UserDataProvider>
+            <ProviderContextProvider>
+              <UserContextProvider>
+                <TypeContextProvider>
+                  <AuthContextprovider>
+                    <RouterProvider router={router}></RouterProvider>
+                  </AuthContextprovider>
+                </TypeContextProvider>
+              </UserContextProvider>
+            </ProviderContextProvider>
+          </UserDataProvider>
+        </ChatProvider>
+      </CategoriesProvider>
     </>
   );
 }
