@@ -5,8 +5,13 @@ import { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
 import { UserDataContext } from "../../Context/UserDataContext";
 import { Link } from "react-router-dom";
+import Buyservice from "../Buyservice/Buyservice";
 export default function Rewards() {
   const [discounts, setDiscounts] = useState([]);
+  const [error, setError] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
+  const [showBuyPopup, setShowBuyPopup] = useState(false);
+  const [isApplyingDiscount, setIsApplyingDiscount] = useState(false);
   const { user } = useContext(UserDataContext);
   const token = localStorage.getItem("userToken");
 
@@ -25,10 +30,11 @@ export default function Rewards() {
       });
   }
 
-  function discountUseage(serviceId) {
+  function discountUseage(service) {
+    setIsApplyingDiscount(true);
     axios
       .post(
-        `https://skilly.runasp.net/api/Provider/ProviderServices/apply-Discount/${serviceId}`,
+        `https://skilly.runasp.net/api/Provider/ProviderServices/apply-Discount/${service.id}`,
         {},
         {
           headers: {
@@ -36,8 +42,19 @@ export default function Rewards() {
           },
         }
       )
-      .then((apiResponse) => {
-        console.log(apiResponse);
+      .then((res) => {
+        if (res.status === 200) {
+          setSelectedService(service);
+          setShowBuyPopup(true);
+        }
+      })
+      .catch((err) => {
+        if (err.response?.status === 400) {
+          setError("ليس لديك نقاط كافية لاستخدام الخصم");
+        }
+      })
+      .finally(() => {
+        setIsApplyingDiscount(false);
       });
   }
 
@@ -57,18 +74,21 @@ export default function Rewards() {
   return (
     <>
       <div className="container my-10">
-        <div className="border max-w-5xl mx-auto rounded-xl p-5" dir="rtl">
+        <div
+          className="border border-gray-300 max-w-5xl mx-auto rounded-xl p-5"
+          dir="rtl"
+        >
           <h1 className="text-2xl font-bold text-[#27AAE1]">
             اهلا {user?.firstName} {user?.lastName}
           </h1>
-          <div className="border mx-auto max-w-xl p-4 rounded-xl bg-[#F8F9FF] my-5">
+          <div className="border border-gray-300 mx-auto max-w-xl p-4 rounded-xl bg-[#F8F9FF] my-5">
             <div className="flex flex-col md:flex-row items-center justify-center">
               <div>
                 <h2 className="font-bold text-black text-3xl">
                   النقاط الحالية
                 </h2>
                 <h3 className="font-bold text-[#FBBC05] text-3xl">
-                  {user?.points}
+                  {user?.points > 0 ? user?.points : 0}
                 </h3>
                 <p className="text-black text-sm">معاك 100 نقطة؟ !</p>
                 <p className="text-black text-sm">
@@ -78,6 +98,16 @@ export default function Rewards() {
               <img src={cup} alt="cup" className="w-[200px]" />
             </div>
           </div>
+          {error ? (
+            <div
+              className="p-4 mb-4 text-sm text-center text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+              role="alert"
+            >
+              {error}
+            </div>
+          ) : (
+            ""
+          )}
           <div className="flex items-center justify-between my-3">
             <h2 className="text-black font-bold text-md">اشتري الان</h2>
             <div className="flex items-center justify-center text-center">
@@ -93,7 +123,7 @@ export default function Rewards() {
             ) : (
               discounts.map((service) => (
                 <div key={service.id} className="flex flex-col">
-                  <div className="border rounded-xl flex flex-col gap-2">
+                  <div className="border border-gray-300 rounded-xl flex flex-col gap-2">
                     <Link
                       to={`/discountdetail/${service.id}`}
                       state={{ service }}
@@ -122,10 +152,17 @@ export default function Rewards() {
                     </Link>
                   </div>
                   <button
-                    onClick={() => discountUseage(service.id)}
-                    className="mt-2 mx-auto text-center border-2 my-5 px-3 py-2 rounded-md border-[#27AAE1] text-[#27AAE1] hover:bg-[#9bc2d492] hover:border-[#9bc2d492] hover:text-white"
+                    onClick={() => discountUseage(service)}
+                    disabled={isApplyingDiscount}
+                    className={`mt-2 mx-auto text-center border-2 my-5 px-3 py-2 rounded-md 
+                      ${
+                        isApplyingDiscount
+                          ? "opacity-50 cursor-not-allowed"
+                          : "hover:bg-[#9bc2d492]"
+                      } 
+                      border-[#27AAE1] text-[#27AAE1] hover:border-[#9bc2d492] hover:text-white`}
                   >
-                    استخدم الخصم
+                    {isApplyingDiscount ? "جاري التفعيل..." : "استخدم الخصم"}
                   </button>
                 </div>
               ))
@@ -133,6 +170,16 @@ export default function Rewards() {
           </div>
         </div>
       </div>
+      {showBuyPopup && selectedService && (
+        <div className="fixed top-0 left-0 w-full h-full bg-[#00000038] bg-opacity-50 z-50 flex justify-center items-center">
+          <Buyservice
+            price={selectedService.priceDiscount}
+            deliveryTime={selectedService.deliverytime}
+            serviceID={selectedService.id}
+            onClose={() => setShowBuyPopup(false)}
+          />
+        </div>
+      )}
     </>
   );
 }

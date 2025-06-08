@@ -76,6 +76,9 @@ export default function Contactus() {
                   defaultValue={""}
                 />
               </div>
+              <button className="bg-[#27a9e192] text-white font-semibold px-10 py-2 rounded-lg">
+                اِرسال
+              </button>
             </form>
           </div>
         </div>
