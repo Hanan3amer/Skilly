@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { motion } from "framer-motion";
 export default function DiscountDetail() {
   const [reviews, setReviews] = useState([]);
   const { state } = useLocation();
@@ -25,7 +26,6 @@ export default function DiscountDetail() {
         )
         .then((res) => {
           setReviews(res.data.reviews.reviews);
-          console.log(res.data.reviews.reviews);
         })
         .catch((err) => console.error("Failed to fetch reviews:", err));
     }
@@ -37,7 +37,7 @@ export default function DiscountDetail() {
         <h1 className="text-[#27AAE1] text-center font-bold text-2xl my-5">
           تفاصيل الخدمة
         </h1>
-        <div className="border-2 p-5 rounded-lg border-gray-500 max-w-lg mx-auto bg-gray-200 my-5">
+        <div className="border-2 p-5 rounded-lg border-gray-300 max-w-lg mx-auto bg-gray-200 my-5">
           <div className="max-w-sm mx-auto" dir="rtl">
             {service && (
               <div>
@@ -211,12 +211,6 @@ export default function DiscountDetail() {
               </div>
             )}
           </div>
-          <button
-            // onClick={() => discountUseage(service.id)}
-            className=" flex mt-2 mx-auto text-center border-2 my-5 px-3 py-2 rounded-md border-[#27AAE1] text-[#27AAE1] hover:bg-[#9bc2d492] hover:border-[#9bc2d492] hover:text-white"
-          >
-            استخدم الخصم
-          </button>
         </div>
       </div>
     </>

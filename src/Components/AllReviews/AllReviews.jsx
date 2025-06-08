@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import review from "../../assets/Review.svg";
 export default function AllReviews() {
   const [reviews, setReviews] = useState([]);
   const { id } = useParams();
@@ -16,11 +17,11 @@ export default function AllReviews() {
     getallReviews(id);
   }, [id]);
   return (
-    <div className="container">
+    <div className="container p-5 my-10">
       <h1 className="text-xl font-bold text-[#27AAE1] text-center my-10">
         التقييمات
       </h1>
-      <div className="border rounded-3xl max-w-xl mx-auto p-4">
+      <div className="border border-gray-300 rounded-3xl max-w-xl mx-auto p-4">
         {reviews.length > 0 ? (
           reviews.map((review) => (
             <div key={review.serviceId} className="bg-gray-100 p-5 rounded-xl">
@@ -53,6 +54,7 @@ export default function AllReviews() {
             <p className="text-center my-5 text-red-400">
               لا توجد تقييمات لهذه الخدمة
             </p>
+            <img src={review} />
           </>
         )}
       </div>
