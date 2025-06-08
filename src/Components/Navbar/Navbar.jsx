@@ -407,14 +407,21 @@ export default function Navbar() {
                     من نحن
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/ourservices"
-                    className="block py-2 px-3 text-gray-600 "
-                  >
-                    خدماتنا
-                  </NavLink>
-                </li>
+               {userType === "0" && (
+                  <li>
+                    <NavLink
+                      onClick={() => setIsOpen(false)}
+                      to={"/ourservices"}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-[#3B9DD2]"
+                          : "block py-2 px-3 text-gray-600 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#3B9DD2] md:p-0"
+                      }
+                    >
+                      خدماتنا
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </div>
           )}

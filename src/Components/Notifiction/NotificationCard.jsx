@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import OfferPrice from "../OfferPrice/OfferPrice";
 import axios from "axios";
 import Reviews from "../Reviews/Reviews";
+
 const NotificationCard = ({
   id,
   title,
@@ -11,30 +12,41 @@ const NotificationCard = ({
   onDelete,
   offerId,
   onViewOffer,
+  isRead,
+  onMarkAsRead,
+  userType,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   const token = localStorage.getItem("userToken");
+
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+
   const handleDelete = () => {
     if (onDelete) onDelete(id);
   };
 
-  const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const closeReviewModal = () => setIsReviewModalOpen(false);
 
   const handleBackdropClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       closeModal();
     }
   };
-  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
-  const openReviewModal = () => setIsReviewModalOpen(true);
-  const closeReviewModal = () => setIsReviewModalOpen(false);
+  const handleAction = (actionCallback) => {
+    return () => {
+      if (!isRead && onMarkAsRead) {
+        onMarkAsRead(id);
+      }
+      if (actionCallback) actionCallback();
+    };
+  };
 
   const goPayment = async () => {
     try {
@@ -54,10 +66,15 @@ const NotificationCard = ({
       console.error("فشل بدء عملية الدفع:", error);
     }
   };
+
+  const openReviewModal = () => setIsReviewModalOpen(true);
+
   return (
     <>
       <div
-        className="relative border border-gray-200 flex overflow-hidden rounded-xl hover:shadow-md transition-all duration-200 h-35"
+        className={`relative border border-gray-300 flex overflow-hidden rounded-xl hover:shadow-md transition-all duration-200 h-35 ${
+          isRead ? "bg-gray-100" : "bg-white"
+        }`}
         style={{ minHeight: "50px" }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -72,7 +89,7 @@ const NotificationCard = ({
         </div>
 
         <div
-          className={`flex-grow p-4 bg-white transition-all duration-300 ease-in-out ${
+          className={`flex-grow p-4 transition-all duration-300 ease-in-out ${
             isHovered ? "pr-[70px]" : "pr-4"
           }`}
         >
@@ -80,56 +97,45 @@ const NotificationCard = ({
             {title}
           </h3>
           <p className="text-xs text-right text-gray-700">{content}</p>
+          {!isRead && (
+            <>
+              {title === "عرض سعر جديد" && onViewOffer && offerId && (
+                <button
+                  className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
+                  onClick={handleAction(() => onViewOffer(offerId))}
+                >
+                  مشاهدة العرض
+                </button>
+              )}
 
-          {title === "عرض سعر جديد" && onViewOffer && offerId && (
-            <button
-              className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
-              onClick={() => onViewOffer(offerId)}
-            >
-              مشاهدة العرض
-            </button>
-          )}
+              {(title === "قبول خدمة" ||
+                (title === "قبول عرض سعر" && +userType !== 1)) && (
+                <button
+                  onClick={handleAction(goPayment)}
+                  className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
+                >
+                  اذهب للدفع
+                </button>
+              )}
 
-          {title === "رفض عرض السعر" && offerId && (
-            <>
-              <button
-                className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
-                onClick={openModal}
-              >
-                عرض سعر
-              </button>
+              {title === "تم تنفيذ الخدمة" && (
+                <button
+                  onClick={handleAction(openReviewModal)}
+                  className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
+                >
+                  تأكيد استلام
+                </button>
+              )}
+              {title === "طلب خدمة جديد" && (
+                <button className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl">
+                  مشاهدة الخدمة
+                </button>
+              )}
             </>
-          )}
-          {title === "قبول خدمة" && (
-            <>
-              <button
-                onClick={goPayment}
-                className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
-              >
-                اذهب للدفع
-              </button>
-            </>
-          )}
-          {title === "قبول عرض سعر" && (
-            <>
-              <button
-                onClick={goPayment}
-                className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
-              >
-                اذهب للدفع
-              </button>
-            </>
-          )}
-          {title === "تم تنفيذ الخدمة" && (
-            <button
-              onClick={openReviewModal}
-              className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
-            >
-              تأكيد استلام
-            </button>
           )}
         </div>
       </div>
+
       {isModalOpen && (
         <div
           className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50"
@@ -140,6 +146,7 @@ const NotificationCard = ({
           </div>
         </div>
       )}
+
       {isReviewModalOpen && (
         <div
           className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50"
@@ -165,6 +172,9 @@ NotificationCard.propTypes = {
   content: PropTypes.any,
   offerId: PropTypes.any,
   onViewOffer: PropTypes.func,
+  isRead: PropTypes.bool,
+  onMarkAsRead: PropTypes.func,
+  userType: PropTypes.any,
 };
 
 export default NotificationCard;

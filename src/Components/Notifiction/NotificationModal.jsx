@@ -4,9 +4,11 @@ import EmptyNotifications from "./EmptyNotifications";
 import PropTypes from "prop-types";
 import axios from "axios";
 import SingleOffer from "../Offers/SingleOffer";
+import { getUserType } from "../../utils/hooks/getUserType";
 
 const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
   const token = localStorage.getItem("userToken");
+  const userType = getUserType();
   const [notifications, setNotifications] = useState([]);
   const [isOffersModalOpen, setIsOffersModalOpen] = useState(false);
   const [selectedOfferId, setSelectedOfferId] = useState(null);
@@ -18,13 +20,38 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
       })
       .then((res) => {
         console.log(res.data.notifications);
-
         setNotifications(res.data.notifications);
-        onCountChange?.(res.data.notifications.length);
-        console.log(res.data.notifications);
+        updateUnreadCount(res.data.notifications);
       })
       .catch((err) => {
         console.error("Failed to fetch notifications:", err);
+      });
+  };
+
+  const updateUnreadCount = (notificationsList) => {
+    const unreadCount = notificationsList.filter((n) => !n.isRead).length;
+    onCountChange?.(unreadCount);
+  };
+
+  const handleMarkAsRead = (id) => {
+    axios
+      .put(
+        `https://skilly.runasp.net/api/Notification/mark-as-read-By/${id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(() => {
+        setNotifications((prev) =>
+          prev.map((n) => (n.id === id ? { ...n, isRead: true } : n))
+        );
+        updateUnreadCount(
+          notifications.map((n) => (n.id === id ? { ...n, isRead: true } : n))
+        );
+      })
+      .catch((err) => {
+        console.error("Failed to mark notification as read:", err);
       });
   };
 
@@ -50,9 +77,11 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
         }
       )
       .then(() => {
-        setNotifications((prev) =>
-          prev.filter((notification) => notification.id !== id)
+        const updatedNotifications = notifications.filter(
+          (notification) => notification.id !== id
         );
+        setNotifications(updatedNotifications);
+        updateUnreadCount(updatedNotifications);
       })
       .catch((err) => {
         console.error("Failed to delete notification:", err);
@@ -78,7 +107,7 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
         style={{ minHeight: "350px", maxHeight: "70vh" }}
         onClick={handleModalClick}
       >
-        <div className="flex justify-between items-center p-4 border-b border-b-gray-200 ">
+        <div className="flex justify-between items-center p-4 border-b border-b-gray-300">
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors duration-200"
@@ -103,6 +132,7 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
             الاشعارات
           </h1>
         </div>
+
         <div className="overflow-y-auto p-4 flex-grow">
           {notifications.length > 0 ? (
             <div className="flex flex-col gap-4">
@@ -113,8 +143,11 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
                   title={notification.title}
                   content={notification.body}
                   offerId={notification.serviceId}
+                  isRead={notification.isRead}
                   onDelete={handleDeleteNotification}
                   onViewOffer={handleViewOffer}
+                  onMarkAsRead={handleMarkAsRead}
+                  userType={userType}
                 />
               ))}
             </div>
