@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function Categories({ categories, userLogin }) {
   useEffect(() => {
@@ -38,14 +38,14 @@ export default function Categories({ categories, userLogin }) {
           >
             <label
               htmlFor="default-search"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only"
             >
               Search
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg
-                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  className="w-4 h-4 text-gray-500 "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -64,12 +64,12 @@ export default function Categories({ categories, userLogin }) {
                 onChange={(e) => searchItem(e.target.value)}
                 type="search"
                 id="default-search"
-                className="block w-full p-4 ps-10 text-sm text-gray-900 border outline-none  rounded-lg bg-gray-50 focus:ring-[#27AAE1] focus:border-[#27AAE1] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#27AAE1] dark:focus:border-[#27AAE1]"
+                className="block w-full p-5 ps-10 text-sm text-gray-900  outline-none  rounded-lg bg-gray-100 focus:border focus:ring-[#27AAE1] focus:border-[#27AAE1]"
                 placeholder="ابحث عن الخدمه"
               />
               <button
                 type="submit"
-                className="text-white absolute end-2.5 bottom-2.5 bg-[#27AAE1] hover:bg-[#27AAE1] focus:ring-4 focus:outline-none focus:ring-[#27AAE1] font-medium rounded-lg text-sm px-4 py-2 dark:bg-[#27AAE1] dark:hover:bg-[#27AAE1]dark:focus:ring-[#27AAE1]"
+                className="text-white absolute end-2.5 bottom-2.5 bg-[#27AAE1] hover:bg-[#27AAE1] focus:ring-4 focus:outline-none focus:ring-[#27AAE1] font-medium rounded-lg text-sm px-4 py-2"
               >
                 بحث
               </button>
@@ -137,10 +137,12 @@ export default function Categories({ categories, userLogin }) {
             <p>
               إذا كنت بحاجة إلى تصميم خاص أو خدمة غير مذكورة هنا ، يمكنك تقديم
               طلب خدمة مخصص وسنلبي احتياجاتك بكل احترافية
-              <Link to="/requestservice" className="text-[#27AAE1] underline">
-                {" "}
-                اضغط هنا{" "}
-              </Link>{" "}
+              <Link
+                to={userLogin ? "/requestservice" : "/signin"}
+                className="text-[#27AAE1] underline"
+              >
+                اضغط هنا
+              </Link>
               لطلب خدمة
             </p>
           </div>
