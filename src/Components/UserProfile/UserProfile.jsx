@@ -14,7 +14,7 @@ export default function ProfilePage() {
   const [request, setRequest] = useState([]);
   const [selectedOfferId, setSelectedOfferId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const settings = {
     dots: false,
     infinite: false,
@@ -213,7 +213,7 @@ const navigate = useNavigate()
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#00000051] bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg w-[35%] p-6 relative">
             <button
               onClick={() => setIsModalOpen(false)}

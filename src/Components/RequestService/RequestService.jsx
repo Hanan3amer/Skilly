@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router";
 // import Winner from "../../Components/winner/Winner";
 const RequestService = () => {
   const [imageFiles, setImageFiles] = useState([]);
@@ -13,7 +14,7 @@ const RequestService = () => {
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const token = localStorage.getItem("userToken");
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -100,6 +101,7 @@ const RequestService = () => {
         );
 
         console.log("Request successful:", response.data);
+        navigate("/userprofile");
         setShowSuccessPopup(true);
         formik.resetForm();
         setImageFiles([]);
