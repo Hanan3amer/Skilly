@@ -57,7 +57,7 @@ const NotificationCard = ({
   return (
     <>
       <div
-        className="relative border flex overflow-hidden rounded-xl hover:shadow-md transition-all duration-200 h-25"
+        className="relative border border-gray-200 flex overflow-hidden rounded-xl hover:shadow-md transition-all duration-200 h-35"
         style={{ minHeight: "50px" }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

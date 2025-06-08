@@ -16,7 +16,6 @@ export default function Signin() {
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
@@ -40,19 +39,20 @@ export default function Signin() {
             setUserLogin({ id: userData.id });
             if (userData.userType === 1) {
               navigate("/serviceprovider");
-            } else {
+            } else if (userData.userType === 0) {
               navigate("/");
+            } else {
+              navigate("/signin");
             }
           } catch (error) {
             console.error("Error fetching user data:", error);
             setApiError("حدث خطأ أثناء تسجيل الدخول");
           }
         } else {
-          setApiError(ApiResponse?.data?.message);
+          setApiError(".رقم الهاتف أو كلمة المرور غير صحيحة");
         }
       })
-      .catch((error) => {
-        console.error("Login API error:", error);
+      .catch(() => {
         setApiError("حدث خطأ أثناء تسجيل الدخول");
       })
       .finally(() => setLoading(false));
@@ -61,10 +61,10 @@ export default function Signin() {
     phoneNumber: Yup.string()
       .matches(
         /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/,
-        "phone number is incorrect[Egyptian Number]"
+        "رقم الهاتف المدخل غير صحيح يجب ان يكون [رقم مصري]"
       )
-      .required("Phone number is Required"),
-    password: Yup.string().required("Password is Required"),
+      .required("رقم الهاتف مطلوب"),
+    password: Yup.string().required("كلمة المرور مطلوبة"),
   });
   let formik = useFormik({
     initialValues: {
@@ -99,7 +99,7 @@ export default function Signin() {
           </h1>
           <div className="mb-5 ">
             <div className="relative">
-              <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
+              <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none ">
                 <img src={vector} />
               </div>
               <input
@@ -174,7 +174,7 @@ export default function Signin() {
           <div className="mx-auto text-center w-full">
             <button
               type="submit"
-              className="text-white bg-[#3B9DD2] hover:bg-[#5aadd9] focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full  px-10 py-2.5 text-center dark:bg-[#3B9DD2] dark:hover:bg-[#3B9DD2] dark:focus:ring-[#3B9DD2]"
+              className="cursor-pointer text-white bg-[#3B9DD2] hover:bg-[#5aadd9] focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full  px-10 py-2.5 text-center dark:bg-[#3B9DD2] dark:hover:bg-[#3B9DD2] dark:focus:ring-[#3B9DD2]"
             >
               تسجيل الدخول
             </button>

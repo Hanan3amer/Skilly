@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import vector from "../../assets/vector.svg";
+import vector from "../../assets/Vector.svg";
 import { useFormik } from "formik";
 import { useTypeContext } from "../../Context/UserType";
 import * as Yup from "yup";
@@ -16,24 +16,26 @@ export default function Signup() {
     firstName: Yup.string()
       .min(2, "Name minimum length is 2")
       .max(10, "Name max length is 10")
-      .required("Name is Required"),
+      .required("الاسم الاول مطلوب"),
     lastName: Yup.string()
       .min(2, "Name minimum length is 2")
       .max(10, "Name max length is 10")
-      .required("Name is Required"),
+      .required("الاسم الاخير مطلوب"),
     phoneNumber: Yup.string()
       .matches(
         /^(\+20|0020|0)?1[0-2,5]{1}[0-9]{8}$/,
-        "phone number is incorrect[Egyptian Number]"
+        "رقم الهاتف المدخل غير صحيح يجب ان يكون [رقم مصري]"
       )
-      .required("Phone number is Required"),
-    email: Yup.string().email("Email is invalid").required("Email is Required"),
+      .required("رقم الهاتف مطلوب"),
+    email: Yup.string()
+      .email("البريد الالكتروني المدخل غير صحيح")
+      .required("البريد الالكتروني مطلوب"),
     password: Yup.string()
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&_])[A-Za-z\d@$!%*#?&_]{8,}$/,
-        "Minimum eight characters, at least one letter, one number and one special character"
+       "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل، وتحتوي على حرف واحد على الأقل، ورقم واحد، وحرف خاص واحد."
       )
-      .required("Password is Required"),
+      .required("كلمة المرور مطلوبة"),
   });
 
   const formik = useFormik({
@@ -75,7 +77,7 @@ export default function Signup() {
   return (
     <>
       <div className="container my-20">
-        <div className=" border rounded-lg p-10 max-w-lg mx-auto ">
+        <div className=" border border-gray-200 rounded-lg p-10 max-w-lg mx-auto ">
           {ApiError ? (
             <div
               className="py-3 m-2 text-sm text-red-500 rounded-md text-center bg-red-100"
@@ -165,7 +167,7 @@ export default function Signup() {
             </div>
             <div className="relative z-0 w-full mb-5 group">
               <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
-                {/* <img src={vector} /> */}
+                <img src={vector} />
               </div>
               <input
                 dir="rtl"

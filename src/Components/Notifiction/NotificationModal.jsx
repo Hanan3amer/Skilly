@@ -70,7 +70,7 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4"
+      className="fixed inset-0 flex items-center justify-center bg-[#0000009d] bg-opacity-50 z-50 p-4"
       onClick={onClose}
     >
       <div
@@ -78,7 +78,7 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
         style={{ minHeight: "350px", maxHeight: "70vh" }}
         onClick={handleModalClick}
       >
-        <div className="flex justify-between items-center p-4 border-b shadow-sm">
+        <div className="flex justify-between items-center p-4 border-b border-b-gray-200 ">
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors duration-200"
@@ -103,7 +103,6 @@ const NotificationsModal = ({ isOpen, onClose, onCountChange }) => {
             الاشعارات
           </h1>
         </div>
-
         <div className="overflow-y-auto p-4 flex-grow">
           {notifications.length > 0 ? (
             <div className="flex flex-col gap-4">

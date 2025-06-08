@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { BsChatDots } from "react-icons/bs";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Offers from "../Offers/Offers";
 import Slider from "react-slick";
+
 export default function ProfilePage() {
   const [offersCountMap, setOffersCountMap] = useState({});
   const token = localStorage.getItem("userToken");
@@ -13,6 +14,7 @@ export default function ProfilePage() {
   const [request, setRequest] = useState([]);
   const [selectedOfferId, setSelectedOfferId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+const navigate = useNavigate()
   const settings = {
     dots: false,
     infinite: false,
@@ -33,7 +35,7 @@ export default function ProfilePage() {
   function getUser() {
     axios
       .get(
-        `https://skilly.runasp.net/api/UserProfile/userProfile/GetUserProfileByuserId`,
+        `https://skilly.runasp.net/api/UserProfile/UserProfile/GetUserProfileByuserId`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -78,9 +80,14 @@ export default function ProfilePage() {
       });
   }
   useEffect(() => {
+    if (!token) {
+      navigate("/signin");
+      return;
+    }
+
     getUser();
     getRequests();
-  }, []);
+  }, [token]);
 
   return (
     <div

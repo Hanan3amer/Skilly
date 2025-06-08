@@ -10,7 +10,7 @@ export function UserDataProvider({ children }) {
   function getUser() {
     axios
       .get(
-        "https://skilly.runasp.net/api/UserProfile/userProfile/GetUserProfileByuserId",
+        "https://skilly.runasp.net/api/UserProfile/UserProfile/GetUserProfileByuserId",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -24,11 +24,15 @@ export function UserDataProvider({ children }) {
   }
 
   useEffect(() => {
-    getUser();
-  }, []);
-
+    if (token) {
+      getUser();
+    }
+  }, [token]);
+  const updateUser = (newUserData) => {
+    setUser(newUserData);
+  };
   return (
-    <UserDataContext.Provider value={{ user }}>
+    <UserDataContext.Provider value={{ user, updateUser }}>
       {children}
     </UserDataContext.Provider>
   );

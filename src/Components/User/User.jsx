@@ -1,62 +1,112 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { BsUpload } from "react-icons/bs";
 import { useFormik } from "formik";
 import { UserContext } from "../../Context/UserContext";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Location from "../LocationModal/Location";
+const governoratesWithCities = {
+  القاهرة: ["القاهرة", "المعادي", "حلوان"],
+  الجيزة: ["الجيزة", "6 أكتوبر", "الشيخ زايد", "البدر"],
+  الإسكندرية: ["الإسكندرية"],
+  الدقهلية: ["المنصورة", "المنصورة الجديدة", "طلخا", "ميت غمر"],
+  الشرقية: ["الزقازيق", "العاشر من رمضان", "بلبيس", "فاقوس"],
+  القليوبية: ["بنها", "شبرا الخيمة", "القناطر الخيرية"],
+  "كفر الشيخ": ["كفر الشيخ", "دسوق", "فوه", "بلطيم"],
+  الغربية: ["طنطا", "المحلة الكبرى", "زفتى", "سمنود"],
+  المنوفية: ["شبين الكوم", "تلا", "الباجور", "أشمون"],
+  البحيرة: ["دمنهور", "رشيد", "إدكو", "أبو المطامير"],
+  دمياط: ["دمياط الجديدة","دمياط", "فارسكور", "الزرقا", "كفر سعد"],
+  بورسعيد: ["بورسعيد", "شرق بورسعيد"],
+  الإسماعيلية: ["الإسماعيلية", "التل الكبير", "فايد"],
+  السويس: ["السويس"],
+  "شمال سيناء": ["العريش", "الشيخ زويد", "رفح", "بئر العبد"],
+  "جنوب سيناء": ["شرم الشيخ", "دهب", "نويبع", "طور سيناء"],
+  "بني سويف": ["بني سويف", "الواسطى", "ناصر", "إهناسيا"],
+  المنيا: ["المنيا", "ملوي", "دير مواس", "مغاغة"],
+  أسيوط: ["أسيوط", "ديروط", "صدفا", "أبنوب"],
+  سوهاج: ["سوهاج", "جرجا", "طهطا", "البلينا"],
+  قنا: ["قنا", "قوص", "نجع حمادي", "دشنا"],
+  الأقصر: ["الأقصر", "طيبة الجديدة", "الزينية", "البياضية"],
+  أسوان: ["أسوان", "أسوان الجديدة", "كوم أمبو", "دراو"],
+  "البحر الأحمر": ["الغردقة", "رأس غارب", "مرسى علم", "سفاجا"],
+  "الوادي الجديد": ["الخارجة", "الداخلة", "الفرافرة", "باريس"],
+  مطروح: ["مرسى مطروح", "الحمام", "العلمين", "سيدي براني"],
+};
 
 export default function User() {
-  const { addUser, userData, refreshUserData } = useContext(UserContext);
-  console.log("User Data:", userData);
+  const { addUser } = useContext(UserContext);
   const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const isEdit = queryParams.get("isEdit") === "true";
-
   const [activeOption, setActiveOption] = useState("male");
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [cities, setCities] = useState([]);
+
+  const [userinfo, setUserinfo] = useState(
+    JSON.parse(localStorage.getItem("formData")) || {
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      email: "",
+    }
+  );
+
+  const validationSchema = Yup.object({
+    Governorate: Yup.string().required("المحافظة مطلوبة"),
+    City: Yup.string().required("المدينة مطلوبة"),
+    StreetName: Yup.string().required("اسم الشارع مطلوب"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      Governorate: "",
+      City: "",
+      StreetName: "",
+      Gender: "1",
+    },
+    validationSchema,
+    onSubmit: async (values) => {
+      setLoading(true);
+      try {
+        const formData = new FormData();
+        formData.append("Governorate", values.Governorate);
+        formData.append("City", values.City);
+        formData.append("StreetName", values.StreetName);
+        formData.append("Gender", values.Gender);
+        formData.append("firstName", userinfo.firstName);
+        formData.append("lastName", userinfo.lastName);
+        formData.append("phoneNumber", userinfo.phoneNumber);
+        formData.append("email", userinfo.email);
+        if (selectedFile) {
+          formData.append("Img", selectedFile);
+        }
+        await addUser(formData);
+        navigate("/signin");
+      } catch (error) {
+        console.error("Error adding user:", error);
+      } finally {
+        setLoading(false);
+      }
+    },
+  });
+
+  const handleGovernorateChange = (e) => {
+    const selectedGovernorate = e.target.value;
+    formik.handleChange(e);
+
+    if (selectedGovernorate) {
+      setCities(governoratesWithCities[selectedGovernorate] || []);
+      formik.setFieldValue("City", "");
+    } else {
+      setCities([]);
+    }
+  };
 
   function handleOptionChange(option) {
     setActiveOption(option);
-    formik.setFieldValue("Gender", option === "male" ? "1" : "0");
+    formik.setFieldValue("Gender", option === "male" ? 1 : 0);
   }
-
-  useEffect(() => {
-    if (isEdit && userData) {
-      formik.setValues({
-        firstName: userData.firstName || "",
-        lastName: userData.lastName || "",
-        phoneNumber: userData.phoneNumber || "",
-        email: userData.email || "",
-        Gender: userData.gender === "0" ? "0" : "1",
-        City: userData.city || "",
-        StreetName: userData.streetName || "",
-        Governorate: userData.governorate || "",
-      });
-
-      setUserinfo({
-        firstName: userData.firstName || "",
-        lastName: userData.lastName || "",
-        phoneNumber: userData.phoneNumber || "",
-        email: userData.email || "",
-      });
-
-      if (userData.gender == "0") {
-        setActiveOption("male");
-      } else {
-        setActiveOption("female");
-      }
-
-      if (userData.img) {
-        setPreviewImage(userData.img);
-      }
-    }
-  }, [isEdit, userData]);
 
   function handleFileChange(event) {
     const file = event.target.files[0];
@@ -67,87 +117,6 @@ export default function User() {
     }
   }
 
-  const [userinfo, setUserinfo] = useState(
-    JSON.parse(localStorage.getItem("formData"))
-  );
-
-  async function editUserProfile(values) {
-    setLoading(true);
-    const formData = new FormData();
-
-    formData.append("Gender", values.Gender);
-    formData.append("City", values.City);
-    formData.append("StreetName", values.StreetName);
-    formData.append("Governorate", values.Governorate);
-
-    if (selectedFile) {
-      formData.append("Img", selectedFile);
-    }
-
-    try {
-      const response = await axios.put(
-        "https://skilly.runasp.net/api/UserProfile/UserProfile/editUserProfile",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        toast.success("تم تحديث البيانات بنجاح");
-        await refreshUserData();
-        navigate("/userprofile");
-      }
-    } catch (error) {
-      console.error("Error updating user profile:", error);
-      toast.error("حدث خطأ أثناء تحديث البيانات");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function addUserProfile(values) {
-    const formData = new FormData();
-    Object.keys(values).forEach((key) => {
-      formData.append(key, values[key]);
-    });
-
-    if (selectedFile) {
-      formData.append("Img", selectedFile);
-    }
-
-    const response = await addUser(formData);
-    if (response.status === 200) {
-      navigate(`/signin`);
-    }
-  }
-
-  const validationSchema = Yup.object({
-    City: Yup.string().required("هذا الحقل مطلوب"),
-    StreetName: Yup.string().required("هذا الحقل مطلوب"),
-    Governorate: Yup.string().required("هذا الحقل مطلوب"),
-  });
-
-  let formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
-      Governorate: "",
-      City: "",
-      StreetName: "",
-      Gender: "1",
-    },
-    validationSchema: isEdit ? validationSchema : null,
-    onSubmit: (values) =>
-      isEdit ? editUserProfile(values) : addUserProfile(values),
-    enableReinitialize: true,
-  });
-
   return (
     <div className="container my-10">
       <Location />
@@ -157,7 +126,7 @@ export default function User() {
         dir="rtl"
       >
         <h1 className="text-center text-[#3B9DD2] font-extrabold text-2xl my-2">
-          {isEdit ? "تعديل بيانات المستخدم" : "بيانات المستخدم"}
+          {"بيانات المستخدم"}
         </h1>
         <h5 className="text-gray-900 font-bold text-sm text-center">
           برجاء اكمل بياناتك بعنايه
@@ -183,20 +152,17 @@ export default function User() {
               id="Img"
               className="hidden"
               onChange={handleFileChange}
+              accept="image/*"
             />
           </label>
           <p className="text-[10px] text-center my-2 pb-5">
-            {isEdit ? "يمكنك تغيير صورتك الشخصية" : "برجاء اختيار صوره شخصيه"}
+            برجاء اختيار صوره شخصيه
           </p>
           <div>
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.firstName
-                      ? formik.values.firstName
-                      : userinfo?.firstName || ""
-                  }
+                  value={userinfo?.firstName}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, firstName: e.target.value })
                   }
@@ -205,16 +171,12 @@ export default function User() {
                   id="firstName"
                   className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
                   placeholder=""
-                  disabled={isEdit}
+                  disabled
                 />
               </div>
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.lastName
-                      ? formik.values.lastName
-                      : userinfo?.lastName || ""
-                  }
+                  value={userinfo?.lastName}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, lastName: e.target.value })
                   }
@@ -223,18 +185,14 @@ export default function User() {
                   id="lastName"
                   className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
                   placeholder=""
-                  disabled={isEdit}
+                  disabled
                 />
               </div>
             </div>
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.phoneNumber
-                      ? formik.values.phoneNumber
-                      : userinfo?.phoneNumber || ""
-                  }
+                  value={userinfo?.phoneNumber}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, phoneNumber: e.target.value })
                   }
@@ -243,16 +201,12 @@ export default function User() {
                   id="phoneNumber"
                   className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
                   placeholder="01035623975"
-                  disabled={isEdit}
+                  disabled
                 />
               </div>
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.email
-                      ? formik.values.email
-                      : userinfo?.email || ""
-                  }
+                  value={userinfo?.email}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, email: e.target.value })
                   }
@@ -261,7 +215,7 @@ export default function User() {
                   id="email"
                   className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
                   placeholder=""
-                  disabled={isEdit}
+                  disabled
                 />
               </div>
             </div>
@@ -269,7 +223,7 @@ export default function User() {
               <div className="relative z-0 w-full mb-5 group">
                 <select
                   value={formik.values.Governorate}
-                  onChange={formik.handleChange}
+                  onChange={handleGovernorateChange}
                   onBlur={formik.handleBlur}
                   name="Governorate"
                   id="Governorate"
@@ -279,33 +233,12 @@ export default function User() {
                       : ""
                   }`}
                 >
-                  <option value="المحافظة">المحافظة</option>
-                  <option value="القاهرة">القاهرة</option>
-                  <option value="الجيزة">الجيزة</option>
-                  <option value="الإسكندرية">الإسكندرية</option>
-                  <option value="الدقهلية">الدقهلية</option>
-                  <option value="الشرقية">الشرقية</option>
-                  <option value="القليوبية">القليوبية</option>
-                  <option value="كفر الشيخ">كفر الشيخ</option>
-                  <option value="الغربية">الغربية</option>
-                  <option value="المنوفية">المنوفية</option>
-                  <option value="البحيرة">البحيرة</option>
-                  <option value="دمياط">دمياط</option>
-                  <option value="بورسعيد">بورسعيد</option>
-                  <option value="الإسماعيلية">الإسماعيلية</option>
-                  <option value="السويس">السويس</option>
-                  <option value="شمال سيناء">شمال سيناء</option>
-                  <option value="جنوب سيناء">جنوب سيناء</option>
-                  <option value="بني سويف">بني سويف</option>
-                  <option value="المنيا">المنيا</option>
-                  <option value="أسيوط">أسيوط</option>
-                  <option value="سوهاج">سوهاج</option>
-                  <option value="قنا">قنا</option>
-                  <option value="الأقصر">الأقصر</option>
-                  <option value="أسوان">أسوان</option>
-                  <option value="البحر الأحمر">البحر الأحمر</option>
-                  <option value="الوادي الجديد">الوادي الجديد</option>
-                  <option value="مطروح">مطروح</option>
+                  <option value="">اختر المحافظة</option>
+                  {Object.keys(governoratesWithCities).map((governorate) => (
+                    <option key={governorate} value={governorate}>
+                      {governorate}
+                    </option>
+                  ))}
                 </select>
                 {formik.touched.Governorate && formik.errors.Governorate && (
                   <div className="text-red-500 text-xs mt-1">
@@ -320,59 +253,19 @@ export default function User() {
                   onBlur={formik.handleBlur}
                   name="City"
                   id="City"
+                  disabled={!formik.values.Governorate}
                   className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68] ${
                     formik.touched.City && formik.errors.City
                       ? "border-red-500"
                       : ""
                   }`}
                 >
-                  <option value="المدينه">المدينه</option>
-                  <option value="القاهرة">القاهرة</option>
-                  <option value="الجيزة">الجيزة</option>
-                  <option value="شبرا الخيمة">شبرا الخيمة</option>
-                  <option value="6 أكتوبر">6 أكتوبر</option>
-                  <option value="الشيخ زايد">الشيخ زايد</option>
-                  <option value="العبور">العبور</option>
-                  <option value="بدر">بدر</option>
-                  <option value="الشروق">الشروق</option>
-                  <option value="حلوان">حلوان</option>
-                  <option value="المعادي">المعادي</option>
-                  <option value="الإسكندرية">الإسكندرية</option>
-                  <option value="دمنهور">دمنهور</option>
-                  <option value="كفر الشيخ">كفر الشيخ</option>
-                  <option value="طنطا">طنطا</option>
-                  <option value="المنصورة">المنصورة</option>
-                  <option value="الزقازيق">الزقازيق</option>
-                  <option value="بنها">بنها</option>
-                  <option value="شبين الكوم">شبين الكوم</option>
-                  <option value="دمياط">دمياط</option>
-                  <option value="رشيد">رشيد</option>
-                  <option value="مرسى مطروح">مرسى مطروح</option>
-                  <option value="بورسعيد">بورسعيد</option>
-                  <option value="الإسماعيلية">الإسماعيلية</option>
-                  <option value="السويس">السويس</option>
-                  <option value="العريش">العريش</option>
-                  <option value="طور سيناء">طور سيناء</option>
-                  <option value="دهب">دهب</option>
-                  <option value="شرم الشيخ">شرم الشيخ</option>
-                  <option value="نويبع">نويبع</option>
-                  <option value="الواحات البحرية">الواحات البحرية</option>
-                  <option value="الفرافرة">الفرافرة</option>
-                  <option value="الداخلة">الداخلة</option>
-                  <option value="الخارجة">الخارجة</option>
-                  <option value="حلايب وشلاتين">حلايب وشلاتين</option>
-                  <option value="رأس غارب">رأس غارب</option>
-                  <option value="الغردقة">الغردقة</option>
-                  <option value="مرسى علم">مرسى علم</option>
-                  <option value="العاصمة الإدارية الجديدة">
-                    العاصمة الإدارية الجديدة
-                  </option>
-                  <option value="العلمين الجديدة">العلمين الجديدة</option>
-                  <option value="أسوان الجديدة">أسوان الجديدة</option>
-                  <option value="طيبة الجديدة">طيبة الجديدة</option>
-                  <option value="غرب قنا">غرب قنا</option>
-                  <option value="شرق بورسعيد">شرق بورسعيد</option>
-                  <option value="المنصورة الجديدة">المنصورة الجديدة</option>
+                  <option value="">اختر المدينة</option>
+                  {cities.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
                 </select>
                 {formik.touched.City && formik.errors.City && (
                   <div className="text-red-500 text-xs mt-1">
@@ -430,16 +323,10 @@ export default function User() {
           <div className="text-center my-5">
             <button
               type="submit"
-              className="text-center w-1/2 bg-[#3B9DD2] px-10 py-1.5 rounded-lg text-white"
-              disabled={loading}
+              className="text-center w-1/2 bg-[#3B9DD2] px-10 py-1.5 rounded-lg text-white disabled:opacity-50"
+              disabled={loading || !formik.isValid}
             >
-              {loading ? (
-                <span>جاري التحميل...</span>
-              ) : isEdit ? (
-                "تحديث"
-              ) : (
-                "حفظ"
-              )}
+              {loading ? <span>جاري التحميل...</span> : "حفظ"}
             </button>
           </div>
         </div>

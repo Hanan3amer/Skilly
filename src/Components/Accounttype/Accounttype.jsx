@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useTypeContext } from "../../Context/UserType";
 import { useState } from "react";
 import Loading from "../Loading/Loading";
-
 export default function Accounttype() {
   const [loading, setLoading] = useState(false);
   const [Error, setError] = useState("");
@@ -36,7 +35,7 @@ export default function Accounttype() {
 
   return (
     <>
-      <div>
+      <div className="my-20">
         <h1 className="mb-5 font-bold text-[#3B9DD2] text-center text-[48px]">
           اختر نوع الحساب
         </h1>

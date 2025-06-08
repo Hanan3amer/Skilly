@@ -47,7 +47,7 @@ export default function Navbar() {
 
     axios
       .get(
-        `https://skilly.runasp.net/api/UserProfile/userProfile/GetUserProfileByuserId`,
+        `https://skilly.runasp.net/api/UserProfile/UserProfile/GetUserProfileByuserId`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -82,10 +82,8 @@ export default function Navbar() {
 
     if (userLogin) {
       if (+userType === 0) {
-        // console.log("Navbar: Getting regular user data");
         getUser();
       } else if (+userType === 1) {
-        console.log("Navbar: Ensuring provider data is loaded");
         getProviderData();
       }
     }
