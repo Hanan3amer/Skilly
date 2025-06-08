@@ -154,7 +154,7 @@ export default function Signin() {
                 type="checkbox"
                 checked={formik.values.rememberMe}
                 onChange={formik.handleChange}
-                className="border border-[#3B9DD2] rounded-sm bg-white focus:ring-3 focus:ring-[#3B9DD2] dark:focus:ring-[#3B9DD2] accent-[#3B9DD2]"
+                className="border border-[#3B9DD2] rounded-sm bg-white accent-[#3B9DD2]"
               />
             </div>
             <div className="flex justify-between items-center w-full">

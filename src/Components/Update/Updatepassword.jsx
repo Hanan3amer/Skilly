@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -47,8 +46,8 @@ export default function UpdatePassword() {
   });
 
   return (
-    <div className="container">
-      <div className="border p-5 lg:w-1/2 mx-auto rounded-xl">
+    <div className="container my-20">
+      <div className="border border-gray-200 p-5 lg:w-1/2 mx-auto rounded-xl">
         <form
           onSubmit={formik.handleSubmit}
           className="max-w-sm mx-auto w-full"

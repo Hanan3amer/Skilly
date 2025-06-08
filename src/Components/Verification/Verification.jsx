@@ -86,7 +86,7 @@ export default function Verification() {
           {email}
         </span>
       </div>
-      <div className="container mx-auto border rounded-md px-10 py-5">
+      <div className="container mx-auto border border-gray-200 rounded-md px-10 py-5">
         <div
           id="otp"
           className="flex flex-row justify-center text-center px-2 mt-5"
