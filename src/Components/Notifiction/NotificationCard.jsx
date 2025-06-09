@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import OfferPrice from "../OfferPrice/OfferPrice";
 import axios from "axios";
 import Reviews from "../Reviews/Reviews";
+import { useNavigate } from "react-router-dom";
 
 const NotificationCard = ({
   id,
@@ -20,7 +21,7 @@ const NotificationCard = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
-
+  const navigate = useNavigate();
   const token = localStorage.getItem("userToken");
 
   const handleMouseEnter = () => setIsHovered(true);
@@ -127,7 +128,10 @@ const NotificationCard = ({
                 </button>
               )}
               {title === "طلب خدمة جديد" && (
-                <button className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl">
+                <button
+                  onClick={handleAction(() => navigate(`/request/${offerId}`))}
+                  className="mt-2 bg-[#27AAE1] text-white text-sm px-4 py-2 rounded-xl"
+                >
                   مشاهدة الخدمة
                 </button>
               )}

@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import navb from "../../assets/navb.svg";
-
+import nodata from "../../assets/nodata.svg";
 export default function Categoriesdetils() {
   const { id } = useParams();
   const [toggle, setToggle] = useState(false);
@@ -135,9 +135,12 @@ export default function Categoriesdetils() {
               </div>
             ))
           ) : (
-            <p className="text-center text-sm text-gray-500">
-              لا يوجد موفرو خدمة حاليًا.
-            </p>
+            <div>
+              <p className="text-center text-sm text-gray-500 my-5">
+                لا يوجد موفرو خدمة حاليًا.
+              </p>
+              <img src={nodata} />
+            </div>
           )
         ) : (
           <div className="my-5 p-2 rounded-md items-center" dir="rtl">
@@ -246,9 +249,12 @@ export default function Categoriesdetils() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-sm text-gray-500">
-                لا توجد خدمات معروضة حاليًا.
-              </p>
+              <div>
+                <p className="text-center text-sm text-gray-500 my-5">
+                  لا توجد خدمات معروضة حاليًا.
+                </p>
+                <img src={nodata} />
+              </div>
             )}
           </div>
         )}

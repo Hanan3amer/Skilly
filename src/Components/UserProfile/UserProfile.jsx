@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { VscVerifiedFilled } from "react-icons/vsc";
-import { BsChatDots } from "react-icons/bs";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Offers from "../Offers/Offers";
 import Slider from "react-slick";
-
+import { TbEdit } from "react-icons/tb";
 export default function ProfilePage() {
   const [offersCountMap, setOffersCountMap] = useState({});
   const token = localStorage.getItem("userToken");
@@ -101,14 +101,17 @@ export default function ProfilePage() {
             <img src={user.img} className="rounded-full w-20 h-20" />
             <div className="flex flex-col gap-2">
               <div className="flex items-center">
-                <p className="text-xs font-semibold">
+                <p className="text-xl font-bold">
                   {user.firstName} {user.lastName}
                 </p>
                 <VscVerifiedFilled className="text-[#27AAE1] text-md" />
               </div>
-              <Link to={"/messages"}>
-                <BsChatDots className="text-2xl" />
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link to={"/messages"}>
+                  <IoChatbubbleEllipsesOutline className="text-3xl" />
+                </Link>
+                <TbEdit className="text-3xl" />
+              </div>
             </div>
           </div>
         )}

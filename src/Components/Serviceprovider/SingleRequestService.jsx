@@ -45,7 +45,6 @@ function SingleRequestService() {
           setRequest(serviceData);
           console.log("Request data loaded:", serviceData);
           
-          // Fetch category data if categoryId exists
           if (serviceData.categoryId) {
             fetchCategoryData(serviceData.categoryId);
           } else {
