@@ -11,13 +11,36 @@ export default function SingleOffer({ offerId }) {
   const fetchOffer = () => {
     axios
       .get(`https://skilly.runasp.net/api/OfferSalary/GetOfferBy/${offerId}`)
-      .then((response) => setOffer(response.data.offer))
-      .catch((error) => console.error("Failed to fetch offer:", error));
+      .then((response) => {
+        setOffer(response.data.offer);
+        console.log(response.data.offer);
+      })
+      .catch((error) => console.error("فشل في جلب العرض:", error));
   };
 
   useEffect(() => {
     if (offerId) fetchOffer();
   }, [offerId]);
+
+  const goPayment = async () => {
+    const token = localStorage.getItem("userToken");
+    try {
+      const res = await axios.post(
+        "https://skilly.runasp.net/api/Payment/start-payment",
+        { serviceId: offer.serviceId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (res.status === 200) {
+        window.location.href = res.data.result.iframeUrl;
+      }
+    } catch (error) {
+      console.error("فشل بدء عملية الدفع:", error);
+    }
+  };
 
   const handleAcceptOffer = async (id) => {
     try {
@@ -28,19 +51,22 @@ export default function SingleOffer({ offerId }) {
         toast.error("يجب تسجيل الدخول لقبول العرض");
         return;
       }
+      await axios
+        .post(
+          `https://skilly.runasp.net/api/OfferSalary/AcceptOffer/${id}`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        });
 
-      await axios.post(
-        `https://skilly.runasp.net/api/OfferSalary/AcceptOffer/${id}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      toast.success("تم قبول العرض بنجاح");
-      fetchOffer(); // لتحديث العرض
+      toast.success("تم قبول العرض بنجاح، جاري التحويل لصفحة الدفع...");
+      await goPayment();
     } catch (err) {
-      console.error("Error accepting offer:", err);
+      console.error("خطأ أثناء قبول العرض:", err);
       toast.error("حدث خطأ أثناء قبول العرض");
     } finally {
       setActionLoading(null);
@@ -68,7 +94,7 @@ export default function SingleOffer({ offerId }) {
       toast.success("تم رفض العرض بنجاح");
       fetchOffer();
     } catch (err) {
-      console.error("Error rejecting offer:", err);
+      console.error("خطأ أثناء رفض العرض:", err);
       toast.error("حدث خطأ أثناء رفض العرض");
     } finally {
       setActionLoading(null);

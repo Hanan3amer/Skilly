@@ -107,7 +107,7 @@ export default function ProfilePage() {
                 <VscVerifiedFilled className="text-[#27AAE1] text-md" />
               </div>
               <Link to={"/messages"}>
-                <BsChatDots />
+                <BsChatDots className="text-2xl" />
               </Link>
             </div>
           </div>

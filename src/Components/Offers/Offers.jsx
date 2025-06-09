@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
-export default function Offers({ requestId }) {
+export default function Offers({ requestId, changeOffers }) {
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [noOffers, setNoOffers] = useState(false);
@@ -50,6 +50,7 @@ export default function Offers({ requestId }) {
         }
       );
 
+      if (changeOffers) changeOffers(offers.length - 1);
       toast.success("تم قبول العرض بنجاح");
       getOfferById(requestId);
     } catch (err) {
@@ -80,7 +81,7 @@ export default function Offers({ requestId }) {
           },
         }
       );
-
+      if (changeOffers) changeOffers(offers.length - 1);
       toast.success("تم رفض العرض بنجاح");
       getOfferById(requestId);
     } catch (err) {
