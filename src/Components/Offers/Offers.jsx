@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-
+import offer from "../../assets/offer.svg";
 export default function Offers({ requestId, changeOffers }) {
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -118,7 +118,7 @@ export default function Offers({ requestId, changeOffers }) {
           </div>
         )}
 
-        {!loading && !noOffers && offers.length > 0 && (
+        {!loading && !noOffers && offers.length > 0 ? (
           <div className="p-2 sm:p-3 md:p-4 lg:p-5 space-y-3 sm:space-y-4">
             {offers.map((offer) => (
               <div
@@ -183,6 +183,13 @@ export default function Offers({ requestId, changeOffers }) {
                 </div>
               </div>
             ))}
+          </div>
+        ) : (
+          <div>
+            <p className="text-center my-3 text-gray-500">
+              لا يوجد عروض متاحة لهذه الخدمة
+            </p>
+            <img src={offer} />
           </div>
         )}
       </div>

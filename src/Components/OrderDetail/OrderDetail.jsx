@@ -59,14 +59,20 @@ export default function OrderDetail() {
                     >
                       السعر
                     </label>
-                    <input
-                      type="text"
-                      name="Price"
-                      value={service.price}
-                      disabled
-                      id="base-input"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    />
+
+                    <div className="relative w-full">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#3B9DD2] font-bold pointer-events-none">
+                        ج.م
+                      </span>
+                      <input
+                        type="text"
+                        name="Price"
+                        value={service.price}
+                        disabled
+                        id="base-input"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      />
+                    </div>
                   </div>
 
                   <div className="relative w-full mb-5 group">
@@ -76,14 +82,20 @@ export default function OrderDetail() {
                     >
                       مدة التسليم
                     </label>
-                    <input
-                      type="text"
-                      name="Deliverytime"
-                      value={service.deliverytime}
-                      disabled
-                      id="base-input"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    />
+
+                    <div className="relative w-full">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#3B9DD2] font-bold pointer-events-none">
+                        يوم
+                      </span>
+                      <input
+                        type="text"
+                        name="Deliverytime"
+                        value={service.deliverytime}
+                        disabled
+                        id="base-input"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="mb-5">

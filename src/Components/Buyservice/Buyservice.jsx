@@ -43,7 +43,7 @@ export default function Buyservice({ price, deliveryTime, serviceID }) {
                   سعر الخدمة
                 </label>
                 <input
-                  value={price}
+                  value={`${price} ج.م`}
                   type="text"
                   className="bg-gray-200  text-sm rounded-lg block w-full p-2.5 text-[#3B9DD2] text-center font-bold"
                 />
@@ -53,7 +53,7 @@ export default function Buyservice({ price, deliveryTime, serviceID }) {
                   مدة التسليم
                 </label>
                 <input
-                  value={deliveryTime}
+                  value={`${deliveryTime}`}
                   type="text"
                   className="bg-gray-200  text-sm rounded-lg block w-full p-2.5 text-[#3B9DD2] text-center font-bold"
                 />

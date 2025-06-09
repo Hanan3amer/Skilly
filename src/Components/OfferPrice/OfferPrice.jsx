@@ -66,28 +66,36 @@ export default function OfferPrice({ serviceID, onClose }) {
             <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
               السعر
             </label>
-            <input
-              name="salary"
-              onBlur={formik.handleBlur}
-              value={formik.values.salary}
-              onChange={formik.handleChange}
-              className="bg-gray-200 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder:text-[#3B9DD2] placeholder:font-bold placeholder:text-left"
-              placeholder="ج.م"
-            />
+            <div className="relative w-full">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#3B9DD2] font-bold pointer-events-none">
+                ج.م
+              </span>
+              <input
+                name="salary"
+                onBlur={formik.handleBlur}
+                value={formik.values.salary}
+                onChange={formik.handleChange}
+                className="bg-gray-200 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
+              />
+            </div>
           </div>
           <div className="mb-5">
             <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
               مدة التسليم
             </label>
-            <input
-              name="deliverytime"
-              onBlur={formik.handleBlur}
-              value={formik.values.deliverytime}
-              onChange={formik.handleChange}
-              placeholder="يوم"
-              type="text"
-              className="bg-gray-200 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder:text-[#3B9DD2] placeholder:text-left placeholder:font-bold"
-            />
+            <div className="relative w-full">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#3B9DD2] font-bold pointer-events-none">
+                يوم
+              </span>
+              <input
+                name="deliverytime"
+                onBlur={formik.handleBlur}
+                value={formik.values.deliverytime}
+                onChange={formik.handleChange}
+                type="text"
+                className="bg-gray-200 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
+              />
+            </div>
           </div>
         </div>
 

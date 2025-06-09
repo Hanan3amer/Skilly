@@ -78,7 +78,7 @@ export default function Categoriesdetils() {
         {catdetails ? catdetails.name : ""}
       </h1>
 
-      <div className="border max-w-xl mx-auto p-5 rounded-lg">
+      <div className="border border-gray-200 max-w-xl mx-auto p-5 rounded-lg">
         <div className="flex justify-around items-center gap-3">
           <div
             onClick={() => handleOptionChange("Servicesoffered")}
@@ -157,7 +157,7 @@ export default function Categoriesdetils() {
               {toggle && (
                 <div className="absolute z-30 mt-2 border border-gray-300 w-64 origin-top-left left-0 top-8 rounded-md bg-white">
                   <div
-                    className="text-right p-2 bg-[#27a9e126] border-b font-semibold text-gray-600 cursor-pointer"
+                    className="text-right p-2 bg-[#27a9e126] border-b border-b-gray-300 font-semibold text-gray-600 cursor-pointer"
                     onClick={() => {
                       setSortBy("nearest");
                       setToggle(false);
@@ -167,7 +167,7 @@ export default function Categoriesdetils() {
                   </div>
 
                   <div
-                    className="text-right p-2 border-b font-semibold text-gray-600 cursor-pointer"
+                    className="text-right p-2 border-b border-b-gray-300 font-semibold text-gray-600 cursor-pointer"
                     onClick={() => {
                       setSortBy("price-asc");
                       setToggle(false);
@@ -213,7 +213,7 @@ export default function Categoriesdetils() {
                           <span className="bg-[#FBBC05] rounded-full w-2 h-2 p-3 relative">
                             <FaStar className="text-[#23255B] absolute text-center translate-x-1/2 -translate-y-1/2" />
                           </span>
-                          {/* <span>{review}</span> */}
+                          <span>{service.providerReview}</span>
                         </div>
                       </div>
                     </div>

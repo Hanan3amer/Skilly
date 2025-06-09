@@ -24,7 +24,10 @@ export default function AllReviews() {
       <div className="border border-gray-300 rounded-3xl max-w-xl mx-auto p-4">
         {reviews.length > 0 ? (
           reviews.map((review) => (
-            <div key={review.serviceId} className="bg-gray-100 p-5 rounded-xl">
+            <div
+              key={review.serviceId}
+              className="bg-gray-100 p-3 rounded-xl my-5"
+            >
               <div className="flex items-center flex-row-reverse gap-3 my-3">
                 <img
                   src={review.userImage}
