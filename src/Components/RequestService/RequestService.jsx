@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router";
-// import Winner from "../../Components/winner/Winner";
+import Winner from "../winner/Winner";
 const RequestService = () => {
   const [imageFiles, setImageFiles] = useState([]);
   const [videoFile, setVideoFile] = useState(null);
@@ -102,7 +102,7 @@ const RequestService = () => {
 
         console.log("Request successful:", response.data);
         navigate("/userprofile");
-        // setShowSuccessPopup(true);
+        setShowSuccessPopup(true);
         formik.resetForm();
         setImageFiles([]);
         setVideoFile(null);
@@ -575,8 +575,7 @@ const RequestService = () => {
         </div>
       )}
       {showSuccessPopup && (
-        // <Winner onClose={() => setShowSuccessPopup(false)} />
-        <></>
+        <Winner onClose={() => setShowSuccessPopup(false)} />
       )}
     </div>
   );
