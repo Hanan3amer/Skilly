@@ -15,7 +15,7 @@ export default function Buyservice({ price, deliveryTime, serviceID }) {
     axios
       .post(
         "https://skilly.runasp.net/api/Payment/start-payment",
-        { serviceID },
+        { serviceID, redirectUrl: "https://skilly-tau.vercel.app/" },
         {
           headers: {
             Authorization: `Bearer ${token}`,
