@@ -60,7 +60,6 @@ export default function Categoriesdetils() {
       )
       .then((res) => {
         setServices(res.data.service);
-        console.log(res.data.service);
       })
       .catch((err) => {
         console.error("Error fetching services:", err);
