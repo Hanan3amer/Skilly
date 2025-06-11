@@ -60,6 +60,7 @@ export default function Categoriesdetils() {
       )
       .then((res) => {
         setServices(res.data.service);
+        console.log(res.data.service);
       })
       .catch((err) => {
         console.error("Error fetching services:", err);
@@ -213,7 +214,7 @@ export default function Categoriesdetils() {
                           <span className="bg-[#FBBC05] rounded-full w-2 h-2 p-3 relative">
                             <FaStar className="text-[#23255B] absolute text-center translate-x-1/2 -translate-y-1/2" />
                           </span>
-                          <span>{service.providerReview}</span>
+                          <span>{service.averageRating}</span>
                         </div>
                       </div>
                     </div>
