@@ -211,7 +211,7 @@ const RequestService = () => {
         طلب خدمة جديدة
       </h1>
       {loadingCategories ? (
-        <div className="loading-message">Loading Form...</div>
+        <div className="loading-message text-center mx-auto">Loading Form...</div>
       ) : (
         <div className="border-2 p-5 rounded-lg border-gray-500 max-w-lg mx-auto bg-gray-200 my-5">
           <form
