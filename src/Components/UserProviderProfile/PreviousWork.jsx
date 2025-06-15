@@ -27,6 +27,7 @@ const PreviousWork = ({ providerId }) => {
 
         if (response.data && response.data.servicesgallery) {
           setServices(response.data.servicesgallery);
+          console.log(response.data.servicesgallery);
         } else {
           setServices([]);
         }

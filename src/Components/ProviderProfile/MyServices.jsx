@@ -13,9 +13,9 @@ const MyServices = () => {
 
   useEffect(() => {
     if (initializedRef.current) return;
-    
+
     initializedRef.current = true;
-    
+
     const fetchData = async () => {
       try {
         const response = await getProviderServices();
@@ -25,12 +25,12 @@ const MyServices = () => {
         setError("Failed to fetch services");
       }
     };
-    
+
     fetchData();
   }, [getProviderServices]);
 
   const handleShowMore = () => {
-    setVisibleServices(prev => prev + 3);
+    setVisibleServices((prev) => prev + 3);
   };
 
   const renderServiceCards = () => {
@@ -53,7 +53,9 @@ const MyServices = () => {
     if (!providerServices || providerServices.length === 0) {
       return (
         <div className="w-full text-center py-5">
-          <p className="text-gray-500 dark:text-gray-400">لا توجد خدمات حالياً</p>
+          <p className="text-gray-500 dark:text-gray-400">
+            لا توجد خدمات حالياً
+          </p>
         </div>
       );
     }
@@ -64,7 +66,11 @@ const MyServices = () => {
           <ServiceCard
             key={service.id}
             id={service.id}
-            image={service.images?.length > 0 ? service.images[0] : "https://cdn.builder.io/api/v1/image/assets/TEMP/f9cfd55253832bba4ed0088a033cf9a8a5cd024fc56c5467968a0d89a103c285?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"}
+            image={
+              service.images?.length > 0
+                ? service.images[0].img
+                : "https://cdn.builder.io/api/v1/image/assets/TEMP/f9cfd55253832bba4ed0088a033cf9a8a5cd024fc56c5467968a0d89a103c285?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"
+            }
             title={service.name}
             description={service.description}
             offersCount={service.countOfOffers ?? 0}
@@ -74,7 +80,8 @@ const MyServices = () => {
     );
   };
 
-  const showMoreButton = !servicesLoading && !error && providerServices?.length > visibleServices;
+  const showMoreButton =
+    !servicesLoading && !error && providerServices?.length > visibleServices;
 
   return (
     <section
@@ -89,15 +96,15 @@ const MyServices = () => {
           إضافة خدمة جديدة
         </Link>
       </div>
-      
+
       {renderServiceCards()}
-      
+
       {showMoreButton && (
-        <button 
+        <button
           onClick={handleShowMore}
           className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
         >
-         ... عرض المزيد
+          ... عرض المزيد
         </button>
       )}
     </section>

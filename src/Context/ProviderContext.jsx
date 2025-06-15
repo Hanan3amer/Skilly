@@ -107,7 +107,6 @@ export default function ProviderContextProvider(props) {
       return Promise.resolve({ services: providerServices });
     }
 
-    // Only set loading if we're actually making a request
     setServicesLoading(true);
 
     return axios
@@ -156,7 +155,9 @@ export default function ProviderContextProvider(props) {
           },
         }
       )
-      .then((response) => response.data)
+      .then((response) => {
+        response.data;
+      })
       .catch((err) => {
         console.log(
           "Get Services By ProviderId Error:",
