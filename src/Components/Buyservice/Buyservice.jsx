@@ -6,16 +6,25 @@ Buyservice.propTypes = {
   price: PropTypes.any,
   deliveryTime: PropTypes.any,
   serviceID: PropTypes.any,
+  onClose: PropTypes.func,
 };
-export default function Buyservice({ price, deliveryTime, serviceID }) {
+export default function Buyservice({
+  price,
+  deliveryTime,
+  serviceID,
+  onClose,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("userToken");
 
   function buyaservice() {
     axios
       .post(
-        "https://skilly.runasp.net/api/Payment/start-payment",
-        { serviceID, redirectUrl: "https://skilly-tau.vercel.app/" },
+        "https://skilly.runasp.net/api/Payment/start-payment-URL",
+        {
+          serviceID,
+          redirectUrl: `${window.location.origin}/paymentsuccesspopup`,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -43,7 +52,8 @@ export default function Buyservice({ price, deliveryTime, serviceID }) {
                   سعر الخدمة
                 </label>
                 <input
-                  value={`${price} ج.م`}
+                  readOnly
+                  value={price}
                   type="text"
                   className="bg-gray-200  text-sm rounded-lg block w-full p-2.5 text-[#3B9DD2] text-center font-bold"
                 />
@@ -53,7 +63,7 @@ export default function Buyservice({ price, deliveryTime, serviceID }) {
                   مدة التسليم
                 </label>
                 <input
-                  value={`${deliveryTime}`}
+                  value={deliveryTime}
                   type="text"
                   className="bg-gray-200  text-sm rounded-lg block w-full p-2.5 text-[#3B9DD2] text-center font-bold"
                 />
@@ -80,7 +90,7 @@ export default function Buyservice({ price, deliveryTime, serviceID }) {
           </p>
           <div className="flex justify-between mt-4">
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={onClose}
               className="bg-[#23255B] text-white px-4 py-2 rounded-lg"
             >
               رجوع

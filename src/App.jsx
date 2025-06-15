@@ -38,11 +38,10 @@ import ProviderContextProvider from "./Context/ProviderContext";
 import Emergency from "./Components/Emergency/Emergency";
 import GalleryDemo from "./Components/Demo/GalleryDemo";
 import SingleGallery from "./Components/Serviceprovider/SingleGallery";
-
+import PaymentSuccessPopup from "./Components/Buyservice/PaymentSuccessPopup";
 import Rewards from "./Components/Rewards/Rewards";
 import { UserDataProvider } from "./Context/UserDataContext";
 import DiscountDetail from "./Components/DiscountDetail/DiscountDetail";
-import Callback from "./Components/Callback/Callback";
 import NotificationsModal from "./Components/Notifiction/NotificationModal";
 import AllReviews from "./Components/AllReviews/AllReviews";
 import ProviderProfileUser from "./Components/UserProviderProfile/ProviderProfileUser";
@@ -93,10 +92,10 @@ function App() {
         { path: "emergency", element: <Emergency /> },
         { path: "rewards", element: <Rewards /> },
         { path: "discountdetail/:id", element: <DiscountDetail /> },
-        { path: "callback", element: <Callback /> },
         { path: "allreviews/:id", element: <AllReviews /> },
         { path: "gallery-demo", element: <GalleryDemo /> },
         { path: "providerprofileuser/:id", element: <ProviderProfileUser /> },
+        { path: "paymentsuccesspopup", element: <PaymentSuccessPopup /> },
       ],
     },
   ]);
