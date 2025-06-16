@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -16,10 +16,56 @@ export default function Signin() {
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
+  useEffect(() => {
+    window.google.accounts.id.initialize({
+      client_id:
+        "720385409460-tvrhojnr1tfqfor7lserus6mhah8l488.apps.googleusercontent.com",
+      callback: handleCredentialResponse,
+    });
+  }, []);
+  const handleCredentialResponse = (response) => {
+    const idToken = response.credential;
+    console.log("ID Token:", idToken);
 
+    axios
+      .post("https://skilly.runasp.net/api/Auth/login-google", {
+        idToken: idToken,
+      })
+      .then(async (res) => {
+        if (res?.data?.success === true) {
+          const token = res.data.token;
+          localStorage.setItem("userToken", token);
+          localStorage.removeItem("lastLogout");
+          try {
+            const userData = await getCurrentUser();
+            setUserLogin({ id: userData.id });
+            if (userData.userType === 1) {
+              navigate("/serviceprovider");
+            } else if (userData.userType === 0) {
+              navigate("/");
+            } else {
+              navigate("/signin");
+            }
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+            setApiError("حدث خطأ أثناء تسجيل الدخول");
+          }
+        } else {
+          setApiError("فشل تسجيل الدخول بحساب Google.");
+        }
+      })
+      .catch((err) => {
+        console.error("فشل تسجيل الدخول:", err);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    window.google.accounts.id.prompt();
+  };
   function HandleLogin(formValues) {
     setLoading(true);
     setApiError("");
@@ -188,7 +234,12 @@ export default function Signin() {
         </p>
         <img src={or} className="mx-auto py-3" />
         <div className="flex items-center justify-center gap-5 py-3">
-          <img className="cursor-pointer w-[50px]" src={google} />
+          <img
+            className="cursor-pointer w-[50px]"
+            src={google}
+            alt="تسجيل الدخول باستخدام Google"
+            onClick={handleGoogleLogin}
+          />
         </div>
       </div>
     </>

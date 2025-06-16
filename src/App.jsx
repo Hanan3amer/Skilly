@@ -47,6 +47,7 @@ import AllReviews from "./Components/AllReviews/AllReviews";
 import ProviderProfileUser from "./Components/UserProviderProfile/ProviderProfileUser";
 import { ChatProvider } from "./Context/ChatContext";
 import CategoriesProvider from "./Context/CategoriesContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 function App() {
   const router = createHashRouter([
     {
@@ -101,21 +102,23 @@ function App() {
   ]);
   return (
     <>
-      <CategoriesProvider>
-        <ChatProvider>
-          <UserDataProvider>
-            <ProviderContextProvider>
-              <UserContextProvider>
-                <TypeContextProvider>
-                  <AuthContextprovider>
-                    <RouterProvider router={router}></RouterProvider>
-                  </AuthContextprovider>
-                </TypeContextProvider>
-              </UserContextProvider>
-            </ProviderContextProvider>
-          </UserDataProvider>
-        </ChatProvider>
-      </CategoriesProvider>
+      <GoogleOAuthProvider clientId="720385409460-tvrhojnr1tfqfor7lserus6mhah8l488.apps.googleusercontent.com">
+        <CategoriesProvider>
+          <ChatProvider>
+            <UserDataProvider>
+              <ProviderContextProvider>
+                <UserContextProvider>
+                  <TypeContextProvider>
+                    <AuthContextprovider>
+                      <RouterProvider router={router}></RouterProvider>
+                    </AuthContextprovider>
+                  </TypeContextProvider>
+                </UserContextProvider>
+              </ProviderContextProvider>
+            </UserDataProvider>
+          </ChatProvider>
+        </CategoriesProvider>
+      </GoogleOAuthProvider>
     </>
   );
 }
