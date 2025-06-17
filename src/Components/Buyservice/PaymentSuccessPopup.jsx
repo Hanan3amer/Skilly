@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { PiChatCircleDots } from "react-icons/pi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Winner from "./Winner";
+import Winner from "../winner/Winner";
 
 export default function PaymentSuccessPopup() {
   const location = useLocation();
@@ -19,7 +19,7 @@ export default function PaymentSuccessPopup() {
     const success = queryParams.get("success");
     const order = queryParams.get("order");
 
-    if (success === "true") {
+    if (success === "true" && order) {
       setOrderId(order);
       axios
         .post(
