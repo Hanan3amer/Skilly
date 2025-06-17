@@ -15,8 +15,36 @@ export default function ServiceProvider() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [categories, setCategories] = useState([]);
+  const [cities, setCities] = useState([]);
   const navigate = useNavigate();
-
+  const governoratesWithCities = {
+    القاهرة: ["القاهرة", "المعادي", "حلوان"],
+    الجيزة: ["الجيزة", "6 أكتوبر", "الشيخ زايد", "البدر"],
+    الإسكندرية: ["الإسكندرية"],
+    الدقهلية: ["المنصورة", "المنصورة الجديدة", "طلخا", "ميت غمر"],
+    الشرقية: ["الزقازيق", "العاشر من رمضان", "بلبيس", "فاقوس"],
+    القليوبية: ["بنها", "شبرا الخيمة", "القناطر الخيرية"],
+    "كفر الشيخ": ["كفر الشيخ", "دسوق", "فوه", "بلطيم"],
+    الغربية: ["طنطا", "المحلة الكبرى", "زفتى", "سمنود"],
+    المنوفية: ["شبين الكوم", "تلا", "الباجور", "أشمون"],
+    البحيرة: ["دمنهور", "رشيد", "إدكو", "أبو المطامير"],
+    دمياط: ["دمياط الجديدة", "دمياط", "فارسكور", "الزرقا", "كفر سعد"],
+    بورسعيد: ["بورسعيد", "شرق بورسعيد"],
+    الإسماعيلية: ["الإسماعيلية", "التل الكبير", "فايد"],
+    السويس: ["السويس"],
+    "شمال سيناء": ["العريش", "الشيخ زويد", "رفح", "بئر العبد"],
+    "جنوب سيناء": ["شرم الشيخ", "دهب", "نويبع", "طور سيناء"],
+    "بني سويف": ["بني سويف", "الواسطى", "ناصر", "إهناسيا"],
+    المنيا: ["المنيا", "ملوي", "دير مواس", "مغاغة"],
+    أسيوط: ["أسيوط", "ديروط", "صدفا", "أبنوب"],
+    سوهاج: ["سوهاج", "جرجا", "طهطا", "البلينا"],
+    قنا: ["قنا", "قوص", "نجع حمادي", "دشنا"],
+    الأقصر: ["الأقصر", "طيبة الجديدة", "الزينية", "البياضية"],
+    أسوان: ["أسوان", "أسوان الجديدة", "كوم أمبو", "دراو"],
+    "البحر الأحمر": ["الغردقة", "رأس غارب", "مرسى علم", "سفاجا"],
+    "الوادي الجديد": ["الخارجة", "الداخلة", "الفرافرة", "باريس"],
+    مطروح: ["مرسى مطروح", "الحمام", "العلمين", "سيدي براني"],
+  };
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -58,17 +86,27 @@ export default function ServiceProvider() {
   const [userinfo, setUserinfo] = useState(
     JSON.parse(localStorage.getItem("formData"))
   );
+  const handleGovernorateChange = (e) => {
+    const selectedGovernorate = e.target.value;
+    formik.handleChange(e);
 
+    if (selectedGovernorate) {
+      setCities(governoratesWithCities[selectedGovernorate] || []);
+      formik.setFieldValue("City", "");
+    } else {
+      setCities([]);
+    }
+  };
   async function addProviderProfile(values) {
     setLoading(true);
     try {
       const formData = new FormData();
-      
+
       formData.append("firstName", userinfo.firstName);
       formData.append("lastName", userinfo.lastName);
       formData.append("phoneNumber", userinfo.phoneNumber);
       formData.append("email", userinfo.email);
-      
+
       formData.append("Governorate", values.Governorate);
       formData.append("City", values.City);
       formData.append("StreetName", values.StreetName);
@@ -114,7 +152,7 @@ export default function ServiceProvider() {
       Age: "",
       NumberOfYearExperience: "",
       BriefSummary: "",
-      categoryId: ""
+      categoryId: "",
     },
     validate: (values) => {
       const errors = {};
@@ -195,7 +233,9 @@ export default function ServiceProvider() {
           <p className="text-[10px] text-center my-2 pb-5">
             برجاء اختيار صوره شخصيه{" "}
             {formik.errors.Img && (
-              <span className="text-red-500 block mt-1">{formik.errors.Img}</span>
+              <span className="text-red-500 block mt-1">
+                {formik.errors.Img}
+              </span>
             )}
           </p>
           <div>
@@ -258,106 +298,54 @@ export default function ServiceProvider() {
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
                 <select
-                  value={formik.values.City}
-                  onChange={formik.handleChange}
+                  value={formik.values.Governorate}
+                  onChange={handleGovernorateChange}
                   onBlur={formik.handleBlur}
-                  name="City"
-                  id="City"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  name="Governorate"
+                  id="Governorate"
+                  className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68] ${
+                    formik.touched.Governorate && formik.errors.Governorate
+                      ? "border-red-500"
+                      : ""
+                  }`}
                 >
-                  <option value="City"> المدينه </option>
-                  <option value="cairo">القاهرة</option>
-                  <option value="giza">الجيزة</option>
-                  <option value="shubra">شبرا الخيمة</option>
-                  <option value="october">6 أكتوبر</option>
-                  <option value="zayed">الشيخ زايد</option>
-                  <option value="obour">العبور</option>
-                  <option value="badr">بدر</option>
-                  <option value="shorouk">الشروق</option>
-                  <option value="helwan">حلوان</option>
-                  <option value="maadi">المعادي</option>
-                  <option value="alexandria">الإسكندرية</option>
-                  <option value="damanhour">دمنهور</option>
-                  <option value="kafr_sheikh">كفر الشيخ</option>
-                  <option value="tanta">طنطا</option>
-                  <option value="mansoura">المنصورة</option>
-                  <option value="zagazig">الزقازيق</option>
-                  <option value="banha">بنها</option>
-                  <option value="shebin">شبين الكوم</option>
-                  <option value="damietta">دمياط</option>
-                  <option value="damietta">دمياط الجديدة</option>
-                  <option value="rashid">رشيد</option>
-                  <option value="marsa_matruh">مرسى مطروح</option>
-                  <option value="port_said">بورسعيد</option>
-                  <option value="ismailia">الإسماعيلية</option>
-                  <option value="suez">السويس</option>
-                  <option value="arish">العريش</option>
-                  <option value="tor">طور سيناء</option>
-                  <option value="dahab">دهب</option>
-                  <option value="sharm">شرم الشيخ</option>
-                  <option value="nuweiba">نويبع</option>
-                  <option value="bahariya">الواحات البحرية</option>
-                  <option value="farafra">الفرافرة</option>
-                  <option value="dakhla">الداخلة</option>
-                  <option value="kharga">الخارجة</option>
-                  <option value="halayeb">حلايب وشلاتين</option>
-                  <option value="ras_ghareb">رأس غارب</option>
-                  <option value="hurghada">الغردقة</option>
-                  <option value="marsaalam">مرسى علم</option>
-                  <option value="new_capital">العاصمة الإدارية الجديدة</option>
-                  <option value="new_alamein">العلمين الجديدة</option>
-                  <option value="new_aswan">أسوان الجديدة</option>
-                  <option value="tiba">طيبة الجديدة</option>
-                  <option value="west_qena">غرب قنا</option>
-                  <option value="east_portsaid">شرق بورسعيد</option>
-                  <option value="new_mansoura">المنصورة الجديدة</option>
+                  <option value="">اختر المحافظة</option>
+                  {Object.keys(governoratesWithCities).map((governorate) => (
+                    <option key={governorate} value={governorate}>
+                      {governorate}
+                    </option>
+                  ))}
                 </select>
-                {formik.touched.City && formik.errors.City && (
-                  <div className="text-red-500 text-sm py-1">
-                    {formik.errors.City}
+                {formik.touched.Governorate && formik.errors.Governorate && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.Governorate}
                   </div>
                 )}
               </div>
               <div className="relative z-0 w-full mb-5 group">
                 <select
-                  value={formik.values.Governorate}
+                  value={formik.values.City}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  name="Governorate"
-                  id="Governorate"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  name="City"
+                  id="City"
+                  disabled={!formik.values.Governorate}
+                  className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68] ${
+                    formik.touched.City && formik.errors.City
+                      ? "border-red-500"
+                      : ""
+                  }`}
                 >
-                  <option value="Governorate"> المحافظة</option>
-                  <option value="cairo">القاهرة</option>
-                  <option value="giza">الجيزة</option>
-                  <option value="alexandria">الإسكندرية</option>
-                  <option value="dakahlia">الدقهلية</option>
-                  <option value="sharqia">الشرقية</option>
-                  <option value="qalyubia">القليوبية</option>
-                  <option value="kafr_el_sheikh">كفر الشيخ</option>
-                  <option value="gharbia">الغربية</option>
-                  <option value="monufia">المنوفية</option>
-                  <option value="beheira">البحيرة</option>
-                  <option value="damietta">دمياط</option>
-                  <option value="port_said">بورسعيد</option>
-                  <option value="ismailia">الإسماعيلية</option>
-                  <option value="suez">السويس</option>
-                  <option value="north_sinai">شمال سيناء</option>
-                  <option value="south_sinai">جنوب سيناء</option>
-                  <option value="beni_suef">بني سويف</option>
-                  <option value="minya">المنيا</option>
-                  <option value="assiut">أسيوط</option>
-                  <option value="sohag">سوهاج</option>
-                  <option value="qena">قنا</option>
-                  <option value="luxor">الأقصر</option>
-                  <option value="aswan">أسوان</option>
-                  <option value="red_sea">البحر الأحمر</option>
-                  <option value="new_valley">الوادي الجديد</option>
-                  <option value="matrouh">مطروح</option>
+                  <option value="">اختر المدينة</option>
+                  {cities.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
                 </select>
-                {formik.touched.Governorate && formik.errors.Governorate && (
-                  <div className="text-red-500 text-sm py-1">
-                    {formik.errors.Governorate}
+                {formik.touched.City && formik.errors.City && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.City}
                   </div>
                 )}
               </div>
@@ -410,11 +398,12 @@ export default function ServiceProvider() {
                   className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
                   placeholder="عدد سنوات الخبرة"
                 />
-                {formik.touched.NumberOfYearExperience && formik.errors.NumberOfYearExperience && (
-                  <div className="text-red-500 text-sm py-1">
-                    {formik.errors.NumberOfYearExperience}
-                  </div>
-                )}
+                {formik.touched.NumberOfYearExperience &&
+                  formik.errors.NumberOfYearExperience && (
+                    <div className="text-red-500 text-sm py-1">
+                      {formik.errors.NumberOfYearExperience}
+                    </div>
+                  )}
               </div>
               <div className="relative z-0 w-full mb-5 group">
                 <select
@@ -457,7 +446,12 @@ export default function ServiceProvider() {
               )}
             </div>
             <div className="relative z-0 w-full mb-5 group">
-              <label htmlFor="NationalNumberPDF" className="block mb-2 text-sm font-medium text-gray-900">صورة البطاقة الشخصية (PDF)</label>
+              <label
+                htmlFor="NationalNumberPDF"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                صورة البطاقة الشخصية (PDF)
+              </label>
               <input
                 type="file"
                 name="NationalNumberPDF"
@@ -466,7 +460,9 @@ export default function ServiceProvider() {
                 className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
                 accept=".pdf"
               />
-              <p className="mt-1 text-sm text-gray-500">PDF فقط (الحد الأقصى 10 ميجابايت)</p>
+              <p className="mt-1 text-sm text-gray-500">
+                PDF فقط (الحد الأقصى 10 ميجابايت)
+              </p>
               {formik.errors.NationalNumberPDF && (
                 <div className="text-red-500 text-sm py-1">
                   {formik.errors.NationalNumberPDF}
@@ -497,20 +493,16 @@ export default function ServiceProvider() {
             </div>
           </div>
           <div className="text-center my-5">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="text-center w-1/2 bg-[#3B9DD2] px-10 py-1.5 rounded-lg text-white"
               disabled={loading}
             >
-              {loading ? (
-                <i className="fas fa-spinner fa-spin"></i>
-              ) : (
-                "حفظ"
-              )}
+              {loading ? <i className="fas fa-spinner fa-spin"></i> : "حفظ"}
             </button>
           </div>
         </div>
       </form>
     </div>
   );
-} 
+}
