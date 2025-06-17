@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Offers from "../Offers/Offers";
 import Slider from "react-slick";
 import { TbEdit } from "react-icons/tb";
+import alert from "../../assets/alert.svg";
 export default function ProfilePage() {
   const [offersCountMap, setOffersCountMap] = useState({});
   const token = localStorage.getItem("userToken");
@@ -180,14 +181,18 @@ export default function ProfilePage() {
             <div key={service.id} className="bg-gray-100 rounded-lg p-4">
               <Link to={`/orderdetail/${service.id}`}>
                 <Slider {...settings}>
-                  {service.images.map((img) => (
-                    <img
-                      key={img.id}
-                      src={img.img}
-                      alt="Service"
-                      className="w-full h-60 object-cover rounded-lg"
-                    />
-                  ))}
+                  {!service.name.includes("طلب طارئ") ? (
+                    service.images.map((img) => (
+                      <img
+                        key={img.id}
+                        src={img.img}
+                        alt="Service"
+                        className="w-full h-60 object-cover rounded-lg"
+                      />
+                    ))
+                  ) : (
+                    <img src={alert} />
+                  )}
                 </Slider>
                 <h3 className="text-md font-bold mt-3 text-[#040404]">
                   {service.name}

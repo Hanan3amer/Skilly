@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import OfferCard from "./OfferCard";
-
+import Offer from "../../assets/offer.svg";
 export default function SingleOffer({ offerId }) {
   const [offer, setOffer] = useState(null);
   const [actionLoading, setActionLoading] = useState(null);
@@ -103,7 +103,12 @@ export default function SingleOffer({ offerId }) {
 
   if (!offer) {
     return (
-      <p className="text-center text-gray-500 mt-4">جاري تحميل العرض...</p>
+      <div>
+        <p className="text-center my-3 text-gray-500">
+          لا يوجد عروض متاحة لهذه الخدمة
+        </p>
+        <img src={Offer} />
+      </div>
     );
   }
 
