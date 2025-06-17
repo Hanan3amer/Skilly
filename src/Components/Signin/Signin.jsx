@@ -1,3 +1,7 @@
+import vector from "../../assets/vector.svg";
+import Hide from "../../assets/Hide.svg";
+import google from "../../assets/google.svg";
+import or from "../../assets/or.svg";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,17 +10,12 @@ import { AuthContext } from "../../Context/Authcontext";
 import * as Yup from "yup";
 import Loading from "../Loading/Loading";
 import { getCurrentUser } from "../../utils/hooks/useCurrentUser";
-import vector from "../../assets/Vector.svg";
-import Hide from "../../assets/Hide.svg";
-import google from "../../assets/google.svg";
-import or from "../../assets/or.svg";
 export default function Signin() {
   const navigate = useNavigate();
   const { setUserLogin } = useContext(AuthContext);
   const [apiError, setApiError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
@@ -85,20 +84,19 @@ export default function Signin() {
             setUserLogin({ id: userData.id });
             if (userData.userType === 1) {
               navigate("/serviceprovider");
-            } else if (userData.userType === 0) {
-              navigate("/");
             } else {
-              navigate("/signin");
+              navigate("/");
             }
           } catch (error) {
             console.error("Error fetching user data:", error);
             setApiError("حدث خطأ أثناء تسجيل الدخول");
           }
         } else {
-          setApiError(".رقم الهاتف أو كلمة المرور غير صحيحة");
+          setApiError(ApiResponse?.data?.message);
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("Login API error:", error);
         setApiError("حدث خطأ أثناء تسجيل الدخول");
       })
       .finally(() => setLoading(false));
@@ -107,10 +105,10 @@ export default function Signin() {
     phoneNumber: Yup.string()
       .matches(
         /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/,
-        "رقم الهاتف المدخل غير صحيح يجب ان يكون [رقم مصري]"
+        "phone number is incorrect[Egyptian Number]"
       )
-      .required("رقم الهاتف مطلوب"),
-    password: Yup.string().required("كلمة المرور مطلوبة"),
+      .required("Phone number is Required"),
+    password: Yup.string().required("Password is Required"),
   });
   let formik = useFormik({
     initialValues: {
@@ -145,7 +143,7 @@ export default function Signin() {
           </h1>
           <div className="mb-5 ">
             <div className="relative">
-              <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none ">
+              <div className="absolute inset-y-0 end-2 flex items-center ps-3.5 pointer-events-none">
                 <img src={vector} />
               </div>
               <input
@@ -200,7 +198,7 @@ export default function Signin() {
                 type="checkbox"
                 checked={formik.values.rememberMe}
                 onChange={formik.handleChange}
-                className="border border-[#3B9DD2] rounded-sm bg-white accent-[#3B9DD2]"
+                className="border border-[#3B9DD2] rounded-sm bg-white focus:ring-3 focus:ring-[#3B9DD2] dark:focus:ring-[#3B9DD2] accent-[#3B9DD2]"
               />
             </div>
             <div className="flex justify-between items-center w-full">
@@ -220,7 +218,7 @@ export default function Signin() {
           <div className="mx-auto text-center w-full">
             <button
               type="submit"
-              className="cursor-pointer text-white bg-[#3B9DD2] hover:bg-[#5aadd9] focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full  px-10 py-2.5 text-center dark:bg-[#3B9DD2] dark:hover:bg-[#3B9DD2] dark:focus:ring-[#3B9DD2]"
+              className="text-white bg-[#3B9DD2] hover:bg-[#5aadd9] focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full  px-10 py-2.5 text-center dark:bg-[#3B9DD2] dark:hover:bg-[#3B9DD2] dark:focus:ring-[#3B9DD2]"
             >
               تسجيل الدخول
             </button>
@@ -228,7 +226,7 @@ export default function Signin() {
         </form>
         <p className="text-center py-3">
           ليس لديك حساب ؟
-          <Link to={"/signup"} className="text-[#3B9DD2]">
+          <Link to={"/accounttype"} className="text-[#3B9DD2]">
             سجل الان
           </Link>
         </p>
@@ -237,7 +235,6 @@ export default function Signin() {
           <img
             className="cursor-pointer w-[50px]"
             src={google}
-            alt="تسجيل الدخول باستخدام Google"
             onClick={handleGoogleLogin}
           />
         </div>
