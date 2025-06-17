@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { PiChatCircleDots } from "react-icons/pi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Winner from "../winner/Winner";
+import Winner from "./Winner";
 
 export default function PaymentSuccessPopup() {
   const location = useLocation();
