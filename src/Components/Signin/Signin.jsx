@@ -1,4 +1,4 @@
-import vector from "../../assets/vector.svg";
+import vector from "../../assets/Vector.svg";
 import Hide from "../../assets/Hide.svg";
 import google from "../../assets/google.svg";
 import or from "../../assets/or.svg";
