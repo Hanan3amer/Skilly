@@ -19,7 +19,7 @@ export default function PaymentSuccessPopup() {
     const success = queryParams.get("success");
     const order = queryParams.get("order");
 
-    if (success === "true" && order) {
+    if (success === "true") {
       setOrderId(order);
       axios
         .post(
