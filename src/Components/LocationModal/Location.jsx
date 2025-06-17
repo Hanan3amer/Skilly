@@ -24,7 +24,7 @@ export default function Location() {
 
           axios
             .post(
-              "https://skilly.runasp.net/api/Location/Addlocation",
+              "https://skilly.runasp.net/api/Auth/Addlocation",
               {
                 latitude,
                 longitude,
