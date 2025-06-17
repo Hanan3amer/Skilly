@@ -23,7 +23,7 @@ export default function PaymentSuccessPopup() {
       setOrderId(order);
       axios
         .post(
-          `https://skilly.runasp.net/api/Payment/payment-URl-callback/${order} `,
+          `https://skilly.runasp.net/api/Payment/payment-URl-callback/${order}`,
           {
             success: success === "true",
           },
