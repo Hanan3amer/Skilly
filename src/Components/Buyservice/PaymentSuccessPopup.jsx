@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { PiChatCircleDots } from "react-icons/pi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Winner from "./Winner";
 
 export default function PaymentSuccessPopup() {
   const location = useLocation();
@@ -11,6 +12,8 @@ export default function PaymentSuccessPopup() {
   const [orderId, setOrderId] = useState(null);
   const [chatId, setChatId] = useState(null);
   const [providerId, setProviderId] = useState(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const token = localStorage.getItem("userToken");
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const success = queryParams.get("success");
@@ -20,9 +23,14 @@ export default function PaymentSuccessPopup() {
       setOrderId(order);
       axios
         .post(
-          `https://skilly.runasp.net/api/Payment/payment-URl-callback/${order}`,
+          `https://skilly.runasp.net/api/Payment/payment-URl-callback/${order} `,
           {
             success: success === "true",
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         )
         .then((res) => {
@@ -32,6 +40,7 @@ export default function PaymentSuccessPopup() {
             setIsVerified(true);
             setProviderId(data.providerId);
             setChatId(data.chatId);
+            setShowSuccessPopup(true);
           } else {
             navigate("/");
           }
@@ -73,6 +82,9 @@ export default function PaymentSuccessPopup() {
           </button>
         </Link>
       </div>
+      {showSuccessPopup && (
+        <Winner onClose={() => setShowSuccessPopup(false)} />
+      )}
     </div>
   );
 }

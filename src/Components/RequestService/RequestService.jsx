@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import Winner from "./Winner";
+import Winner from "../Buyservice/Winner";
 const RequestService = () => {
   const [imageFiles, setImageFiles] = useState([]);
   const [videoFile, setVideoFile] = useState(null);
@@ -211,7 +211,9 @@ const RequestService = () => {
         طلب خدمة جديدة
       </h1>
       {loadingCategories ? (
-        <div className="loading-message text-center mx-auto">Loading Form...</div>
+        <div className="loading-message text-center mx-auto">
+          Loading Form...
+        </div>
       ) : (
         <div className="border-2 p-5 rounded-lg border-gray-500 max-w-lg mx-auto bg-gray-200 my-5">
           <form
