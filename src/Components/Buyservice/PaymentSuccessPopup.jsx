@@ -51,7 +51,7 @@ export default function PaymentSuccessPopup() {
           navigate("/");
         });
     } else {
-      navigate("/payment-error");
+      navigate("/");
     }
   }, [location, navigate]);
 
