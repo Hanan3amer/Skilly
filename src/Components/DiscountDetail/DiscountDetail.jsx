@@ -26,6 +26,7 @@ export default function DiscountDetail() {
         )
         .then((res) => {
           setReviews(res.data.reviews.reviews);
+          console.log(res.data.reviews.reviews);
         })
         .catch((err) => console.error("Failed to fetch reviews:", err));
     }
@@ -37,7 +38,7 @@ export default function DiscountDetail() {
         <h1 className="text-[#27AAE1] text-center font-bold text-2xl my-5">
           تفاصيل الخدمة
         </h1>
-        <div className="border-2 p-5 rounded-lg border-gray-300 max-w-lg mx-auto bg-gray-200 my-5">
+        <div className="border-2 p-5 rounded-lg border-gray-500 max-w-lg mx-auto bg-gray-200 my-5">
           <div className="max-w-sm mx-auto" dir="rtl">
             {service && (
               <div>

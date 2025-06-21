@@ -8,8 +8,11 @@ export default function AcceptPrice({ requestId, providerId }) {
   const buyaservice = async () => {
     try {
       const res = await axios.post(
-        "https://skilly.runasp.net/api/Payment/start-payment",
-        { ServiceId: requestId },
+        "https://skilly.runasp.net/api/Payment/start-payment-URL",
+        {
+          ServiceId: requestId,
+          redirectUrl: `${window.location.origin}/paymentsuccesspopup`,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
