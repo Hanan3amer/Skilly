@@ -96,9 +96,9 @@ function App() {
         { path: "allreviews/:id", element: <AllReviews /> },
         { path: "gallery-demo", element: <GalleryDemo /> },
         { path: "providerprofileuser/:id", element: <ProviderProfileUser /> },
-        { path: "paymentsuccesspopup", element: <PaymentSuccessPopup /> },
       ],
     },
+    { path: "/paymentsuccesspopup", element: <PaymentSuccessPopup /> },
   ]);
   return (
     <>
