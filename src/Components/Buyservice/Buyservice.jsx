@@ -23,7 +23,7 @@ export default function Buyservice({
         "https://skilly.runasp.net/api/Payment/start-payment-URL",
         {
           serviceID,
-          redirectUrl: `${window.location.origin}/#/paymentsuccesspopup`,
+          redirectUrl: `${window.location.origin}/paymentsuccesspopup`,
         },
         {
           headers: {

@@ -1,4 +1,8 @@
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  // createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Home/Home";
 import Ourservices from "./Components/Ourservices/Ourservices";
@@ -49,7 +53,7 @@ import { ChatProvider } from "./Context/ChatContext";
 import CategoriesProvider from "./Context/CategoriesContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 function App() {
-  const router = createHashRouter([
+  const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
@@ -96,9 +100,9 @@ function App() {
         { path: "allreviews/:id", element: <AllReviews /> },
         { path: "gallery-demo", element: <GalleryDemo /> },
         { path: "providerprofileuser/:id", element: <ProviderProfileUser /> },
+        { path: "paymentsuccesspopup", element: <PaymentSuccessPopup /> },
       ],
     },
-    { path: "/paymentsuccesspopup", element: <PaymentSuccessPopup /> },
   ]);
   return (
     <>
