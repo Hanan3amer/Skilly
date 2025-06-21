@@ -1,7 +1,4 @@
-import React from "react";
-import user from "../../assets/userpic.jpg";
-import money from "../../assets/money.png";
-export default function () {
+export default function Chat() {
   return (
     <div className="container">
       <div className="border border-black max-w-xl mx-auto rounded-xl p-5 relative">

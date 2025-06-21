@@ -13,7 +13,6 @@ const MessagesPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const { setChatCount } = useChat();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,7 +38,6 @@ const MessagesPage = () => {
         // const chatsData = chatsResponse.data.data;
         if (chatsResponse.data.status === "success") {
           const chatsData = chatsResponse.data.data;
-          setChatCount(chatsData.length);
           const processedChats = chatsData.map((chat) => {
             const isCurrentUserFirst = userData.id === chat.firstUserId;
             const otherUserName = isCurrentUserFirst

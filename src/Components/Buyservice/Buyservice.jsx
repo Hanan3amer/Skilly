@@ -22,7 +22,7 @@ export default function Buyservice({
       .post(
         "https://skilly.runasp.net/api/Payment/start-payment-URL",
         {
-          serviceId: serviceID,
+          serviceID,
           redirectUrl: `${window.location.origin}/paymentsuccesspopup`,
         },
         {
@@ -36,9 +36,6 @@ export default function Buyservice({
         if (res.status === 200) {
           window.location.href = res.data.result.iframeUrl;
         }
-      })
-      .catch((err) => {
-        console.error("Request Error:", err);
       });
   }
   return (

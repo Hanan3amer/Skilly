@@ -9,7 +9,6 @@ export default function AllReviews() {
     axios
       .get(`https://skilly.runasp.net/api/Provider/Review/GetReviewsBy/${id}`)
       .then((res) => {
-        console.log(res.data.reviews.reviews);
         setReviews(res.data.reviews.reviews);
       });
   }
