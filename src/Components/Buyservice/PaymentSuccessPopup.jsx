@@ -38,6 +38,7 @@ export default function PaymentSuccessPopup() {
           const data = res?.data;
           if (data?.success === true) {
             setIsVerified(true);
+
             setProviderId(data.providerId);
             setChatId(data.chatId);
             setShowSuccessPopup(true);
