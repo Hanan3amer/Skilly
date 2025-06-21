@@ -4,7 +4,7 @@ const ImageGallery = ({ images = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesWithFallback, setImagesWithFallback] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     // Process images to handle potential errors
     if (images && images.length > 0) {
@@ -12,20 +12,20 @@ const ImageGallery = ({ images = [] }) => {
     } else {
       // Use a placeholder if no images are provided
       setImagesWithFallback([
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/cd57bd839a880ee086512caf115b3cdac52773e7"
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/cd57bd839a880ee086512caf115b3cdac52773e7",
       ]);
     }
     setLoading(false);
   }, [images]);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === imagesWithFallback.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? imagesWithFallback.length - 1 : prevIndex - 1
     );
   };
@@ -35,7 +35,8 @@ const ImageGallery = ({ images = [] }) => {
   };
 
   const handleImageError = (e) => {
-    e.target.src = "https://cdn.builder.io/api/v1/image/assets/TEMP/cd57bd839a880ee086512caf115b3cdac52773e7";
+    e.target.src =
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/cd57bd839a880ee086512caf115b3cdac52773e7";
   };
 
   if (loading) {
@@ -113,9 +114,9 @@ const ImageGallery = ({ images = [] }) => {
               key={index}
               onClick={() => handleDotClick(index)}
               className={`w-3 h-3 rounded-full transition-all ${
-                currentIndex === index 
-                ? 'bg-sky-500 scale-125' 
-                : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                currentIndex === index
+                  ? "bg-sky-500 scale-125"
+                  : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"
               }`}
               aria-label={`Go to image ${index + 1}`}
             />
@@ -131,9 +132,9 @@ const ImageGallery = ({ images = [] }) => {
               key={index}
               onClick={() => handleDotClick(index)}
               className={`flex-shrink-0 w-20 h-20 rounded-md overflow-hidden border-2 transition-all ${
-                currentIndex === index 
-                ? 'border-sky-500 opacity-100 scale-105' 
-                : 'border-transparent opacity-70 hover:opacity-100'
+                currentIndex === index
+                  ? "border-sky-500 opacity-100 scale-105"
+                  : "border-transparent opacity-70 hover:opacity-100"
               }`}
             >
               <img

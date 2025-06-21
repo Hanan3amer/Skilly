@@ -107,33 +107,41 @@ const ImageUpload = ({ onImagesUpdate, initialImages = [], onDeleteImage }) => {
       {images.length > 0 && selectedImageIndex !== null ? (
         <div className="w-full mb-4">
           {/* Using ImageGallery for display */}
-          <ImageGallery 
-            images={images} 
+          <ImageGallery
+            images={images}
             showThumbnails={true}
             className="rounded-lg"
             aspectRatio="aspect-[16/9]"
           />
-          
+
           {/* Add button for more images if less than 5 */}
           {images.length < 5 && (
-            <div 
+            <div
               className="w-full mt-2 h-12 bg-gray-100 rounded-md flex justify-center items-center cursor-pointer border border-dashed border-gray-300 hover:bg-gray-200 transition-colors"
               onClick={triggerFileInput}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 text-gray-500 ml-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                />
               </svg>
               <span className="text-gray-500">إضافة المزيد من الصور</span>
             </div>
           )}
-          
+
           {/* Remove buttons for each image */}
           <div className="mt-2 flex gap-2 overflow-x-auto pb-2">
             {images.map((image, index) => (
-              <div 
-                key={index} 
-                className="relative w-16 h-16 flex-shrink-0"
-              >
+              <div key={index} className="relative w-16 h-16 flex-shrink-0">
                 <img
                   src={image.url}
                   alt={image.alt}
@@ -210,7 +218,7 @@ const ImageUpload = ({ onImagesUpdate, initialImages = [], onDeleteImage }) => {
 
 ImageUpload.propTypes = {
   onImagesUpdate: PropTypes.func,
-  initialImages: PropTypes.array
+  initialImages: PropTypes.array,
 };
 
 export default ImageUpload;

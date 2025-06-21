@@ -10,6 +10,7 @@ import { RiAlarmWarningFill } from "react-icons/ri";
 import defaultUserImg from "../../assets/userpic.jpg";
 import { getUserType } from "../../utils/hooks/getUserType";
 import NotificationsModal from "../Notifiction/NotificationModal";
+import { CiTrash } from "react-icons/ci";
 export default function Navbar() {
   const token = localStorage.getItem("userToken");
   const userType = getUserType();
@@ -47,7 +48,7 @@ export default function Navbar() {
 
     axios
       .get(
-        `https://skilly.runasp.net/api/UserProfile/UserProfile/GetUserProfileByuserId`,
+        `https://skilly.runasp.net/api/UserProfile/userProfile/GetUserProfileByuserId`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -82,6 +83,7 @@ export default function Navbar() {
 
     if (userLogin) {
       if (+userType === 0) {
+        // console.log("Navbar: Getting regular user data");
         getUser();
       } else if (+userType === 1) {
         getProviderData();
@@ -103,6 +105,31 @@ export default function Navbar() {
     navigate("/");
 
     window.location.reload();
+  }
+
+  function deleteUser() {
+    axios
+      .delete(
+        "https://skilly.runasp.net/api/UserProfile/UserProfile/deleteProfileByuserId",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then(() => {
+        logout();
+      })
+      .catch((err) => console.error("خطأ في حذف المستخدم:", err));
+  }
+
+  function deleteProvider() {
+    axios
+      .delete("https://skilly.runasp.net/api/Provider/deleteProviderByuserId", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => {
+        logout();
+      })
+      .catch((err) => console.error("خطأ في حذف المزود:", err));
   }
 
   // useEffect(() => {
@@ -152,7 +179,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-white w-full sticky top-0  z-[49] ">
+      <nav className="bg-white w-full sticky top-0 dark:bg-slate-400 z-[49] ">
         <div className="mx-auto sm:px-0 md:px-3">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -223,19 +250,21 @@ export default function Navbar() {
                       من نحن
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink
-                      onClick={() => setIsOpen(false)}
-                      to={"/ourservices"}
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-[#3B9DD2]"
-                          : "block py-2 px-3 text-gray-600 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#3B9DD2] md:p-0  "
-                      }
-                    >
-                      خدماتنا
-                    </NavLink>
-                  </li>
+                  {userType === "0" && (
+                    <li>
+                      <NavLink
+                        onClick={() => setIsOpen(false)}
+                        to={"/ourservices"}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#3B9DD2]"
+                            : "block py-2 px-3 text-gray-600 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#3B9DD2] md:p-0"
+                        }
+                      >
+                        خدماتنا
+                      </NavLink>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -291,7 +320,7 @@ export default function Navbar() {
                     <button
                       onClick={toggleMenu}
                       type="button"
-                      className="relative flex rounded-full bg-gray-800 text-sm focus:ring-1 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-100 focus:outline-hidden"
+                      className="relative flex rounded-full text-sm focus:ring-1 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-100 focus:outline-hidden"
                       id="user-menu-button"
                       aria-expanded="false"
                       aria-haspopup="true"
@@ -372,6 +401,22 @@ export default function Navbar() {
                           تسجيل الخروج
                         </li>
                       </ul>
+                      <ul
+                        className=" text-sm p-3 border border-red-300 rounded-lg text-left bg-white gap-1 my-5 flex items-center justify-end"
+                        onClick={() => {
+                          setIsOpen(false);
+                          if (userType === "0") {
+                            deleteUser();
+                          } else if (userType === "1") {
+                            deleteProvider();
+                          }
+                        }}
+                      >
+                        <li className="text-red-500 font-semibold cursor-pointer">
+                          حذف الحساب
+                        </li>
+                        <CiTrash className="text-lg text-red-500" />
+                      </ul>
                     </div>
                   )}
                 </div>
@@ -379,12 +424,12 @@ export default function Navbar() {
             </div>
           </div>
           {toggle && (
-            <div className="absolute top-16 left-0 w-full bg-white shadow-md  sm:hidden">
+            <div className="absolute top-16 left-0 w-full bg-white shadow-md dark:bg-gray-800 sm:hidden">
               <ul className="flex flex-col space-y-2 p-4">
                 <li>
                   <NavLink
                     to="/contactus"
-                    className="block py-2 px-3 text-gray-600 "
+                    className="block py-2 px-3 text-gray-600 dark:text-white"
                   >
                     تواصل معنا
                   </NavLink>
@@ -402,12 +447,12 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     to="/aboutus"
-                    className="block py-2 px-3 text-gray-600 "
+                    className="block py-2 px-3 text-gray-600 dark:text-white"
                   >
                     من نحن
                   </NavLink>
                 </li>
-               {userType === "0" && (
+                {userType === "0" && (
                   <li>
                     <NavLink
                       onClick={() => setIsOpen(false)}
