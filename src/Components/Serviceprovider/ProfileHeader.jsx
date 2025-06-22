@@ -35,7 +35,7 @@ const ProfileHeader = () => {
 
   if (loading) {
     return (
-      <div className="flex gap-9 max-sm:gap-5 self-stretch my-auto max-md:mt-6 max-sm:mt-4 animate-pulse">
+      <div className="flex gap-9 justify-end max-sm:gap-5 self-stretch my-auto max-md:mt-6 max-sm:mt-4 animate-pulse">
         <div className="self-start mt-2.5">
           <div className="flex gap-1 text-base leading-none text-black">
             <div className="w-[25px] h-[25px] bg-gray-200 rounded-full"></div>
@@ -56,7 +56,7 @@ const ProfileHeader = () => {
   }
 
   return (
-    <div className="flex gap-9 max-sm:gap-5 self-stretch my-auto max-md:mt-6 max-sm:mt-4">
+    <div className="flex gap-9 justify-end max-sm:gap-5 self-stretch my-auto max-md:mt-6 max-sm:mt-4">
       <div className="self-start mt-2.5">
         <div className="flex gap-1 text-base leading-none text-black dark:text-white max-md:mr-0.5">
           <img
@@ -94,7 +94,7 @@ const ProfileHeader = () => {
       <img
         src={profileImage}
         alt="Profile picture"
-        className="object-cover shrink-0 max-w-full aspect-square w-[130px] max-md:w-[100px] max-sm:w-[80px] rounded-full"
+        className="object-cover shrink-0 max-w-full aspect-square w-[130px] rounded-full"
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = defaultUserImg;

@@ -55,7 +55,6 @@ function SingleService() {
   };
 
   useEffect(() => {
-
     const fetchRequestData = async () => {
       try {
         setLoading(true);
@@ -85,7 +84,6 @@ function SingleService() {
           setService(serviceData);
           console.log("Request data loaded:", serviceData);
           setLoading(false);
-        
         } else {
           setError("لم يتم العثور على الطلب");
           setLoading(false);
@@ -330,9 +328,9 @@ function SingleService() {
             <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
               وصف الخدمة
             </h2>
-          <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
-            <p className="text-black dark:text-white text-right">
-              {service.description}
+            <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
+              <p className="text-black dark:text-white text-right">
+                {service.description}
               </p>
             </div>
           </div>

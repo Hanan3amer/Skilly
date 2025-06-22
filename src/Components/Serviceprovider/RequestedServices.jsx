@@ -92,7 +92,7 @@ const RequestedServices = () => {
                 fill="black"
               />
             </svg>
-            <span className="text-gray-700 dark:text-gray-300 font-medium">
+            <span className="text-gray-700 text-nowrap dark:text-gray-300 font-medium">
               ترتيب حسب
             </span>
           </div>

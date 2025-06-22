@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Offers from "../Offers/Offers";
 import Slider from "react-slick";
 import { TbEdit } from "react-icons/tb";
-import alert from "../../assets/alert.svg";
+import OrderTracking from "./OrderTracking";
 export default function ProfilePage() {
   const [offersCountMap, setOffersCountMap] = useState({});
   const token = localStorage.getItem("userToken");
@@ -15,6 +15,7 @@ export default function ProfilePage() {
   const [request, setRequest] = useState([]);
   const [selectedOfferId, setSelectedOfferId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTrackOpen, setIsTrackOpen] = useState(false);
   const navigate = useNavigate();
   const settings = {
     dots: false,
@@ -27,6 +28,10 @@ export default function ProfilePage() {
   const openOfferModal = (id) => {
     setSelectedOfferId(id);
     setIsModalOpen(true);
+  };
+  const openTrackModal = (id) => {
+    setSelectedOfferId(id);
+    setIsTrackOpen(true);
   };
 
   function togglebtn() {
@@ -111,7 +116,10 @@ export default function ProfilePage() {
                 <Link to={"/messages"}>
                   <IoChatbubbleEllipsesOutline className="text-3xl" />
                 </Link>
-                <TbEdit className="text-3xl" />
+                <TbEdit
+                  className="text-3xl cursor-pointer"
+                  onClick={() => navigate("/user", { state: { user } })}
+                />
               </div>
             </div>
           </div>
@@ -181,35 +189,41 @@ export default function ProfilePage() {
             <div key={service.id} className="bg-gray-100 rounded-lg p-4">
               <Link to={`/orderdetail/${service.id}`}>
                 <Slider {...settings}>
-                  {!service.name.includes("طلب طارئ") ? (
-                    service.images.map((img) => (
-                      <img
-                        key={img.id}
-                        src={img.img}
-                        alt="Service"
-                        className="w-full h-60 object-cover rounded-lg"
-                      />
-                    ))
-                  ) : (
-                    <img src={alert} />
-                  )}
+                  {service.images.map((img) => (
+                    <img
+                      key={img.id}
+                      src={img.img}
+                      alt="Service"
+                      className="w-full h-60 object-cover rounded-lg"
+                    />
+                  ))}
                 </Slider>
                 <h3 className="text-md font-bold mt-3 text-[#040404]">
                   {service.name}
                 </h3>
                 <p className="text-[#23255B] text-sm mt-2">{service.notes}</p>
               </Link>
-              <button
-                onClick={() => openOfferModal(service.id)}
-                className="flex items-center gap-5 my-3 z-30"
-              >
-                <span className="text-[#23255B] font-bold rounded-full text-sm z-50">
-                  العروض
-                </span>
-                <span className="rounded-full bg-[#23255B] text-white px-2">
-                  {offersCountMap[service.id] ?? 0}
-                </span>
-              </button>
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={() => openOfferModal(service.id)}
+                  className="flex items-center gap-3 my-3 z-30"
+                >
+                  <span className="text-[#23255B] font-bold rounded-full text-sm z-50">
+                    العروض
+                  </span>
+                  <span className="rounded-full bg-[#23255B] text-white px-2">
+                    {offersCountMap[service.id] ?? 0}
+                  </span>
+                </button>
+                <button
+                  onClick={() => openTrackModal(service.id)}
+                  className=" mx-auto text-center border-2 my-5 px-3 py-2 rounded-md 
+                    
+                      border-[#27AAE1] text-[#27AAE1] hover:border-[#9bc2d492] hover:text-white"
+                >
+                  متابعة الطلب
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -222,7 +236,7 @@ export default function ProfilePage() {
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 bg-[#00000051] bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg w-[35%] p-6 relative">
+          <div className="bg-white w-full md:w-1/3 rounded-lg  p-6 relative">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-2 right-5 text-gray-500 text-xl"
@@ -230,6 +244,19 @@ export default function ProfilePage() {
               &times;
             </button>
             <Offers requestId={selectedOfferId} />
+          </div>
+        </div>
+      )}
+      {isTrackOpen && (
+        <div className="fixed inset-0 bg-[#00000051] bg-opacity-50 flex justify-center items-center z-50 ">
+          <div className="bg-white rounded-lg w-full md:w-1/4 mx-auto p-3 relative max-h-[90vh] overflow-y-auto">
+            <OrderTracking requestId={selectedOfferId} />
+            <button
+              onClick={() => setIsTrackOpen(false)}
+              className="absolute bottom-2 right-1/2 text-white font-bold rounded-lg px-5 py-2 text-sm bg-[#27AAE1]"
+            >
+              غلق
+            </button>
           </div>
         </div>
       )}

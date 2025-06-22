@@ -1,7 +1,7 @@
-import vector from "../../assets/Vector.svg";
 import Hide from "../../assets/Hide.svg";
 import google from "../../assets/google.svg";
 import or from "../../assets/or.svg";
+import vector from "../../assets/Vector.svg";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";

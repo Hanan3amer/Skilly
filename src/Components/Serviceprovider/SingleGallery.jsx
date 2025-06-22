@@ -218,7 +218,6 @@ function SingleGallery() {
         معرض الأعمال
       </div>
       <article className="p-5 w-full bg-white dark:bg-gray-700 rounded-xl border border-gray-200 dark:border-gray-600 max-w-[1000px] shadow-md">
-
         <h1 className="text-xl font-bold text-black dark:text-white text-center mb-6">
           {service.galleryName}
         </h1>
@@ -257,7 +256,7 @@ function SingleGallery() {
               {service.images.length > 0 && (
                 <div className="mt-2">
                   <img
-                    src={service.images[activeImageIndex]}
+                    src={service.images[activeImageIndex].img}
                     alt="الصورة المختارة"
                     className="w-full h-auto max-h-96 object-cover rounded-lg"
                   />

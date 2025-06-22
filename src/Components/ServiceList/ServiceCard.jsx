@@ -17,11 +17,12 @@ const ServiceCard = ({
     e.stopPropagation();
     setShowOffersModal(true);
   };
+  const [offers, setOffersCount] = useState(offersCount ?? 0);
   return (
     <>
       <Link
         to={`/service/${id}`}
-        className="block w-full hover:shadow-lg transition-shadow rounded-xl"
+        className="block w-full h-full hover:shadow-lg transition-shadow rounded-xl"
       >
         <article className="flex flex-col grow items-end pt-10 h-full   pb-5 px-9 w-full text-xs text-right rounded-xl bg-neutral-100 max-md:px-5 max-md:mt-7 max-md:max-w-full">
           <div className="w-full cursor-pointer relative">
@@ -32,17 +33,19 @@ const ServiceCard = ({
             />
             {/* Offers count badge */}
           </div>
-          <h3 className="mt-1.5 font-bold text-black truncate w-full">{title}</h3>
-          <p className="text-blue-950 overflow-hidden w-full text-ellipsis">{description}</p>
+          <h3 className="mt-1.5 font-bold text-black truncate w-full">
+            {title}
+          </h3>
+          <p className="text-blue-950 overflow-hidden w-full text-ellipsis">
+            {description}
+          </p>
 
           <div
             className="flex items-center rounded-xl px-3 py-1 pt-5 cursor-pointer"
             onClick={handleOffersClick}
           >
             <div className="rounded-full bg-[#24234C] w-6 h-6 flex items-center justify-center">
-              <span className="text-white text-sm font-bold">
-                {offersCount}
-              </span>
+              <span className="text-white text-sm font-bold">{offers}</span>
             </div>
             <span className="text-[#24234C] text-sm ml-2 font-bold">
               العروض
@@ -60,7 +63,10 @@ const ServiceCard = ({
             >
               &times;
             </button>
-            <Offers requestId={id} />
+            <Offers
+              requestId={id}
+              changeOffers={(count) => setOffersCount(count)}
+            />
           </div>
         </div>
       )}

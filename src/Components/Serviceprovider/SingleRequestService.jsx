@@ -44,7 +44,8 @@ function SingleRequestService() {
           const serviceData = response.data.service;
           setRequest(serviceData);
           console.log("Request data loaded:", serviceData);
-          
+
+          // Fetch category data if categoryId exists
           if (serviceData.categoryId) {
             fetchCategoryData(serviceData.categoryId);
           } else {
@@ -69,7 +70,7 @@ function SingleRequestService() {
       const categoryResponse = await axios.get(
         `https://skilly.runasp.net/api/Category/GetCategoryBy/${categoryId}`
       );
-      
+
       if (categoryResponse.data && categoryResponse.data.category) {
         setCategory(categoryResponse.data.category);
         console.log("Category data loaded:", categoryResponse.data.category);
@@ -106,8 +107,8 @@ function SingleRequestService() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
 
@@ -160,18 +161,20 @@ function SingleRequestService() {
     title: request.name || "عمل خدمة مميزة",
     price: request.price || "1200",
     deliveryTime: request.deliverytime || "٣٠",
-    startDate: request.startDate ? request.startDate.split('T')[0] : "3/1/2023",
+    startDate: request.startDate ? request.startDate.split("T")[0] : "3/1/2023",
     category: category?.name || "البنات",
     notes: request.notes,
-    images: request.images?.map(image => image?.img) || [],
-    video: request.video
+    images: request.images?.map((image) => image?.img) || [],
+    video: request.video,
   };
 
   return (
     <main className="flex flex-col items-center w-full bg-white min-h-screen py-5">
       <ToastContainer position="top-center" rtl={true} theme="colored" />
-      
-      <h1 className="text-2xl font-bold text-sky-500 mb-4">تفاصيل الخدمه المطلوبه</h1>
+
+      <h1 className="text-2xl font-bold text-sky-500 mb-4">
+        تفاصيل الخدمه المطلوبه
+      </h1>
 
       <div className="w-full max-w-[700px] mx-auto p-5 bg-gray-100 rounded-xl border border-gray-200">
         <div className="mb-5">
@@ -182,7 +185,7 @@ function SingleRequestService() {
             {displayData.title}
           </div>
         </div>
-        
+
         <div className="flex gap-5 mb-5">
           <div className="w-1/2">
             <label className="block text-right text-gray-800 text-lg font-bold mb-1">
@@ -202,7 +205,7 @@ function SingleRequestService() {
             </div>
           </div>
         </div>
-        
+
         <div className="mb-5">
           <label className="block text-right text-gray-800 text-lg font-bold mb-1">
             تاريخ البدء
@@ -211,7 +214,7 @@ function SingleRequestService() {
             {displayData.startDate}
           </div>
         </div>
-        
+
         <div className="mb-5">
           <label className="block text-right text-gray-800 text-lg font-bold mb-1">
             القسم
@@ -220,7 +223,7 @@ function SingleRequestService() {
             {displayData.category}
           </div>
         </div>
-        
+
         <div className="mb-5">
           <label className="block text-right text-gray-800 text-lg font-bold mb-1">
             الملاحظات
@@ -229,37 +232,39 @@ function SingleRequestService() {
             {displayData.notes}
           </div>
         </div>
-        
+
         <div className="mb-5">
           <label className="block text-right text-gray-800 text-lg font-bold mb-1">
             الصور
           </label>
           <div className="flex justify-end gap-2">
-            { (
-              displayData.images.map((image, index) => (
-                <div 
-                  key={index} 
-                  className="w-16 h-16 overflow-hidden rounded-md cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => {
-                    setInitialImageIndex(index);
-                    setImageModalOpen(true);
-                  }}
-                >
-                  <img src={image} alt={`صورة ${index + 1}`} className="w-full h-full object-cover" />
-                </div>
-              ))
-            )}
+            {displayData.images.map((image, index) => (
+              <div
+                key={index}
+                className="w-16 h-16 overflow-hidden rounded-md cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => {
+                  setInitialImageIndex(index);
+                  setImageModalOpen(true);
+                }}
+              >
+                <img
+                  src={image}
+                  alt={`صورة ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
           </div>
         </div>
-        
+
         <div className="mb-6">
           <label className="block text-right text-gray-800 text-lg font-bold mb-1">
             الفيديو
           </label>
           <div className="border border-gray-300 rounded-lg overflow-hidden bg-white h-24 flex items-center justify-center">
             {displayData.video ? (
-              <video 
-                controls 
+              <video
+                controls
                 src={displayData.video}
                 className="w-full h-full object-cover"
               ></video>
@@ -268,7 +273,7 @@ function SingleRequestService() {
             )}
           </div>
         </div>
-        
+
         <div className="flex justify-between gap-4">
           <button
             onClick={handleOfferButtonClick}
@@ -283,41 +288,61 @@ function SingleRequestService() {
           >
             {acceptLoading ? (
               <>
-                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 جاري القبول...
               </>
-            ) : "قبول"}
+            ) : (
+              "قبول"
+            )}
           </button>
         </div>
 
         {open && (
-        <div
-          onClick={() => setOpen(false)}
-          className="overlay fixed top-0 left-0 right-0 bottom-0 bg-[#00000050] backdrop-blur-[1px] z-5"
-        >
           <div
-            onClick={(e) => e.stopPropagation()}
-            className="absolute w-1/2 left-1/2 top-1/2"
+            onClick={() => setOpen(false)}
+            className="overlay fixed top-0 left-0 right-0 bottom-0 bg-[#00000050] backdrop-blur-[1px] z-5"
           >
-            <OfferPrice serviceID={request.id} onClose={() => setOpen(false)} />
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="absolute w-1/2 left-1/2 top-1/2"
+            >
+              <OfferPrice
+                serviceID={request.id}
+                onClose={() => setOpen(false)}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
-      
+
       {/* Image Modal */}
-      <ImageModal 
+      <ImageModal
         isOpen={imageModalOpen}
         onClose={() => setImageModalOpen(false)}
         images={displayData.images}
         initialIndex={initialImageIndex}
       />
-      
     </main>
   );
 }
 
-export default SingleRequestService; 
+export default SingleRequestService;

@@ -57,6 +57,20 @@ const PersonalInfo = ({ user = {} }) => {
           isCollapsed ? "max-h-0 mt-0 opacity-0" : "max-h-screen opacity-100"
         }`}
       >
+        <div className="flex gap-5 justify-between px-4 py-4 bg-gray-200 dark:bg-gray-700 rounded-xl max-md:mr-0.5">
+          <span className="text-xs text-blue-950 dark:text-blue-200">
+            {user.phoneNumber || user.phone || "غير متوفر"}
+          </span>
+          <span className="text-sm font-bold text-sky-500">رقم الهاتف</span>
+        </div>
+
+        <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl">
+          <span className="text-xs text-blue-950 dark:text-blue-200">
+            {user.email || "غير متوفر"}
+          </span>
+          <span className="text-sm font-bold text-sky-500">البريد</span>
+        </div>
+
         <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl max-md:px-5">
           <span className="text-xs text-blue-950 dark:text-blue-200">
             {user.profession || user.job || "غير محدد"}

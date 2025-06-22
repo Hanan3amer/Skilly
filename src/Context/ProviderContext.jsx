@@ -21,7 +21,6 @@ export default function ProviderContextProvider(props) {
   function getProviderData(forceRefresh = false) {
     const token = localStorage.getItem("userToken");
     if (providerData && !forceRefresh) return Promise.resolve(providerData);
-    if (providerData) return Promise.resolve(providerData);
     if (!token) {
       console.log("No token available for provider data fetch");
       return Promise.reject("No authentication token");
@@ -107,6 +106,7 @@ export default function ProviderContextProvider(props) {
       return Promise.resolve({ services: providerServices });
     }
 
+    // Only set loading if we're actually making a request
     setServicesLoading(true);
 
     return axios
@@ -155,9 +155,7 @@ export default function ProviderContextProvider(props) {
           },
         }
       )
-      .then((response) => {
-        response.data;
-      })
+      .then((response) => response.data)
       .catch((err) => {
         console.log(
           "Get Services By ProviderId Error:",
@@ -185,7 +183,6 @@ export default function ProviderContextProvider(props) {
         }
       )
       .then((response) => {
-        console.log("Provider data by ID response:", response.data);
         return response.data;
       })
       .catch((err) => {

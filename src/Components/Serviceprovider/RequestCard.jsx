@@ -1,6 +1,6 @@
 "use client";
 import { useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const RequestCard = ({
   id,
@@ -22,13 +22,15 @@ const RequestCard = ({
     <article className="grow py-6 max-md:py-5 max-sm:py-4 w-full rounded-xl bg-neutral-100 dark:bg-gray-800 transition-colors duration-300 max-md:mt-8 max-sm:mt-6 max-md:max-w-full overflow-hidden">
       <div className="flex flex-col px-8 max-md:px-6 max-sm:px-4 w-full max-md:max-w-full">
         <div className="flex flex-wrap gap-5 max-sm:gap-3 justify-between w-full max-md:max-w-full">
-          <time className="my-auto text-xs font-light text-black dark:text-gray-300">{date}</time>
+          <time className="my-auto text-xs font-light text-black dark:text-gray-300">
+            {date}
+          </time>
           <div className="flex gap-5 items-center max-sm:gap-3 text-base leading-none text-blue-950 dark:text-blue-200">
             <h3 className="font-bold">{name}</h3>
             <img
               src={profileImage}
               alt={name}
-              className="object-contain shrink-0 aspect-[1.19] w-[62px] max-md:w-[50px] max-sm:w-[40px] rounded-full"
+              className="object-cover shrink-0 aspect-[1.19] w-[62px] max-md:w-[50px] max-sm:w-[40px] rounded-full"
             />
           </div>
         </div>
@@ -45,7 +47,7 @@ const RequestCard = ({
             <span className="self-center text-xs font-bold text-sky-500 dark:text-sky-400">
               {price}
             </span>
-            <button 
+            <button
               onClick={handleViewDetails}
               className="px-14 max-md:px-10 max-sm:px-6 py-3 max-sm:py-2 text-base max-sm:text-sm font-bold leading-none text-white bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 rounded-xl transition-colors max-md:px-5"
             >
@@ -66,7 +68,7 @@ RequestCard.propTypes = {
   description: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   offers: PropTypes.string.isRequired,
-  profileImage: PropTypes.string.isRequired
+  profileImage: PropTypes.string.isRequired,
 };
 
 export default RequestCard;

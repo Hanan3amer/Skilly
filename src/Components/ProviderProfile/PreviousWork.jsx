@@ -9,7 +9,7 @@ const PreviousWork = ({ providerId }) => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -44,7 +44,7 @@ const PreviousWork = ({ providerId }) => {
   }, [providerId]);
 
   const handleShowMore = () => {
-    setVisibleCount((prev) => prev + 3);
+    setVisibleCount((prev) => prev + 6);
   };
 
   if (loading) {
@@ -77,7 +77,7 @@ const PreviousWork = ({ providerId }) => {
           to="/addservice?isGallary=true"
           className="px-5 py-2.5 text-white bg-sky-500 rounded-lg font-medium hover:bg-sky-600 transition-colors text-sm"
         >
-          إضافة عمل 
+          إضافة عمل
         </Link>
       </div>
       <div className="grid grid-cols-3 gap-5 max-md:grid-cols-1 mt-5">
@@ -86,7 +86,7 @@ const PreviousWork = ({ providerId }) => {
             key={service.id}
             image={
               service.images && service.images.length > 0
-                ? service.images[0]
+                ? service.images[0].img
                 : "https://via.placeholder.com/300x200/eee?text=لا+توجد+صورة"
             }
             title={service.galleryName}

@@ -17,7 +17,7 @@ const VideoPlayer = ({ videoUrl }) => {
       if (playing) {
         videoRef.current.pause();
       } else {
-        videoRef.current.play().catch(err => {
+        videoRef.current.play().catch((err) => {
           console.error("Error playing video:", err);
           setError(true);
         });
@@ -71,21 +71,21 @@ const VideoPlayer = ({ videoUrl }) => {
       />
 
       {!playing && !error && !loading && (
-        <div 
+        <div
           className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 cursor-pointer transition-opacity hover:bg-opacity-30"
           onClick={handlePlay}
         >
           <div className="w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-8 w-8 text-white" 
-              viewBox="0 0 20 20" 
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8 text-white"
+              viewBox="0 0 20 20"
               fill="currentColor"
             >
-              <path 
-                fillRule="evenodd" 
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" 
-                clipRule="evenodd" 
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                clipRule="evenodd"
               />
             </svg>
           </div>

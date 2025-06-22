@@ -8,7 +8,7 @@ const MyServices = () => {
   const { servicesLoading, getProviderServices } = useContext(ProviderContext);
   const [providerServices, setProviderServices] = useState([]);
   const [error, setError] = useState(null);
-  const [visibleServices, setVisibleServices] = useState(3);
+  const [visibleServices, setVisibleServices] = useState(6);
   const initializedRef = useRef(false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const MyServices = () => {
   }, [getProviderServices]);
 
   const handleShowMore = () => {
-    setVisibleServices((prev) => prev + 3);
+    setVisibleServices((prev) => prev + 6);
   };
 
   const renderServiceCards = () => {
@@ -68,7 +68,7 @@ const MyServices = () => {
             id={service.id}
             image={
               service.images?.length > 0
-                ? service.images[0].img
+                ? service.images[0]
                 : "https://cdn.builder.io/api/v1/image/assets/TEMP/f9cfd55253832bba4ed0088a033cf9a8a5cd024fc56c5467968a0d89a103c285?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"
             }
             title={service.name}
@@ -102,7 +102,7 @@ const MyServices = () => {
       {showMoreButton && (
         <button
           onClick={handleShowMore}
-          className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+          className="self-start mt-[40px] text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
         >
           ... عرض المزيد
         </button>

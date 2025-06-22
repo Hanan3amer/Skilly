@@ -12,9 +12,9 @@ const ServicesList = () => {
 
   useEffect(() => {
     if (initializedRef.current) return;
-    
+
     initializedRef.current = true;
-    
+
     const fetchData = async () => {
       try {
         const response = await getProviderServices();
@@ -24,26 +24,31 @@ const ServicesList = () => {
         setError("Failed to fetch services");
       }
     };
-    
+
     fetchData();
   }, []);
 
   const showMoreServices = () => {
-    setVisibleServices(prev => prev + 3);
+    setVisibleServices((prev) => prev + 3);
   };
 
   const renderServices = () => {
     if (servicesLoading) {
-      return Array(3).fill(0).map((_, index) => (
-        <div key={`skeleton-${index}`} className="w-[33%] max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col grow items-end py-10 px-9 w-full text-xs text-right rounded-xl bg-neutral-100 max-md:px-5 max-md:mt-7 max-md:max-w-full animate-pulse">
-            <div className="self-stretch w-full rounded-none aspect-[2] bg-gray-300" />
-            <div className="mt-1.5 w-2/3 h-4 bg-gray-300 rounded" />
-            <div className="mt-1 w-full h-3 bg-gray-300 rounded" />
-            <div className="mt-0.5 w-full h-3 bg-gray-300 rounded" />
+      return Array(3)
+        .fill(0)
+        .map((_, index) => (
+          <div
+            key={`skeleton-${index}`}
+            className="w-[33%] max-md:ml-0 max-md:w-full"
+          >
+            <div className="flex flex-col grow items-end py-10 px-9 w-full text-xs text-right rounded-xl bg-neutral-100 max-md:px-5 max-md:mt-7 max-md:max-w-full animate-pulse">
+              <div className="self-stretch w-full rounded-none aspect-[2] bg-gray-300" />
+              <div className="mt-1.5 w-2/3 h-4 bg-gray-300 rounded" />
+              <div className="mt-1 w-full h-3 bg-gray-300 rounded" />
+              <div className="mt-0.5 w-full h-3 bg-gray-300 rounded" />
+            </div>
           </div>
-        </div>
-      ));
+        ));
     }
 
     if (error) {
@@ -64,7 +69,11 @@ const ServicesList = () => {
       <div key={service.id} className="w-[33%] max-md:ml-0 max-md:w-full">
         <ServiceCard
           id={service.id}
-          image={service.images?.length > 0 ? service.images[0] : "https://cdn.builder.io/api/v1/image/assets/TEMP/f9cfd55253832bba4ed0088a033cf9a8a5cd024fc56c5467968a0d89a103c285?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"}
+          image={
+            service.images?.length > 0
+              ? service.images[0]
+              : "https://cdn.builder.io/api/v1/image/assets/TEMP/f9cfd55253832bba4ed0088a033cf9a8a5cd024fc56c5467968a0d89a103c285?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"
+          }
           title={service.name}
           description={service.description}
           offersCount={service.countOfOffers ?? 0}
@@ -73,7 +82,8 @@ const ServicesList = () => {
     ));
   };
 
-  const showMoreButton = providerServices?.length > visibleServices && !servicesLoading && !error;
+  const showMoreButton =
+    providerServices?.length > visibleServices && !servicesLoading && !error;
 
   return (
     <section className="flex overflow-hidden flex-col py-7 mt-11 w-full rounded-xl border border-solid border-black border-opacity-30 dark:border-gray-700 bg-white dark:bg-gray-800 transition-colors duration-300 max-w-[1617px] max-md:mt-10 max-md:max-w-full">
@@ -89,9 +99,9 @@ const ServicesList = () => {
           </div>
         </div>
         {showMoreButton && (
-          <Link 
+          <Link
             className="text-xs font-bold text-left text-black dark:text-white hover:text-sky-500 dark:hover:text-sky-400 transition-colors mb-3 mt-4"
-            to={'/mainprofile'}
+            to={"/mainprofile"}
           >
             ... عرض المزيد
           </Link>

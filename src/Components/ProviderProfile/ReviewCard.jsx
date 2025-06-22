@@ -6,12 +6,12 @@ import { CiStar } from "react-icons/ci";
 const ReviewCard = ({ serviceName, userName, userImage, feedback, rating }) => {
   return (
     <div className="w-full bg-sky-50 rounded-xl p-6">
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-row-reverse">
         <div className="text-sky-500 text-sm flex items-center font-bold">
           {serviceName || "غرفة معيشية"}
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex flex-col items-end">
+        <div className="flex items-center gap-3 flex-row-reverse justify-start">
+          <div className="flex flex-col items-start">
             <div className="font-semibold text-gray-900">
               {userName || "كريم عمر"}
             </div>
@@ -30,7 +30,7 @@ const ReviewCard = ({ serviceName, userName, userImage, feedback, rating }) => {
         {feedback ||
           "وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل وصف العمل"}
       </div>
-      <div className="mt-4">
+      <div className="mt-4 flex justify-end">
         <ReactStars
           count={5}
           value={rating || 3}
@@ -43,7 +43,7 @@ const ReviewCard = ({ serviceName, userName, userImage, feedback, rating }) => {
           halfIcon={<FaStarHalfAlt />}
           filledIcon={<FaStar />}
           classNames="flex gap-1"
-          precision={0.25} 
+          precision={0.25}
         />
       </div>
     </div>

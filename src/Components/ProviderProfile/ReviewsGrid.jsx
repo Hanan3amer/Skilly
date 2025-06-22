@@ -91,7 +91,7 @@ const ReviewsGrid = () => {
     }
 
     return (
-      <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1 w-full">
+      <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1 w-full" dir="rtl">
         {displayedReviews.map((review, index) => (
           <ReviewCard
             key={index}

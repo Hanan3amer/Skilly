@@ -9,7 +9,8 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 export default function ServiceProviderData() {
-  const { addProvider, providerData , refreshProviderData} = useContext(ProviderContext);
+  const { addProvider, providerData, getProviderData } =
+    useContext(ProviderContext);
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -27,6 +28,35 @@ export default function ServiceProviderData() {
     setActiveOption(option);
     formik.setFieldValue("Gender", option === "male" ? "1" : "0");
   }
+
+  const governoratesWithCities = {
+    القاهرة: ["القاهرة", "المعادي", "حلوان"],
+    الجيزة: ["الجيزة", "6 أكتوبر", "الشيخ زايد", "البدر"],
+    الإسكندرية: ["الإسكندرية"],
+    الدقهلية: ["المنصورة", "المنصورة الجديدة", "طلخا", "ميت غمر"],
+    الشرقية: ["الزقازيق", "العاشر من رمضان", "بلبيس", "فاقوس"],
+    القليوبية: ["بنها", "شبرا الخيمة", "القناطر الخيرية"],
+    "كفر الشيخ": ["كفر الشيخ", "دسوق", "فوه", "بلطيم"],
+    الغربية: ["طنطا", "المحلة الكبرى", "زفتى", "سمنود"],
+    المنوفية: ["شبين الكوم", "تلا", "الباجور", "أشمون"],
+    البحيرة: ["دمنهور", "رشيد", "إدكو", "أبو المطامير"],
+    دمياط: ["دمياط الجديدة", "دمياط", "فارسكور", "الزرقا", "كفر سعد"],
+    بورسعيد: ["بورسعيد", "شرق بورسعيد"],
+    الإسماعيلية: ["الإسماعيلية", "التل الكبير", "فايد"],
+    السويس: ["السويس"],
+    "شمال سيناء": ["العريش", "الشيخ زويد", "رفح", "بئر العبد"],
+    "جنوب سيناء": ["شرم الشيخ", "دهب", "نويبع", "طور سيناء"],
+    "بني سويف": ["بني سويف", "الواسطى", "ناصر", "إهناسيا"],
+    المنيا: ["المنيا", "ملوي", "دير مواس", "مغاغة"],
+    أسيوط: ["أسيوط", "ديروط", "صدفا", "أبنوب"],
+    سوهاج: ["سوهاج", "جرجا", "طهطا", "البلينا"],
+    قنا: ["قنا", "قوص", "نجع حمادي", "دشنا"],
+    الأقصر: ["الأقصر", "طيبة الجديدة", "الزينية", "البياضية"],
+    أسوان: ["أسوان", "أسوان الجديدة", "كوم أمبو", "دراو"],
+    "البحر الأحمر": ["الغردقة", "رأس غارب", "مرسى علم", "سفاجا"],
+    "الوادي الجديد": ["الخارجة", "الداخلة", "الفرافرة", "باريس"],
+    مطروح: ["مرسى مطروح", "الحمام", "العلمين", "سيدي براني"],
+  };
 
   useEffect(() => {
     async function fetchCategories() {
@@ -112,6 +142,8 @@ export default function ServiceProviderData() {
     formData.append("categoryId", values.categoryId);
     formData.append("Governorate", values.Governorate);
     formData.append("Age", values.Age);
+    // formData.append("Email", userinfo.email);
+    // formData.append("phoneNumber", userinfo.phoneNumber);
 
     if (selectedFile) {
       formData.append("Img", selectedFile);
@@ -121,7 +153,7 @@ export default function ServiceProviderData() {
     }
 
     try {
-      console.log(localStorage.getItem("userToken"))
+      console.log(localStorage.getItem("userToken"));
       const response = await axios.put(
         "https://skilly.runasp.net/api/Provider/editServiceProvider",
         formData,
@@ -135,8 +167,8 @@ export default function ServiceProviderData() {
 
       if (response.status === 200) {
         toast.success("تم تحديث البيانات بنجاح");
-        await refreshProviderData()
-        navigate("/serviceprovider");
+        await getProviderData();
+        navigate("/mainprofile");
       }
     } catch (error) {
       console.error("Error updating provider profile:", error);
@@ -174,9 +206,7 @@ export default function ServiceProviderData() {
     City: Yup.string().required("هذا الحقل مطلوب"),
     StreetName: Yup.string().required("هذا الحقل مطلوب"),
     Governorate: Yup.string().required("هذا الحقل مطلوب"),
-    Age: Yup.number()
-      .min(18, "يجب أن يكون العمر 18 أو أكثر")
-      .required("هذا الحقل مطلوب"),
+    Age: Yup.number().required("هذا الحقل مطلوب"),
     categoryId: Yup.string().required("هذا الحقل مطلوب"),
     BriefSummary: Yup.string().required("هذا الحقل مطلوب"),
   });
@@ -284,11 +314,7 @@ export default function ServiceProviderData() {
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.phoneNumber
-                      ? formik.values.phoneNumber
-                      : userinfo?.phoneNumber || ""
-                  }
+                  value={userinfo?.phoneNumber || ""}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, phoneNumber: e.target.value })
                   }
@@ -302,11 +328,7 @@ export default function ServiceProviderData() {
               </div>
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.email
-                      ? formik.values.email
-                      : userinfo?.email || ""
-                  }
+                  value={userinfo?.email || ""}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, email: e.target.value })
                   }
@@ -334,32 +356,11 @@ export default function ServiceProviderData() {
                   }`}
                 >
                   <option value="المحافظة">المحافظة</option>
-                  <option value="القاهرة">القاهرة</option>
-                  <option value="الجيزة">الجيزة</option>
-                  <option value="الإسكندرية">الإسكندرية</option>
-                  <option value="الدقهلية">الدقهلية</option>
-                  <option value="الشرقية">الشرقية</option>
-                  <option value="القليوبية">القليوبية</option>
-                  <option value="كفر الشيخ">كفر الشيخ</option>
-                  <option value="الغربية">الغربية</option>
-                  <option value="المنوفية">المنوفية</option>
-                  <option value="البحيرة">البحيرة</option>
-                  <option value="دمياط">دمياط</option>
-                  <option value="بورسعيد">بورسعيد</option>
-                  <option value="الإسماعيلية">الإسماعيلية</option>
-                  <option value="السويس">السويس</option>
-                  <option value="شمال سيناء">شمال سيناء</option>
-                  <option value="جنوب سيناء">جنوب سيناء</option>
-                  <option value="بني سويف">بني سويف</option>
-                  <option value="المنيا">المنيا</option>
-                  <option value="أسيوط">أسيوط</option>
-                  <option value="سوهاج">سوهاج</option>
-                  <option value="قنا">قنا</option>
-                  <option value="الأقصر">الأقصر</option>
-                  <option value="أسوان">أسوان</option>
-                  <option value="البحر الأحمر">البحر الأحمر</option>
-                  <option value="الوادي الجديد">الوادي الجديد</option>
-                  <option value="مطروح">مطروح</option>
+                  {Object.keys(governoratesWithCities).map((gov) => (
+                <option key={gov} value={gov}>
+                  {gov}
+                </option>
+              ))}
                 </select>
                 {formik.touched.Governorate && formik.errors.Governorate && (
                   <div className="text-red-500 text-xs mt-1">
@@ -381,50 +382,11 @@ export default function ServiceProviderData() {
                   }`}
                 >
                   <option value="المدينه">المدينه</option>
-                  <option value="القاهرة">القاهرة</option>
-                  <option value="الجيزة">الجيزة</option>
-                  <option value="شبرا الخيمة">شبرا الخيمة</option>
-                  <option value="6 أكتوبر">6 أكتوبر</option>
-                  <option value="الشيخ زايد">الشيخ زايد</option>
-                  <option value="العبور">العبور</option>
-                  <option value="بدر">بدر</option>
-                  <option value="الشروق">الشروق</option>
-                  <option value="حلوان">حلوان</option>
-                  <option value="المعادي">المعادي</option>
-                  <option value="الإسكندرية">الإسكندرية</option>
-                  <option value="دمنهور">دمنهور</option>
-                  <option value="كفر الشيخ">كفر الشيخ</option>
-                  <option value="طنطا">طنطا</option>
-                  <option value="المنصورة">المنصورة</option>
-                  <option value="الزقازيق">الزقازيق</option>
-                  <option value="بنها">بنها</option>
-                  <option value="شبين الكوم">شبين الكوم</option>
-                  <option value="دمياط">دمياط</option>
-                  <option value="رشيد">رشيد</option>
-                  <option value="مرسى مطروح">مرسى مطروح</option>
-                  <option value="بورسعيد">بورسعيد</option>
-                  <option value="الإسماعيلية">الإسماعيلية</option>
-                  <option value="السويس">السويس</option>
-                  <option value="العريش">العريش</option>
-                  <option value="طور سيناء">طور سيناء</option>
-                  <option value="دهب">دهب</option>
-                  <option value="شرم الشيخ">شرم الشيخ</option>
-                  <option value="نويبع">نويبع</option>
-                  <option value="الواحات البحرية">الواحات البحرية</option>
-                  <option value="الفرافرة">الفرافرة</option>
-                  <option value="الداخلة">الداخلة</option>
-                  <option value="الخارجة">الخارجة</option>
-                  <option value="حلايب وشلاتين">حلايب وشلاتين</option>
-                  <option value="رأس غارب">رأس غارب</option>
-                  <option value="الغردقة">الغردقة</option>
-                  <option value="مرسى علم">مرسى علم</option>
-                  <option value="العاصمة الإدارية الجديدة">العاصمة الإدارية الجديدة</option>
-                  <option value="العلمين الجديدة">العلمين الجديدة</option>
-                  <option value="أسوان الجديدة">أسوان الجديدة</option>
-                  <option value="طيبة الجديدة">طيبة الجديدة</option>
-                  <option value="غرب قنا">غرب قنا</option>
-                  <option value="شرق بورسعيد">شرق بورسعيد</option>
-                  <option value="المنصورة الجديدة">المنصورة الجديدة</option>
+                  {governoratesWithCities[formik.values.Governorate]?.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
                 </select>
                 {formik.touched.City && formik.errors.City && (
                   <div className="text-red-500 text-xs mt-1">

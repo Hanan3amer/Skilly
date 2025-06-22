@@ -16,7 +16,7 @@ const ProfileSidebar = () => {
   if (!providerData) {
     return <Loading />;
   }
-  
+
   return (
     <div className="w-full max-md:mt-10 text-gray-800 dark:text-white">
       <UserInfo user={providerData} />

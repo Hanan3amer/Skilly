@@ -11,37 +11,37 @@ const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
   useEffect(() => {
     if (initialVideo && initialVideo.url) {
       setPreviewUrl(initialVideo.url);
-      setVideo(initialVideo.file || { name: "Existing Video" });
+      if (initialVideo.file) setVideo(initialVideo.file);
     }
   }, [initialVideo]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
-    
+
     handleVideoFile(selectedFile);
   };
 
   const handleVideoFile = (file) => {
     // Check if file is a video
-    if (!file.type.startsWith('video/')) {
-      alert('الرجاء تحميل ملف فيديو فقط.');
+    if (!file.type.startsWith("video/")) {
+      alert("الرجاء تحميل ملف فيديو فقط.");
       return;
     }
-    
+
     // Simulate upload process
     setIsUploading(true);
-    
+
     // Create preview URL
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
-    
+
     // Store video file
     setVideo(file);
-    
+
     // Notify parent component
     if (onVideoUpdate) onVideoUpdate(file);
-    
+
     // Simulate upload completion
     setTimeout(() => {
       setIsUploading(false);
@@ -60,10 +60,10 @@ const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
-    
+
     const droppedFile = Array.from(e.dataTransfer.files)[0];
     if (!droppedFile) return;
-    
+
     handleVideoFile(droppedFile);
   };
 
@@ -81,16 +81,18 @@ const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
   };
 
   return (
-    <div 
+    <div
       className={`flex flex-col justify-center items-center p-1 border border-dashed w-full rounded-xl transition-all ${
-        isDragging ? 'bg-sky-50 border-2 border-sky-500' : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600'
+        isDragging
+          ? "bg-sky-50 border-2 border-sky-500"
+          : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600"
       }`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
       {!video ? (
-        <div 
+        <div
           onClick={openFileSelector}
           className="flex flex-col items-center justify-center cursor-pointer w-full"
         >
@@ -133,9 +135,9 @@ const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
             </div>
           ) : (
             <div className="relative">
-              <video 
-                src={previewUrl} 
-                className="w-full h-36 object-cover rounded-xl" 
+              <video
+                src={previewUrl}
+                className="w-full h-36 object-cover rounded-xl"
                 controls
               />
               <div className="flex justify-between items-center mt-2">
@@ -146,7 +148,11 @@ const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
                   حذف الفيديو
                 </button>
                 <span className="text-gray-500 text-xs">
-                  {video?.name} ({Math.round(video?.size / 1024 / 1024 * 10) / 10} MB)
+                  {video?.name}
+                  {video?.size &&
+                    " (" +
+                      Math.round((video?.size / 1024 / 1024) * 10) / 10 +
+                      " MB)"}
                 </span>
               </div>
             </div>

@@ -13,7 +13,7 @@ const UserInfo = ({ user }) => {
 
   return (
     <section className="flex flex-col pr-8 pl-16 w-full max-md:px-5">
-      <h1 className="self-start text-4xl font-bold leading-none text-center text-sky-500">
+      <h1 className="self-center text-4xl font-bold leading-none text-center text-sky-500">
         الحساب الشخصي
       </h1>
       <div className="flex gap-2.5 self-end mt-12 max-md:mt-10">
@@ -37,7 +37,7 @@ const UserInfo = ({ user }) => {
                 alt="Star rating"
               />
             </div>
-            <div className="flex justify-end mt-3">
+            <div className="flex justify-end mt-3 mr-2">
               <img
                 src="/edit-icon.png"
                 className="object-contain w-6 mr-2 cursor-pointer hover:opacity-80 transition-opacity"
