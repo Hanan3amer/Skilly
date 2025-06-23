@@ -226,7 +226,7 @@ function SingleService() {
     <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800">
       <ToastContainer />
       {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-[#00000053] bg-opacity-50 z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-md w-full">
             <h3 className="text-xl font-bold text-right text-red-600 mb-4">
               تأكيد الحذف

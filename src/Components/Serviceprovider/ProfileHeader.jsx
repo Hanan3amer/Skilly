@@ -64,7 +64,14 @@ const ProfileHeader = () => {
             alt="Profile icon"
             className="object-contain shrink-0 aspect-square w-[25px]"
           />
-          <h1 className="font-bold text-right mt-1">{providerName}</h1>
+          <div className="flex items-center gap-1">
+            <h1 className="font-bold text-right mt-1 ">
+              {providerData.lastName}
+            </h1>
+            <h1 className="font-bold text-right mt-1 ">
+              {providerData.firstName}
+            </h1>
+          </div>
         </div>
         <div className="flex flex-col items-end pl-5 mt-1.5 w-full whitespace-nowrap">
           <div className="flex gap-1.5 text-sm text-blue-950 dark:text-blue-200 my-1">

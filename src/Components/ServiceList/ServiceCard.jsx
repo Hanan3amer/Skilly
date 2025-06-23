@@ -55,8 +55,8 @@ const ServiceCard = ({
       </Link>
 
       {showOffersModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg w-1/3 p-6 relative">
+        <div className="fixed inset-0 bg-[#00000053] bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg w-[35%] p-6 relative">
             <button
               onClick={() => setShowOffersModal(false)}
               className="absolute top-2 right-5 text-gray-500 text-xl"
