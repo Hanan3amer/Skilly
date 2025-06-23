@@ -155,7 +155,10 @@ export default function ProviderContextProvider(props) {
           },
         }
       )
-      .then((response) => response.data)
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
       .catch((err) => {
         console.log(
           "Get Services By ProviderId Error:",

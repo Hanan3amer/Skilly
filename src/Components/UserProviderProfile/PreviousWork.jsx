@@ -78,7 +78,7 @@ const PreviousWork = ({ providerId }) => {
             key={service.id}
             image={
               service.images && service.images.length > 0
-                ? service.images[0]
+                ? service.images[0].img
                 : "https://via.placeholder.com/300x200/eee?text=لا+توجد+صورة"
             }
             title={service.galleryName}

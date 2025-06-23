@@ -19,7 +19,7 @@ const NavigationTabs = ({ onTabChange }) => {
   };
 
   return (
-    <nav className="flex nowrap gap-2 justify-end self-end text-base leading-none text-right text-black dark:text-white w-full max-md:mr-2.5">
+    <nav className="flex nowrap gap-2 justify-end self-end text-base leading-none text-right text-black dark:text-white w-full max-md:mr-2.5 my-5">
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -38,7 +38,7 @@ const NavigationTabs = ({ onTabChange }) => {
 };
 
 NavigationTabs.propTypes = {
-  onTabChange: PropTypes.func
+  onTabChange: PropTypes.func,
 };
 
 export default NavigationTabs;

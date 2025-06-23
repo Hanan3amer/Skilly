@@ -11,6 +11,7 @@ import defaultUserImg from "../../assets/userpic.jpg";
 import { getUserType } from "../../utils/hooks/getUserType";
 import NotificationsModal from "../Notifiction/NotificationModal";
 import { CiTrash } from "react-icons/ci";
+import DeleteModal from "./DeleteModal";
 export default function Navbar() {
   const token = localStorage.getItem("userToken");
   const userType = getUserType();
@@ -19,6 +20,8 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [notificationsCount, setNotificationsCount] = useState(0);
   const openModal = () => setIsModalOpen(true);
@@ -109,27 +112,13 @@ export default function Navbar() {
 
   function deleteUser() {
     axios
-      .delete(
-        "https://skilly.runasp.net/api/UserProfile/UserProfile/deleteProfileByuserId",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then(() => {
-        logout();
-      })
-      .catch((err) => console.error("خطأ في حذف المستخدم:", err));
-  }
-
-  function deleteProvider() {
-    axios
-      .delete("https://skilly.runasp.net/api/Provider/deleteProviderByuserId", {
+      .delete("https://skilly.runasp.net/api/User/DeleteUserById", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
         logout();
       })
-      .catch((err) => console.error("خطأ في حذف المزود:", err));
+      .catch((err) => console.error("خطأ في حذف المستخدم:", err));
   }
 
   // useEffect(() => {
@@ -405,11 +394,7 @@ export default function Navbar() {
                         className=" text-sm p-3 border border-red-300 rounded-lg text-left bg-white gap-1 my-5 flex items-center justify-end"
                         onClick={() => {
                           setIsOpen(false);
-                          if (userType === "0") {
-                            deleteUser();
-                          } else if (userType === "1") {
-                            deleteProvider();
-                          }
+                          setShowDeleteModal(true);
                         }}
                       >
                         <li className="text-red-500 font-semibold cursor-pointer">
@@ -472,6 +457,14 @@ export default function Navbar() {
           )}
         </div>
       </nav>
+      <DeleteModal
+        isOpen={showDeleteModal}
+        onCancel={() => setShowDeleteModal(false)}
+        onConfirm={() => {
+          setShowDeleteModal(false);
+          deleteUser();
+        }}
+      />
     </>
   );
 }

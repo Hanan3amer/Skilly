@@ -4,8 +4,9 @@ import { ProviderContext } from "../../Context/ProviderContext";
 import Loading from "../Loading/Loading";
 import ServiceCard from "../ServiceList/ServiceCard";
 
-const MyServices = () => {
-  const { servicesLoading, getProviderServices } = useContext(ProviderContext);
+const MyServices = ({ id }) => {
+  const { servicesLoading, getServicesByProviderId } =
+    useContext(ProviderContext);
   const [providerServices, setProviderServices] = useState([]);
   const [error, setError] = useState(null);
   const [visibleServices, setVisibleServices] = useState(6);
@@ -18,7 +19,7 @@ const MyServices = () => {
 
     const fetchData = async () => {
       try {
-        const response = await getProviderServices();
+        const response = await getServicesByProviderId(id);
         setProviderServices(response.service);
       } catch (err) {
         console.error("Error fetching services:", err);
@@ -27,7 +28,7 @@ const MyServices = () => {
     };
 
     fetchData();
-  }, [getProviderServices]);
+  }, [getServicesByProviderId, id]);
 
   const handleShowMore = () => {
     setVisibleServices((prev) => prev + 6);

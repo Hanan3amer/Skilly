@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "motion/react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Buyservice from "../Buyservice/Buyservice";
 import OfferPrice from "../OfferPrice/OfferPrice";
-
+import { IoIosArrowRoundBack } from "react-icons/io";
 export default function ServiceDetail() {
   const { id } = useParams();
   const [service, setServices] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [modal, setModal] = useState(false);
   const [open, setOpen] = useState(false);
   const token = localStorage.getItem("userToken");
@@ -31,7 +32,19 @@ export default function ServiceDetail() {
   useEffect(() => {
     getServices(id);
   }, [id]);
-
+  useEffect(() => {
+    if (service?.id) {
+      axios
+        .get(
+          `https://skilly.runasp.net/api/Provider/Review/GetReviewsBy/${service.id}`
+        )
+        .then((res) => {
+          setReviews(res.data.reviews.reviews);
+          console.log(res.data.reviews.reviews);
+        })
+        .catch((err) => console.error("Failed to fetch reviews:", err));
+    }
+  }, [service]);
   return (
     <>
       <div className="container">
@@ -170,6 +183,64 @@ export default function ServiceDetail() {
                       muted
                     />
                   </div>
+                </div>
+                <div className="mb-5">
+                  <div className="flex items-center justify-between">
+                    <label className="block mb-2 text-sm font-bold text-gray-900">
+                      التقييمات
+                    </label>
+                    <Link to={`/allreviews/${service.id}`}>
+                      <p className="text-sm mb-2 font-bold text-gray-900 flex justify-center items-center">
+                        عرض المزيد
+                        <IoIosArrowRoundBack className="w-5 h-5 mt-1 font-bold" />
+                      </p>
+                    </Link>
+                  </div>
+                  {reviews.length > 0 ? (
+                    reviews.map((review, index) => (
+                      <div
+                        key={index}
+                        className="bg-gray-100 rounded-xl p-4  mb-3"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <img
+                              src={review.userImage}
+                              alt="user"
+                              className="w-10 h-10 rounded-full"
+                            />
+                            <h3 className="font-bold text-gray-800">
+                              {review.userName}
+                            </h3>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-700 leading-relaxed mb-2">
+                          {review.feedback}
+                        </p>
+                        <div
+                          className="flex gap-1 text-yellow-400 text-lg"
+                          dir="ltr"
+                        >
+                          {[...Array(5)].map((_, i) => (
+                            <span
+                              key={i}
+                              className={
+                                i < review.rating
+                                  ? "text-yellow-400"
+                                  : "text-gray-400"
+                              }
+                            >
+                              ★
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-center my-5 text-red-400">
+                      لا توجد تقييمات لهذه الخدمة
+                    </p>
+                  )}
                 </div>
               </div>
             )}

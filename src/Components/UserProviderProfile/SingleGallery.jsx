@@ -34,7 +34,6 @@ function SingleGallery() {
           setLoading(false);
           return;
         }
-
         const response = await axios.get(
           `https://skilly.runasp.net/api/Provider/Servicegallery/GetGalleryBy/${id}`,
           {
@@ -62,7 +61,7 @@ function SingleGallery() {
   }, [id]);
 
   const handleBack = () => {
-    const url = userType === 0 ? `/userprofile/${id}` : "/serviceprovider";
+    const url = userType === 0 ? `/userprofile` : `/serviceprovider`;
     navigate(url);
   };
 

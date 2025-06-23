@@ -248,8 +248,8 @@ export default function ProfilePage() {
         </div>
       )}
       {isTrackOpen && (
-        <div className="fixed inset-0 bg-[#00000051] bg-opacity-50 flex justify-center items-center z-50 ">
-          <div className="bg-white rounded-lg w-full md:w-1/4 mx-auto p-3 relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-[#00000051] bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg w-full md:w-1/4 mx-auto py-3 px-8 relative max-h-[90vh] overflow-y-auto">
             <OrderTracking requestId={selectedOfferId} />
             <button
               onClick={() => setIsTrackOpen(false)}

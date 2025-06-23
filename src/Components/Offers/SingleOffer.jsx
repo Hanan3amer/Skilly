@@ -26,8 +26,11 @@ export default function SingleOffer({ offerId }) {
     const token = localStorage.getItem("userToken");
     try {
       const res = await axios.post(
-        "https://skilly.runasp.net/api/Payment/start-payment",
-        { serviceId: offer.serviceId },
+        "https://skilly.runasp.net/api/Payment/start-payment-URL",
+        {
+          ServiceId: offer.serviceId,
+          redirectUrl: `${window.location.origin}/paymentsuccesspopup`,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -52,8 +52,11 @@ const NotificationCard = ({
   const goPayment = async () => {
     try {
       const res = await axios.post(
-        "https://skilly.runasp.net/api/Payment/start-payment",
-        { serviceId: offerId },
+        "https://skilly.runasp.net/api/Payment/start-payment-URL",
+        {
+          ServiceId: offerId,
+          redirectUrl: `${window.location.origin}/paymentsuccesspopup`,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
