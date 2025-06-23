@@ -7,7 +7,9 @@ import Offers from "../Offers/Offers";
 import Slider from "react-slick";
 import { TbEdit } from "react-icons/tb";
 import OrderTracking from "./OrderTracking";
+import { useChat } from "../../Context/ChatContext";
 export default function ProfilePage() {
+  const { chatCount } = useChat();
   const [offersCountMap, setOffersCountMap] = useState({});
   const token = localStorage.getItem("userToken");
   const [toggle, setToggle] = useState(false);
@@ -113,9 +115,14 @@ export default function ProfilePage() {
                 <VscVerifiedFilled className="text-[#27AAE1] text-md" />
               </div>
               <div className="flex items-center gap-2">
-                <Link to={"/messages"}>
-                  <IoChatbubbleEllipsesOutline className="text-3xl" />
-                </Link>
+                <div className="relative">
+                  <Link to={"/messages"}>
+                    <IoChatbubbleEllipsesOutline className="text-3xl" />
+                  </Link>
+                  <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-[#a4d7f5] border-2 border-white rounded-full -top-2 end-4">
+                    {chatCount}
+                  </div>
+                </div>
                 <TbEdit
                   className="text-3xl cursor-pointer"
                   onClick={() => navigate("/user", { state: { user } })}

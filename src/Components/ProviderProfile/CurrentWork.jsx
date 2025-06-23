@@ -7,6 +7,7 @@ const CurrentWork = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [renderedServices, setRenderedServices] = useState([]);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -28,7 +29,10 @@ const CurrentWork = () => {
           }
         );
 
-        const providerServices = response.data.service.providerServices || [];
+        const providerServices =
+          response.data.service.providerServices?.map(
+            (service) => service?.result || service
+          ) || [];
         const requestServices = response.data.service.requestServices || [];
         let allServices = [
           ...providerServices,
@@ -42,6 +46,7 @@ const CurrentWork = () => {
           images: service.images.map((image) => image?.img),
         }));
         setServices(allServices);
+        setRenderedServices(allServices.slice(0, 6));
         setLoading(false);
       } catch (err) {
         console.error("Error fetching services:", err);
@@ -77,7 +82,7 @@ const CurrentWork = () => {
       ) : (
         <>
           <div className="grid grid-cols-3 gap-5 max-md:grid-cols-1 mt-5">
-            {services.map((service) => (
+            {renderedServices.map((service) => (
               <ServiceCard
                 key={service.id}
                 id={service.id}
@@ -92,11 +97,24 @@ const CurrentWork = () => {
               />
             ))}
           </div>
-          {services.length > 6 && (
-            <button className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
-              عرض المزيد ...
-            </button>
-          )}
+          {services.length > 6 &&
+            renderedServices.length !== services.length && (
+              <button
+                onClick={() => setRenderedServices(services)}
+                className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+              >
+                عرض المزيد ...
+              </button>
+            )}
+          {services.length > 6 &&
+            renderedServices.length === services.length && (
+              <button
+                onClick={() => setRenderedServices(services.slice(0, 6))}
+                className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+              >
+                عرض الأقل ...
+              </button>
+            )}
         </>
       )}
     </section>

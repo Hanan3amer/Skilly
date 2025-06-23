@@ -327,7 +327,10 @@ function SingleRequestService() {
             >
               <OfferPrice
                 serviceID={request.id}
-                onClose={() => setOpen(false)}
+                onClose={() => {
+                  setOpen(false);
+                  navigate("/serviceprovider");
+                }}
               />
             </div>
           </div>

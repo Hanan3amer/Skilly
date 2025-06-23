@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
   const [video, setVideo] = useState(null);
@@ -91,7 +91,7 @@ const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      {!video ? (
+      {!video && !previewUrl ? (
         <div
           onClick={openFileSelector}
           className="flex flex-col items-center justify-center cursor-pointer w-full"

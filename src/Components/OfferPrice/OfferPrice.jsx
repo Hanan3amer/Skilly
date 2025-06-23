@@ -77,6 +77,11 @@ export default function OfferPrice({ serviceID, onClose }) {
                 onChange={formik.handleChange}
                 className="bg-gray-200 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
               />
+              {formik.touched.salary && formik.errors.salary && (
+                <p className="text-red-500 text-sm mt-1">
+                  {formik.errors.salary}
+                </p>
+              )}
             </div>
           </div>
           <div className="mb-5">
@@ -96,9 +101,13 @@ export default function OfferPrice({ serviceID, onClose }) {
                 className="bg-gray-200 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
               />
             </div>
+            {formik.touched.deliverytime && formik.errors.deliverytime && (
+              <p className="text-red-500 text-sm mt-1">
+                {formik.errors.deliverytime}
+              </p>
+            )}
           </div>
         </div>
-
         <div className="mb-5">
           <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
             ملاحظات
@@ -111,6 +120,9 @@ export default function OfferPrice({ serviceID, onClose }) {
             type="text"
             className="bg-gray-200 text-gray-900 text-sm rounded-lg block w-full p-5 placeholder:text-[#3B9DD2] placeholder:text-center placeholder:font-bold"
           />
+          {formik.touched.notes && formik.errors.notes && (
+            <p className="text-red-500 text-sm mt-1">{formik.errors.notes}</p>
+          )}
         </div>
 
         <div className=" text-center flex justify-center items-center gap-5">
