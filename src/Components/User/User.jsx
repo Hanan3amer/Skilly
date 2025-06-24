@@ -534,10 +534,8 @@ export default function User() {
           <p className="text-[10px] text-center my-2 pb-5">
             برجاء اختيار صوره شخصيه
           </p>
-
-          {/* User Info Inputs (Disabled) */}
           <div className="grid md:grid-cols-2 md:gap-6">
-            <input
+            {/* <input
               disabled
               value={userinfo.firstName}
               className="bg-gray-100 text-sm rounded-lg block w-full p-3 mb-3"
@@ -548,7 +546,27 @@ export default function User() {
               value={userinfo.lastName}
               className="bg-gray-100 text-sm rounded-lg block w-full p-3 mb-3"
               placeholder="الاسم الأخير"
+            /> */}
+            <input
+              name="firstName"
+              value={userinfo.firstName}
+              onChange={(e) =>
+                setUserinfo((prev) => ({ ...prev, firstName: e.target.value }))
+              }
+              disabled={!isEditMode}
+              className="bg-gray-100 text-sm rounded-lg block w-full p-3 mb-3"
             />
+
+            <input
+              name="lastName"
+              value={userinfo.lastName}
+              onChange={(e) =>
+                setUserinfo((prev) => ({ ...prev, lastName: e.target.value }))
+              }
+              disabled={!isEditMode}
+              className="bg-gray-100 text-sm rounded-lg block w-full p-3 mb-3"
+            />
+
             <input
               disabled
               value={userinfo.phoneNumber}
