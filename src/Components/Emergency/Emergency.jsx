@@ -28,18 +28,20 @@ export default function Emergency() {
           console.log(response);
 
           setShowConfirmationModal(true);
-          axios
-            .get(
-              `https://skilly.runasp.net/api/Emergency/nearby-providers/${response.data.requestId}`,
-              { headers: { Authorization: `Bearer ${token}` } }
-            )
-            .then((apiResponse) => {
-              setProviders(apiResponse.data.result);
-              setTimeout(() => {
-                setShowConfirmationModal(false);
-                setShowProvidersModal(true);
-              }, 6000);
-            });
+          setTimeout(() => {
+  axios
+    .get(
+      `https://skilly.runasp.net/api/Emergency/nearby-providers/${response.data.requestId}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    .then((apiResponse) => {
+      setProviders(apiResponse.data.result);
+      console.log(apiResponse.data.result);
+      setShowConfirmationModal(false);
+      setShowProvidersModal(true);
+    });
+}, 60000);
+
         }
       });
   }

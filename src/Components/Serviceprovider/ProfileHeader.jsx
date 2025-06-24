@@ -28,6 +28,12 @@ const ProfileHeader = () => {
   const providerName = providerData
     ? `${providerData.firstName} ${providerData.lastName}`
     : "اسم المستخدم";
+  const providerLastName = providerData
+    ? `${providerData.lastName}`
+    : "اسم المستخدم";
+  const providerFirstName = providerData
+    ? `${providerData.firstName} `
+    : "اسم المستخدم";
 
   const profession = providerData?.profession || "موفر خدمة";
 
@@ -65,12 +71,8 @@ const ProfileHeader = () => {
             className="object-contain shrink-0 aspect-square w-[25px]"
           />
           <div className="flex items-center gap-1">
-            <h1 className="font-bold text-right mt-1 ">
-              {providerData.lastName}
-            </h1>
-            <h1 className="font-bold text-right mt-1 ">
-              {providerData.firstName}
-            </h1>
+            <h1 className="font-bold text-right mt-1 ">{providerLastName}</h1>
+            <h1 className="font-bold text-right mt-1 ">{providerFirstName}</h1>
           </div>
         </div>
         <div className="flex flex-col items-end pl-5 mt-1.5 w-full whitespace-nowrap">
