@@ -142,8 +142,8 @@ export default function ServiceProviderData() {
     formData.append("categoryId", values.categoryId);
     formData.append("Governorate", values.Governorate);
     formData.append("Age", values.Age);
-    // formData.append("Email", userinfo.email);
-    // formData.append("phoneNumber", userinfo.phoneNumber);
+    formData.append("firstName", userinfo.firstName);
+    formData.append("lastName", userinfo.lastName);
 
     if (selectedFile) {
       formData.append("Img", selectedFile);
@@ -276,11 +276,7 @@ export default function ServiceProviderData() {
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.firstName
-                      ? formik.values.firstName
-                      : userinfo?.firstName || ""
-                  }
+                  value={userinfo?.firstName || ""}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, firstName: e.target.value })
                   }
@@ -289,16 +285,11 @@ export default function ServiceProviderData() {
                   id="firstName"
                   className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
                   placeholder=""
-                  disabled={isEdit}
                 />
               </div>
               <div className="relative z-0 w-full mb-5 group">
                 <input
-                  value={
-                    isEdit && formik.values.lastName
-                      ? formik.values.lastName
-                      : userinfo?.lastName || ""
-                  }
+                  value={userinfo?.lastName || ""}
                   onChange={(e) =>
                     setUserinfo({ ...userinfo, lastName: e.target.value })
                   }
@@ -307,7 +298,6 @@ export default function ServiceProviderData() {
                   id="lastName"
                   className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
                   placeholder=""
-                  disabled={isEdit}
                 />
               </div>
             </div>
@@ -357,10 +347,10 @@ export default function ServiceProviderData() {
                 >
                   <option value="المحافظة">المحافظة</option>
                   {Object.keys(governoratesWithCities).map((gov) => (
-                <option key={gov} value={gov}>
-                  {gov}
-                </option>
-              ))}
+                    <option key={gov} value={gov}>
+                      {gov}
+                    </option>
+                  ))}
                 </select>
                 {formik.touched.Governorate && formik.errors.Governorate && (
                   <div className="text-red-500 text-xs mt-1">
@@ -382,11 +372,13 @@ export default function ServiceProviderData() {
                   }`}
                 >
                   <option value="المدينه">المدينه</option>
-                  {governoratesWithCities[formik.values.Governorate]?.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
+                  {governoratesWithCities[formik.values.Governorate]?.map(
+                    (city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    )
+                  )}
                 </select>
                 {formik.touched.City && formik.errors.City && (
                   <div className="text-red-500 text-xs mt-1">
