@@ -219,8 +219,8 @@ const ServiceEditForm = () => {
         });
 
         // Add video if it's a new file
-        if (formData.video && formData.video.file) {
-          apiFormData.append("Video", formData.video.file);
+        if (formData.video) {
+          apiFormData.append("video", formData.video);
         }
 
         // Send request to API
@@ -473,7 +473,7 @@ const ServiceEditForm = () => {
             </h2>
             <VideoUpload
               onVideoUpdate={handleVideoUpdate}
-              initialVideo={formData.video}
+              initialVideo={{url: formData.video}}
             />
           </section>
           <div className="flex justify-end">
