@@ -266,7 +266,7 @@ function SingleRequestService() {
               <video
                 controls
                 src={displayData.video}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover max-h-[400px]"
               ></video>
             ) : (
               <p className="text-gray-500 dark:text-gray-400">لا يوجد فيديو</p>

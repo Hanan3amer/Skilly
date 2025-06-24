@@ -46,7 +46,9 @@ function SingleService() {
       );
 
       toast.success("تم تنفيذ الخدمة بنجاح");
-      navigate("/mainprofile");
+      setTimeout(() => {
+        navigate("/mainprofile");
+      }, 1000);
     } catch (err) {
       console.error("Error completing service:", err);
       toast.error("حدث خطأ أثناء تنفيذ الخدمة");
@@ -224,9 +226,9 @@ function SingleService() {
 
   return (
     <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800">
-      <ToastContainer />
+      <ToastContainer className="text-center mx-auto" />
       {showDeleteConfirm && (
-        <div className="fixed inset-0 bg-[#00000053] bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-md w-full">
             <h3 className="text-xl font-bold text-right text-red-600 mb-4">
               تأكيد الحذف
@@ -375,7 +377,11 @@ function SingleService() {
         </h2>
         {service.video ? (
           <div className="relative">
-            <video src={service.video} controls className="w-full rounded-lg" />
+            <video
+              src={service.video}
+              controls
+              className="w-full rounded-lg max-h-[400px]"
+            />
             {!service.video && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <button className="bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-3">
