@@ -37,7 +37,7 @@ import Praivcy from "./Components/Praivcy/Praivcy";
 import ProviderContextProvider from "./Context/ProviderContext";
 import Emergency from "./Components/Emergency/Emergency";
 import GalleryDemo from "./Components/Demo/GalleryDemo";
-import SingleGallery from "./Components/UserProviderProfile/SingleGallery";
+// import SingleGallery from "./Components/UserProviderProfile/SingleGallery";
 import PaymentSuccessPopup from "./Components/Buyservice/PaymentSuccessPopup";
 import Rewards from "./Components/Rewards/Rewards";
 import { UserDataProvider } from "./Context/UserDataContext";
@@ -47,6 +47,7 @@ import AllReviews from "./Components/AllReviews/AllReviews";
 import ProviderProfileUser from "./Components/UserProviderProfile/ProviderProfileUser";
 import { ChatProvider } from "./Context/ChatContext";
 import CategoriesProvider from "./Context/CategoriesContext";
+import SingleGallery from "./Components/Serviceprovider/SingleGallery";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 function App() {
   const router = createBrowserRouter([
