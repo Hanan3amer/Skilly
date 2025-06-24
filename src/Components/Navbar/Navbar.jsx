@@ -24,7 +24,11 @@ export default function Navbar() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [notificationsCount, setNotificationsCount] = useState(0);
-  const openModal = () => setIsModalOpen(true);
+  const openModal = () => {
+    setIsModalOpen(true);
+    setNotificationsCount(0);
+  };
+
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {

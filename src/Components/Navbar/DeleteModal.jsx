@@ -9,13 +9,13 @@ export default function DeleteModal({ isOpen, onCancel, onConfirm }) {
         </p>
         <div className="flex justify-around">
           <button
-            onClick="{onCancel}"
+            onClick={onCancel}
             className="bg-[#151F6D] text-white px-6 py-2 rounded-xl text-sm font-semibold hover:opacity-90"
           >
             لا
           </button>
           <button
-            onClick="{onConfirm}"
+            onClick={onConfirm}
             className="bg-[#3B9DD2] text-white px-6 py-2 rounded-xl text-sm font-semibold hover:opacity-90"
           >
             نعم

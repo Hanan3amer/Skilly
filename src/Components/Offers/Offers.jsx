@@ -18,6 +18,8 @@ export default function Offers({ requestId, changeOffers }) {
       )
       .then((response) => {
         setOffers(response.data.offers);
+        console.log(response.data.offers);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -39,7 +41,6 @@ export default function Offers({ requestId, changeOffers }) {
         setActionLoading((prev) => ({ ...prev, [offerId]: null }));
         return;
       }
-
       await axios.post(
         `https://skilly.runasp.net/api/OfferSalary/AcceptOffer/${offerId}`,
         {},
@@ -50,12 +51,32 @@ export default function Offers({ requestId, changeOffers }) {
         }
       );
 
-      if (changeOffers) changeOffers(offers.length - 1);
-      toast.success("تم قبول العرض بنجاح");
-      getOfferById(requestId);
+      const selectedOffer = offers.find((offer) => offer.id === offerId);
+      if (!selectedOffer || !selectedOffer.serviceId) {
+        toast.error("لا يمكن تحديد الخدمة لهذا العرض");
+        return;
+      }
+      const paymentResponse = await axios.post(
+        `https://skilly.runasp.net/api/Payment/start-payment-URL`,
+        {
+          ServiceId: selectedOffer.serviceId,
+          redirectUrl: `${window.location.origin}/paymentsuccesspopup`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const paymentUrl = paymentResponse.data.result.iframeUrl;
+      if (paymentUrl) {
+        window.location.href = paymentUrl;
+      } else {
+        toast.error("فشل إنشاء رابط الدفع");
+      }
     } catch (err) {
       console.error("Error accepting offer:", err);
-      toast.error("حدث خطأ أثناء قبول العرض");
+      toast.error("حدث خطأ أثناء قبول العرض أو بدء الدفع");
     } finally {
       setActionLoading((prev) => ({ ...prev, [offerId]: null }));
     }
