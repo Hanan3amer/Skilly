@@ -6,7 +6,7 @@ const NavigationTabs = ({ onTabChange }) => {
   const [activeTab, setActiveTab] = useState("my-services");
 
   const tabs = [
-    { id: "reviews", name: "التقيمات", path: "#reviews" },
+    { id: "reviews", name: "التقييمات", path: "#reviews" },
     { id: "previous-work", name: "معرض  الأعمال", path: "#previous-work" },
     { id: "my-services", name: "خدماتي", path: "#my-services" },
   ];

@@ -235,7 +235,6 @@ const RequestService = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.Name}
-                placeholder="عمل غرفة معيشة"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
               {formik.touched.Name && formik.errors.Name ? (
@@ -253,7 +252,6 @@ const RequestService = () => {
                   السعر
                 </label>
                 <input
-                  placeholder="1200"
                   id="Price"
                   name="Price"
                   type="text"
@@ -276,7 +274,6 @@ const RequestService = () => {
                   مدة التسليم
                 </label>
                 <input
-                  placeholder="20"
                   type="text"
                   name="Deliverytime"
                   value={formik.values.Deliverytime}

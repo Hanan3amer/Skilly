@@ -7,7 +7,7 @@ const NavigationTabs = ({ onTabChange }) => {
 
   const tabs = [
     { id: "transactions", name: "المعاملات", path: "#transactions" },
-    { id: "reviews", name: "التقيمات", path: "#reviews" },
+    { id: "reviews", name: "التقييمات", path: "#reviews" },
     { id: "previous-work", name: "معرض  الأعمال", path: "#previous-work" },
     { id: "current-work", name: "طلبات قيد التنفيذ", path: "#current-work" },
     { id: "my-services", name: "خدماتي", path: "#my-services" },

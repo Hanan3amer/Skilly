@@ -145,7 +145,7 @@ const NotificationCard = ({
 
       {isModalOpen && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50"
+          className="fixed top-0 left-0 w-full h-full bg-[#00000055] flex items-center justify-center z-50"
           onClick={handleBackdropClick}
         >
           <div ref={modalRef}>
@@ -156,7 +156,7 @@ const NotificationCard = ({
 
       {isReviewModalOpen && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50"
+          className="fixed top-0 left-0 w-full h-full bg-[#00000055] flex items-center justify-center z-50"
           onClick={(e) => {
             if (modalRef.current && !modalRef.current.contains(e.target)) {
               closeReviewModal();
