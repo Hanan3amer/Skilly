@@ -37,7 +37,7 @@ import Praivcy from "./Components/Praivcy/Praivcy";
 import ProviderContextProvider from "./Context/ProviderContext";
 import Emergency from "./Components/Emergency/Emergency";
 import GalleryDemo from "./Components/Demo/GalleryDemo";
-// import SingleGallery from "./Components/UserProviderProfile/SingleGallery";
+import SingleGalleryUser from "./Components/UserProviderProfile/SingleGalleryUser";
 import PaymentSuccessPopup from "./Components/Buyservice/PaymentSuccessPopup";
 import Rewards from "./Components/Rewards/Rewards";
 import { UserDataProvider } from "./Context/UserDataContext";
@@ -49,6 +49,7 @@ import { ChatProvider } from "./Context/ChatContext";
 import CategoriesProvider from "./Context/CategoriesContext";
 import SingleGallery from "./Components/Serviceprovider/SingleGallery";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import SingleServiceUser from "./Components/UserProviderProfile/SingleServiceUser";
 function App() {
   const router = createBrowserRouter([
     {
@@ -77,7 +78,9 @@ function App() {
         { path: "addservice", element: <ServiceAddForm /> },
         { path: "service/edit/:id", element: <ServiceEditForm /> },
         { path: "service/:id", element: <SingleService /> },
+        { path: "serviceid/:id", element: <SingleServiceUser /> },
         { path: "gallery/:id", element: <SingleGallery /> },
+        { path: "galleryid/:id", element: <SingleGalleryUser /> },
         { path: "request/:id", element: <SingleRequestService /> },
         { path: "buyservice", element: <Buyservice /> },
         { path: "notificationsmodal", element: <NotificationsModal /> },

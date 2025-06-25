@@ -19,7 +19,7 @@ const PersonalInfo = ({ user = {} }) => {
       </p>
 
       <div className="flex gap-5 justify-between px-4 py-4 rounded-xl max-md:mr-0.5">
-        <span className="text-xs text-sky-500 font-bold text-blue-950 dark:text-blue-200">
+        <span className="text-xs  font-bold text-blue-950 dark:text-blue-200">
           {user.numberOfEndedservices}
         </span>
         <span className="text-sm font-bold ">عدد الأعمال المنتهية</span>
@@ -57,20 +57,6 @@ const PersonalInfo = ({ user = {} }) => {
           isCollapsed ? "max-h-0 mt-0 opacity-0" : "max-h-screen opacity-100"
         }`}
       >
-        <div className="flex gap-5 justify-between px-4 py-4 bg-gray-200 dark:bg-gray-700 rounded-xl max-md:mr-0.5">
-          <span className="text-xs text-blue-950 dark:text-blue-200">
-            {user.phoneNumber || user.phone || "غير متوفر"}
-          </span>
-          <span className="text-sm font-bold text-sky-500">رقم الهاتف</span>
-        </div>
-
-        <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl">
-          <span className="text-xs text-blue-950 dark:text-blue-200">
-            {user.email || "غير متوفر"}
-          </span>
-          <span className="text-sm font-bold text-sky-500">البريد</span>
-        </div>
-
         <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl max-md:px-5">
           <span className="text-xs text-blue-950 dark:text-blue-200">
             {user.profession || user.job || "غير محدد"}
@@ -85,27 +71,6 @@ const PersonalInfo = ({ user = {} }) => {
           <span className="text-sm font-bold text-sky-500">
             عدد سنوات الخبره
           </span>
-        </div>
-
-        <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl max-md:px-5">
-          <span className="text-xs text-blue-950 dark:text-blue-200">
-            {user.governorate || "غير محدد"}
-          </span>
-          <span className="text-sm font-bold text-sky-500">المحافظة</span>
-        </div>
-
-        <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl max-md:px-5">
-          <span className="text-xs text-blue-950 dark:text-blue-200">
-            {user.city || "غير محدد"}
-          </span>
-          <span className="text-sm font-bold text-sky-500">المدينة</span>
-        </div>
-
-        <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl max-md:px-5">
-          <span className="text-xs text-blue-950 dark:text-blue-200">
-            {user.streetName || "غير محدد"}
-          </span>
-          <span className="text-sm font-bold text-sky-500">اسم الشارع</span>
         </div>
       </div>
     </section>

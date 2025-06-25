@@ -34,6 +34,7 @@ function SingleGallery() {
           setLoading(false);
           return;
         }
+
         const response = await axios.get(
           `https://skilly.runasp.net/api/Provider/Servicegallery/GetGalleryBy/${id}`,
           {
@@ -61,7 +62,7 @@ function SingleGallery() {
   }, [id]);
 
   const handleBack = () => {
-    const url = userType === 0 ? `/userprofile` : `/serviceprovider`;
+    const url = userType === 0 ? `/userprofile/${id}` : "/serviceprovider";
     navigate(url);
   };
 
@@ -321,7 +322,7 @@ function SingleGallery() {
               <video
                 src={service.video}
                 controls
-                className="w-full rounded-lg"
+                className="w-full rounded-lg max-h-[400px]"
               />
               {!service.video && (
                 <div className="absolute inset-0 flex items-center justify-center">

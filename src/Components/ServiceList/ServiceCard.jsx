@@ -31,7 +31,6 @@ const ServiceCard = ({
               alt={title}
               className="object-cover self-stretch w-full rounded-none aspect-[2]"
             />
-            {/* Offers count badge */}
           </div>
           <h3 className="mt-1.5 font-bold text-black truncate w-full">
             {title}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import { ProviderContext } from "../../Context/ProviderContext";
 import Loading from "../Loading/Loading";
-import ServiceCard from "../ServiceList/ServiceCard";
+import ServiceCard from "./ServiceCard";
 
 const MyServices = ({ id }) => {
   const { servicesLoading, getServicesByProviderId } =
@@ -73,7 +73,6 @@ const MyServices = ({ id }) => {
             }
             title={service.name}
             description={service.description}
-            offersCount={service.countOfOffers ?? 0}
           />
         ))}
       </div>

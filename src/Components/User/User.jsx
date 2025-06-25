@@ -535,18 +535,6 @@ export default function User() {
             برجاء اختيار صوره شخصيه
           </p>
           <div className="grid md:grid-cols-2 md:gap-6">
-            {/* <input
-              disabled
-              value={userinfo.firstName}
-              className="bg-gray-100 text-sm rounded-lg block w-full p-3 mb-3"
-              placeholder="الاسم الأول"
-            />
-            <input
-              disabled
-              value={userinfo.lastName}
-              className="bg-gray-100 text-sm rounded-lg block w-full p-3 mb-3"
-              placeholder="الاسم الأخير"
-            /> */}
             <input
               name="firstName"
               value={userinfo.firstName}
@@ -580,7 +568,6 @@ export default function User() {
               placeholder="البريد الإلكتروني"
             />
           </div>
-
           {/* Location Selection */}
           <div className="grid md:grid-cols-2 md:gap-6">
             <select

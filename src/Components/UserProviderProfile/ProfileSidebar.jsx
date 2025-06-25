@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import UserInfo from "./UserInfo";
-import PersonalInfo from "../ProviderProfile/PersonalInfo";
+import PersonalInfo from "./PersonalInfo";
 import { ProviderContext } from "../../Context/ProviderContext";
 import Loading from "../Loading/Loading";
 
