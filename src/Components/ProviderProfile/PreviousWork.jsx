@@ -62,6 +62,14 @@ const PreviousWork = ({ providerId }) => {
   if (services.length === 0) {
     return (
       <div className="text-gray-500 dark:text-gray-400 text-center py-8">
+        <div className="flex justify-between items-center mb-6 mt-5">
+        <Link
+          to="/addservice?isGallary=true"
+          className="px-5 py-2.5 text-white bg-sky-500 rounded-lg font-medium hover:bg-sky-600 transition-colors text-sm"
+        >
+          إضافة عمل
+        </Link>
+      </div>
         لا توجد أعمال سابقة لعرضها
       </div>
     );
