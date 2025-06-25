@@ -5,7 +5,8 @@ import { useUserType } from "../../utils/hooks/useUserType";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Buyservice from "../Buyservice/Buyservice";
+import OfferPrice from "../OfferPrice/OfferPrice";
 function SingleService() {
   const userType = useUserType();
   const { id } = useParams();
@@ -18,7 +19,8 @@ function SingleService() {
   const [deleteError, setDeleteError] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imgsLength, setImgsLength] = useState(0);
-
+  const [modal, setModal] = useState(false);
+  const [open, setOpen] = useState(false);
   const queryParams = new URLSearchParams(location.search);
   const isCurrentWork = queryParams.get("isCurrentWork") === "true";
   const isRequest = queryParams.get("isRequest") === "true";
@@ -381,7 +383,52 @@ function SingleService() {
             <p className="text-gray-500 dark:text-gray-400">لا يوجد فيديو</p>
           </div>
         )}
+        <div className="flex gap-4 my-3 items-center justify-center">
+          <button
+            onClick={() => setModal(true)}
+            className="text-sm bg-[#27AAE1] text-white px-5 py-1 text-center rounded-lg"
+          >
+            شراء الخدمة
+          </button>
+          <button
+            onClick={() => setOpen(true)}
+            className="text-sm bg-[#27AAE1] text-white px-5 text-center py-1 rounded-lg"
+          >
+            عرض السعر
+          </button>
+        </div>
       </article>
+       {modal && (
+              <div
+                onClick={() => setModal(false)}
+                className="overlay fixed left-0 right-0 bg-[#00000050] backdrop-blur-[1px] z-5 h-lvh"
+              >
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  className="absolute w-1/2 left-1/2 top-1/2"
+                >
+                  <Buyservice
+                    price={service.price}
+                    deliveryTime={service.deliverytime}
+                    serviceID={service.id}
+                  />
+                </div>
+              </div>
+            )}
+      
+            {open && (
+              <div
+                onClick={() => setOpen(false)}
+                className="overlay fixed top-0 left-0 right-0 bottom-0 bg-[#00000050] backdrop-blur-[1px] z-5"
+              >
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  className="absolute w-1/2 left-1/2 top-1/2"
+                >
+                  <OfferPrice serviceID={service.id} onClose={() => setOpen(false)} />
+                </div>
+              </div>
+            )}
     </main>
   );
 }
