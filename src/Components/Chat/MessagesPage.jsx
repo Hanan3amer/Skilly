@@ -80,7 +80,7 @@ const MessagesPage = () => {
   }, []);
 
   const handleBack = () => {
-    const url = userType === 1 ? "/serviceprovider" : `/user`;
+    const url = userType === 1 ? "/serviceprovider" : `/userprofile`;
     navigate(url);
   };
 

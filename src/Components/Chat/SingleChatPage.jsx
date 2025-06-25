@@ -45,7 +45,7 @@ const SingleChatPage = () => {
       console.log("Received message:", senderId, content, imageUrl);
 
       const newMessage = {
-        id: Date.now(), // Use timestamp as temporary ID
+        id: Date.now(),
         content: content,
         timestamp: formatArabicTime(new Date()),
         isCurrentUser: senderId === userData.id,
