@@ -6,9 +6,7 @@ import transactionIcon from "../../assets/transaction.svg";
 import { ToastContainer } from "react-toastify";
 
 const TransactionCard = ({ userName, message, formattedCreatedAt }) => {
-  // Extract amount and currency for coloring
-  // Example: "لقد استلمت 4000 ج.م بنجاح مقابل خدمة غرفة النوم."
-  const amountRegex = /(\d+[.,]?\d*)\s*([\u0621-\u064A.]+)?/; // Arabic letters and dot
+  const amountRegex = /(\d+[.,]?\d*)\s*([\u0621-\u064A.]+)?/;
   const match = message.match(amountRegex);
   let before = message;
   let amount = null;
@@ -99,7 +97,7 @@ function WithdrawModal({ open, onClose, balance, onSubmit, loading }) {
   if (!open) return null;
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#00000053] bg-opacity-40"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
