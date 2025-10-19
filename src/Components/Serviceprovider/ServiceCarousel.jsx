@@ -92,7 +92,7 @@ const ServiceCarousel = () => {
   // Loading state
   if (loading && slides.length === 0) {
     return (
-      <div className="w-full rounded-3xl bg-gray-200 dark:bg-gray-700 animate-pulse h-[300px] max-md:h-[250px] max-sm:h-[200px]">
+      <div className="w-full rounded-3xl bg-gray-200  animate-pulse h-[300px] max-md:h-[250px] max-sm:h-[200px]">
         <div className="h-full w-full flex justify-center items-center">
           <div className="w-8 h-8 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
@@ -103,10 +103,8 @@ const ServiceCarousel = () => {
   // If no slides available after loading
   if (!loading && slides.length === 0) {
     return (
-      <div className="w-full rounded-3xl bg-gray-100 dark:bg-gray-800 h-[300px] max-md:h-[250px] max-sm:h-[200px] flex justify-center items-center">
-        <p className="text-gray-500 dark:text-gray-400">
-          لا توجد إعلانات متاحة
-        </p>
+      <div className="w-full rounded-3xl bg-gray-100  h-[300px] max-md:h-[250px] max-sm:h-[200px] flex justify-center items-center">
+        <p className="text-gray-500 ">لا توجد إعلانات متاحة</p>
       </div>
     );
   }
@@ -128,7 +126,7 @@ const ServiceCarousel = () => {
             href={slides[activeSlide].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="self-end bg-sky-500 text-white px-6 py-2 max-sm:px-4 max-sm:py-1.5 rounded-lg font-bold hover:bg-sky-600 transition dark:bg-sky-600 dark:hover:bg-sky-700"
+            className="self-end bg-sky-500 text-white px-6 py-2 max-sm:px-4 max-sm:py-1.5 rounded-lg font-bold hover:bg-sky-600 transition "
           >
             عرض المزيد
           </a>
@@ -137,7 +135,7 @@ const ServiceCarousel = () => {
         {/* Navigation arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 rounded-full p-2 shadow-md hover:bg-white dark:hover:bg-gray-700 transition text-gray-800 dark:text-white max-md:scale-90 max-sm:scale-75"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80  rounded-full p-2 shadow-md hover:bg-white  transition text-gray-800  max-md:scale-90 max-sm:scale-75"
           aria-label="Previous slide"
         >
           <svg
@@ -157,7 +155,7 @@ const ServiceCarousel = () => {
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 rounded-full p-2 shadow-md hover:bg-white dark:hover:bg-gray-700 transition text-gray-800 dark:text-white max-md:scale-90 max-sm:scale-75"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80  rounded-full p-2 shadow-md hover:bg-white transition text-gray-800  max-md:scale-90 max-sm:scale-75"
           aria-label="Next slide"
         >
           <svg
@@ -184,9 +182,7 @@ const ServiceCarousel = () => {
             key={index}
             onClick={() => goToSlide(index)}
             className={`flex shrink-0 h-3 rounded-full w-[15px] transition-colors ${
-              activeSlide === index
-                ? "bg-sky-500 dark:bg-sky-400"
-                : "bg-black/40 dark:bg-white/40"
+              activeSlide === index ? "bg-sky-500 " : "bg-black/40 "
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

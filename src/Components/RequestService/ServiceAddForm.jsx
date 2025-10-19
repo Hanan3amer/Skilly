@@ -194,12 +194,12 @@ const ServiceAddForm = () => {
   };
 
   return (
-    <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800">
+    <main className="flex flex-col items-center p-3 w-full bg-white ">
       <ToastContainer className="text-center mx-auto" />
       <div className="w-full max-w-[1000px] mb-2 flex justify-between items-center">
         <Link
           to="/serviceprovider"
-          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
+          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600  transition-colors"
         >
           <svg
             width="20"
@@ -225,16 +225,16 @@ const ServiceAddForm = () => {
           </svg>
           <span>العودة</span>
         </Link>
-        <h1 className="text-2xl font-bold text-sky-500 dark:text-sky-400">
+        <h1 className="text-2xl font-bold text-sky-500 ">
           {isGallary ? "اضافة عمل" : "اضافة خدمة"}
         </h1>
       </div>
 
-      <article className="p-5 w-full bg-gray-100 dark:bg-gray-700 rounded-xl border border-black dark:border-gray-600 max-w-[1000px] shadow-md">
+      <article className="p-5 w-full bg-gray-100  rounded-xl border border-black  max-w-[1000px] shadow-md">
         <div className="container mx-auto">
           <form onSubmit={handleSubmit} className="flex flex-col">
             <div className="w-full mb-4">
-              <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+              <h2 className="mb-4 text-xl font-bold text-black  text-right">
                 {isGallary ? "عنوان العمل" : "عنوان الخدمة"}
               </h2>
               <input
@@ -242,7 +242,7 @@ const ServiceAddForm = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className={`p-4 w-full text-lg text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
+                className={`p-4 w-full text-lg text-right text-black  bg-white  rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
                   errors.title ? "border-red-500" : "border-none"
                 }`}
                 dir="rtl"
@@ -254,14 +254,14 @@ const ServiceAddForm = () => {
 
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="md:col-span-2">
-                <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+                <h2 className="mb-4 text-xl font-bold text-black  text-right">
                   {isGallary ? "وصف العمل" : "وصف الخدمة"}
                 </h2>
                 <textarea
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  className={`p-4 w-full text-lg resize-none text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg min-h-[100px] focus:outline-none focus:ring-1 focus:ring-sky-300 ${
+                  className={`p-4 w-full text-lg resize-none text-right text-black  bg-white  rounded-lg min-h-[100px] focus:outline-none focus:ring-1 focus:ring-sky-300 ${
                     errors.description ? "border-red-500" : "border-none"
                   }`}
                   dir="rtl"
@@ -274,23 +274,21 @@ const ServiceAddForm = () => {
               </div>
 
               <div className={`${isGallary ? "md:col-span-2" : ""}`}>
-                <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+                <h2 className="mb-4 text-xl font-bold text-black  text-right">
                   مدة التسليم
                 </h2>
                 <div
-                  className={`flex justify-between items-center p-4 w-full bg-white dark:bg-gray-800 rounded-lg ${
+                  className={`flex justify-between items-center p-4 w-full bg-white  rounded-lg ${
                     errors.deliveryTime ? "border-red-500" : "border-none"
                   }`}
                 >
-                  <span className="text-lg font-bold text-sky-500 dark:text-sky-400">
-                    يوم
-                  </span>
+                  <span className="text-lg font-bold text-sky-500 ">يوم</span>
                   <input
                     type="text"
                     name="deliveryTime"
                     value={formData.deliveryTime}
                     onChange={handleChange}
-                    className={`w-full text-lg text-right text-black dark:text-white bg-transparent focus:outline-none ${
+                    className={`w-full text-lg text-right text-black  bg-transparent focus:outline-none ${
                       errors.deliveryTime ? "text-red-500" : ""
                     }`}
                   />
@@ -304,23 +302,21 @@ const ServiceAddForm = () => {
 
               {!isGallary && (
                 <div>
-                  <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+                  <h2 className="mb-4 text-xl font-bold text-black  text-right">
                     السعر
                   </h2>
                   <div
-                    className={`flex justify-between items-center p-4 w-full bg-white dark:bg-gray-800 rounded-lg ${
+                    className={`flex justify-between items-center p-4 w-full bg-white  rounded-lg ${
                       errors.price ? "border-red-500" : "border-none"
                     }`}
                   >
-                    <span className="text-lg font-bold text-sky-500 dark:text-sky-400">
-                      ج.م
-                    </span>
+                    <span className="text-lg font-bold text-sky-500 ">ج.م</span>
                     <input
                       type="text"
                       name="price"
                       value={formData.price}
                       onChange={handleChange}
-                      className={`w-full text-lg text-right text-black dark:text-white bg-transparent focus:outline-none ${
+                      className={`w-full text-lg text-right text-black  bg-transparent focus:outline-none ${
                         errors.price ? "text-red-500" : ""
                       }`}
                     />
@@ -336,14 +332,14 @@ const ServiceAddForm = () => {
 
             {!isGallary && (
               <div className="w-full mb-4">
-                <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+                <h2 className="mb-4 text-xl font-bold text-black  text-right">
                   التصنيف
                 </h2>
                 <select
                   name="categoryId"
                   value={formData.categoryId}
                   onChange={handleChange}
-                  className={`p-4 w-full text-lg text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
+                  className={`p-4 w-full text-lg text-right text-black  bg-white  rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
                     errors.categoryId ? "border-red-500" : "border-none"
                   }`}
                   dir="rtl"
@@ -365,21 +361,21 @@ const ServiceAddForm = () => {
 
             {!isGallary && (
               <div className="w-full mb-4">
-                <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+                <h2 className="mb-4 text-xl font-bold text-black  text-right">
                   الملاحظات
                 </h2>
                 <textarea
                   name="notes"
                   value={formData.notes}
                   onChange={handleChange}
-                  className="p-4 w-full text-lg resize-none text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg min-h-[80px] focus:outline-none focus:ring-1 focus:ring-sky-300 border-none"
+                  className="p-4 w-full text-lg resize-none text-right text-black  bg-white  rounded-lg min-h-[80px] focus:outline-none focus:ring-1 focus:ring-sky-300 border-none"
                   dir="rtl"
                 />
               </div>
             )}
 
             <section className="w-full mb-4">
-              <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+              <h2 className="mb-4 text-xl font-bold text-black  text-right">
                 اضافة صور
               </h2>
               <ImageUpload onImagesUpdate={handleImageUpdate} />
@@ -389,7 +385,7 @@ const ServiceAddForm = () => {
             </section>
 
             <section className="w-full mb-5">
-              <h2 className="mb-4 text-xl font-bold text-black dark:text-white text-right">
+              <h2 className="mb-4 text-xl font-bold text-black  text-right">
                 اضافة فيديو
               </h2>
               <VideoUpload onVideoUpdate={handleVideoUpdate} />
@@ -402,7 +398,7 @@ const ServiceAddForm = () => {
                 className={`text-xl font-bold text-white ${
                   loading
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 cursor-pointer"
+                    : "bg-sky-500 hover:bg-sky-600   cursor-pointer"
                 } rounded-lg py-2 px-12 mt-5 transition-colors`}
               >
                 {loading

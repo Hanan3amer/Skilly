@@ -11,7 +11,7 @@ const PersonalInfo = ({ user = {} }) => {
 
   return (
     <section className="mt-9">
-      <p className="text-base leading-6 text-right text-black dark:text-white max-md:mr-1.5">
+      <p className="text-base leading-6 text-right text-black  max-md:mr-1.5">
         {user.briefSummary ||
           `نجار ماهر متخصص في تصميم وتنفيذ الأثاث والأعمال الخشبية 
         بدقة وإبداع، يتميز بخبرته في اختيار أفضل أنواع الخشب وتحويلها
@@ -19,7 +19,7 @@ const PersonalInfo = ({ user = {} }) => {
       </p>
 
       <div className="flex gap-5 justify-between px-4 py-4 rounded-xl max-md:mr-0.5">
-        <span className="text-xs  font-bold text-blue-950 dark:text-blue-200">
+        <span className="text-xs  font-bold text-blue-950 ">
           {user.numberOfEndedservices}
         </span>
         <span className="text-sm font-bold ">عدد الأعمال المنتهية</span>
@@ -57,15 +57,15 @@ const PersonalInfo = ({ user = {} }) => {
           isCollapsed ? "max-h-0 mt-0 opacity-0" : "max-h-screen opacity-100"
         }`}
       >
-        <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200 dark:bg-gray-700 rounded-xl max-md:px-5">
-          <span className="text-xs text-blue-950 dark:text-blue-200">
+        <div className="flex gap-5 justify-between px-4 py-4 whitespace-nowrap bg-gray-200  rounded-xl max-md:px-5">
+          <span className="text-xs text-blue-950 ">
             {user.profession || user.job || "غير محدد"}
           </span>
           <span className="text-sm font-bold text-sky-500">المهنه</span>
         </div>
 
-        <div className="flex gap-5 justify-between px-4 py-4 bg-gray-200 dark:bg-gray-700 rounded-xl max-md:px-5 max-md:mr-0.5">
-          <span className="self-start text-xs text-black dark:text-white">
+        <div className="flex gap-5 justify-between px-4 py-4 bg-gray-200  rounded-xl max-md:px-5 max-md:mr-0.5">
+          <span className="self-start text-xs text-black ">
             {user.numberOfYearExperience || "غير محدد"}
           </span>
           <span className="text-sm font-bold text-sky-500">

@@ -174,7 +174,7 @@ const ImageUpload = ({ onImagesUpdate, initialImages = [], onDeleteImage }) => {
           className={`flex justify-center items-center w-full h-36 border border-dashed rounded-lg cursor-pointer transition-colors ${
             isDragging
               ? "bg-sky-50 border-sky-400"
-              : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600"
+              : "bg-white  border-gray-300 "
           }`}
           onClick={triggerFileInput}
           onDragOver={handleDragOver}

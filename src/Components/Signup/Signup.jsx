@@ -33,7 +33,7 @@ export default function Signup() {
     password: Yup.string()
       .matches(
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&_])[A-Za-z\d@$!%*#?&_]{8,}$/,
-       "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل، وتحتوي على حرف واحد على الأقل، ورقم واحد، وحرف خاص واحد."
+        "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل، وتحتوي على حرف واحد على الأقل، ورقم واحد، وحرف خاص واحد."
       )
       .required("كلمة المرور مطلوبة"),
   });
@@ -103,7 +103,7 @@ export default function Signup() {
                   value={formik.values.firstName}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className="\ bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="\ bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder=" الاسم الاول"
                 />
                 {formik.touched.firstName && formik.errors.firstName && (
@@ -120,7 +120,7 @@ export default function Signup() {
                   value={formik.values.lastName}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border  focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border  focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder="الاسم الاخير"
                 />
                 {formik.touched.lastName && formik.errors.lastName && (
@@ -138,7 +138,7 @@ export default function Signup() {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                 placeholder=" البريد الالكتروني"
               />
               {formik.touched.email && formik.errors.email && (
@@ -156,7 +156,7 @@ export default function Signup() {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                 placeholder="كلمه المرور"
               />
               {formik.touched.password && formik.errors.password && (
@@ -177,7 +177,7 @@ export default function Signup() {
                 value={formik.values.phoneNumber}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3   placeholder:text-[#5B5B68]"
                 placeholder="رقم الهاتف"
               />
               {formik.touched.phoneNumber && formik.errors.phoneNumber && (
@@ -189,7 +189,7 @@ export default function Signup() {
             <div className="flex justify-center w-full items-center">
               <button
                 type="submit"
-                className="text-white bg-[#3B9DD2]  focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full hover:bg-[#3b9dd2d4] px-5 py-2.5 text-center dark:bg-[#3B9DD2] dark:hover:bg-[#3B9DD2] dark:focus:ring-[#3B9DD2] "
+                className="text-white bg-[#3B9DD2]  focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full hover:bg-[#3b9dd2d4] px-5 py-2.5 text-center  "
               >
                 {loading ? (
                   <i className="fas fa-spinner fa-spin"></i>

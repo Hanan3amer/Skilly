@@ -63,7 +63,7 @@ export default function CategorySlider({ categories, userLogin }) {
                     src={category.img}
                     alt={category.name}
                   />
-                  <figcaption className="mt-2 text-sm text-center text-black dark:text-gray-400">
+                  <figcaption className="mt-2 text-sm text-center text-black ">
                     {category.name}
                   </figcaption>
                 </figure>

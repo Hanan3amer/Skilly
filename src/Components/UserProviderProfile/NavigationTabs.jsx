@@ -19,7 +19,7 @@ const NavigationTabs = ({ onTabChange }) => {
   };
 
   return (
-    <nav className="flex nowrap gap-2 justify-end self-end text-base leading-none text-right text-black dark:text-white w-full max-md:mr-2.5 my-5">
+    <nav className="flex nowrap gap-2 justify-end self-end text-base leading-none text-right text-black  w-full max-md:mr-2.5 my-5">
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -27,7 +27,7 @@ const NavigationTabs = ({ onTabChange }) => {
           className={`px-4 py-5 rounded-xl border border-solid transition-all duration-300 whitespace-nowrap ${
             activeTab === tab.id
               ? "text-white bg-sky-500 border-transparent"
-              : "bg-white dark:bg-gray-800 border-black dark:border-gray-600 border-opacity-30 hover:bg-gray-100 dark:hover:bg-gray-700"
+              : "bg-white  border-black  border-opacity-30 hover:bg-gray-100 "
           } max-md:px-3`}
         >
           <span className="font-bold">{tab.name}</span>

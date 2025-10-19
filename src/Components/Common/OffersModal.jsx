@@ -108,7 +108,7 @@ const OffersModal = ({ isOpen, onClose, serviceId }) => {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] overflow-hidden flex flex-col">
+      <div className="bg-white  rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] overflow-hidden flex flex-col">
         {/* Header */}
         <div className="bg-sky-500 text-white py-4 px-6">
           <h2 className="text-2xl font-bold text-center">العروض</h2>
@@ -145,7 +145,7 @@ const OffersModal = ({ isOpen, onClose, serviceId }) => {
           ) : error ? (
             <div className="text-center text-red-500 py-6">{error}</div>
           ) : offers.length === 0 ? (
-            <div className="text-center text-gray-500 dark:text-gray-400 py-6">
+            <div className="text-center text-gray-500  py-6">
               لا توجد عروض متاحة
             </div>
           ) : (
@@ -155,10 +155,10 @@ const OffersModal = ({ isOpen, onClose, serviceId }) => {
                   key={offer.id}
                   className={`border rounded-lg p-4 ${
                     offer.status === "accepted"
-                      ? "border-green-500 bg-green-50 dark:bg-green-900/20"
+                      ? "border-green-500 bg-green-50 "
                       : offer.status === "rejected"
-                      ? "border-red-500 bg-red-50 dark:bg-red-900/20"
-                      : "border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900"
+                      ? "border-red-500 bg-red-50 "
+                      : "border-gray-200  bg-gray-50 "
                   }`}
                 >
                   <div className="flex items-center justify-between mb-3">
@@ -174,10 +174,10 @@ const OffersModal = ({ isOpen, onClose, serviceId }) => {
                         }}
                       />
                       <div>
-                        <h3 className="font-bold text-gray-800 dark:text-white">
+                        <h3 className="font-bold text-gray-800 ">
                           {offer.userName}
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                        <p className="text-sm text-gray-500 ">
                           {offer.deliverytime}
                         </p>
                       </div>
@@ -187,9 +187,7 @@ const OffersModal = ({ isOpen, onClose, serviceId }) => {
                     </div>
                   </div>
 
-                  <p className="text-gray-700 dark:text-gray-300 text-right">
-                    {offer.notes}
-                  </p>
+                  <p className="text-gray-700  text-right">{offer.notes}</p>
 
                   {offer.status === "accepted" ? (
                     <div className="mt-3 text-green-600 font-bold text-center">

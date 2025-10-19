@@ -61,25 +61,22 @@ const PreviousWork = ({ providerId }) => {
 
   if (services.length === 0) {
     return (
-      <div className="text-gray-500 dark:text-gray-400 text-center py-8">
+      <div className="text-gray-500  text-center py-8">
         <div className="flex justify-between items-center mb-6 mt-5">
-        <Link
-          to="/addservice?isGallary=true"
-          className="px-5 py-2.5 text-white bg-sky-500 rounded-lg font-medium hover:bg-sky-600 transition-colors text-sm"
-        >
-          إضافة عمل
-        </Link>
-      </div>
+          <Link
+            to="/addservice?isGallary=true"
+            className="px-5 py-2.5 text-white bg-sky-500 rounded-lg font-medium hover:bg-sky-600 transition-colors text-sm"
+          >
+            إضافة عمل
+          </Link>
+        </div>
         لا توجد أعمال سابقة لعرضها
       </div>
     );
   }
 
   return (
-    <section
-      className="flex flex-col text-gray-800 dark:text-white"
-      id="previous-work"
-    >
+    <section className="flex flex-col text-gray-800 " id="previous-work">
       <div className="flex justify-between items-center mb-6 mt-5">
         <Link
           to="/addservice?isGallary=true"
@@ -107,7 +104,7 @@ const PreviousWork = ({ providerId }) => {
       {visibleCount < services.length && (
         <button
           onClick={handleShowMore}
-          className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+          className="self-start mt-4 text-sm font-bold text-right text-black  hover:text-sky-600  transition-colors"
         >
           عرض المزيد ...
         </button>

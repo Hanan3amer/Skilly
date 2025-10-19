@@ -38,7 +38,7 @@ export default function OrderDetail() {
                 <div className="mb-5">
                   <label
                     htmlFor="base-input"
-                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-bold text-gray-900 "
                   >
                     عنوان الخدمه
                   </label>
@@ -55,7 +55,7 @@ export default function OrderDetail() {
                   <div className="relative w-full mb-5 group">
                     <label
                       htmlFor="base-input"
-                      className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-bold text-gray-900 "
                     >
                       السعر
                     </label>
@@ -78,7 +78,7 @@ export default function OrderDetail() {
                   <div className="relative w-full mb-5 group">
                     <label
                       htmlFor="base-input"
-                      className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-bold text-gray-900 "
                     >
                       مدة التسليم
                     </label>
@@ -101,7 +101,7 @@ export default function OrderDetail() {
                 <div className="mb-5">
                   <label
                     htmlFor="message"
-                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-bold text-gray-900 "
                   >
                     الملاحظات
                   </label>
@@ -118,7 +118,7 @@ export default function OrderDetail() {
                 <div className="mb-5">
                   <label
                     htmlFor="message"
-                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-bold text-gray-900 "
                   >
                     الصور
                   </label>
@@ -138,7 +138,7 @@ export default function OrderDetail() {
                 <div className="mb-5">
                   <label
                     htmlFor="message"
-                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-bold text-gray-900 "
                   >
                     الفيديو
                   </label>

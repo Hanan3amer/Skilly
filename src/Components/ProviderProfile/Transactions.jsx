@@ -355,7 +355,7 @@ export default function Transactions() {
 
   return (
     <section
-      className="flex flex-col w-full text-gray-800 dark:text-white min-h-[300px]"
+      className="flex flex-col w-full text-gray-800  min-h-[300px]"
       id="transactions"
     >
       <ToastContainer position="top-right" />
@@ -411,9 +411,7 @@ export default function Transactions() {
           </div>
         ) : allTransactions.length === 0 ? (
           <div className="w-full text-center py-6">
-            <p className="text-gray-500 dark:text-gray-400">
-              لا توجد معاملات حالياً
-            </p>
+            <p className="text-gray-500 ">لا توجد معاملات حالياً</p>
           </div>
         ) : (
           <div className="flex flex-col gap-8 w-full">
@@ -445,7 +443,7 @@ export default function Transactions() {
       {showToggleButton && (
         <button
           onClick={() => setExpandedView((v) => !v)}
-          className="flex gap-1 self-start mt-6 text-sm font-bold text-right text-black dark:text-white max-md:mr-2.5 hover:text-sky-600 dark:hover:text-sky-400 transition-colors items-center"
+          className="flex gap-1 self-start mt-6 text-sm font-bold text-right text-black  max-md:mr-2.5 hover:text-sky-600  transition-colors items-center"
         >
           {expandedView ? (
             <span className="my-auto">عرض أقل ...</span>

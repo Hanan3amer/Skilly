@@ -269,7 +269,7 @@ function SingleRequestService() {
                 className="w-full h-full object-cover max-h-[400px]"
               ></video>
             ) : (
-              <p className="text-gray-500 dark:text-gray-400">لا يوجد فيديو</p>
+              <p className="text-gray-500 ">لا يوجد فيديو</p>
             )}
           </div>
         </div>

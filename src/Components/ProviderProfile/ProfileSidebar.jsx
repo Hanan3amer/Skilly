@@ -18,7 +18,7 @@ const ProfileSidebar = () => {
   }
 
   return (
-    <div className="w-full max-md:mt-10 text-gray-800 dark:text-white">
+    <div className="w-full max-md:mt-10 text-gray-800 ">
       <UserInfo user={providerData} />
       <PersonalInfo user={providerData} />
     </div>

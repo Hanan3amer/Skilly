@@ -86,9 +86,9 @@ const ServicesList = () => {
     providerServices?.length > visibleServices && !servicesLoading && !error;
 
   return (
-    <section className="flex overflow-hidden flex-col py-7 mt-11 w-full rounded-xl border border-solid border-black border-opacity-30 dark:border-gray-700 bg-white dark:bg-gray-800 transition-colors duration-300 max-w-[1617px] max-md:mt-10 max-md:max-w-full">
+    <section className="flex overflow-hidden flex-col py-7 mt-11 w-full rounded-xl border border-solid border-black border-opacity-30  bg-white  transition-colors duration-300 max-w-[1617px] max-md:mt-10 max-md:max-w-full">
       <div className="flex justify-end items-center px-16 max-md:px-5">
-        <h2 className="text-4xl font-bold leading-none text-right text-black dark:text-white">
+        <h2 className="text-4xl font-bold leading-none text-right text-black ">
           خدماتي
         </h2>
       </div>
@@ -100,7 +100,7 @@ const ServicesList = () => {
         </div>
         {showMoreButton && (
           <Link
-            className="text-xs font-bold text-left text-black dark:text-white hover:text-sky-500 dark:hover:text-sky-400 transition-colors mb-3 mt-4"
+            className="text-xs font-bold text-left text-black  hover:text-sky-500 transition-colors mb-3 mt-4"
             to={"/mainprofile"}
           >
             ... عرض المزيد
@@ -109,7 +109,7 @@ const ServicesList = () => {
         <div className="flex flex-col items-center mt-6 max-md:mt-8">
           <Link
             to="/addservice"
-            className="px-14 max-md:px-10 max-sm:px-6 py-5 max-sm:py-2 text-base max-sm:text-sm font-bold leading-none text-white bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 rounded-xl transition-colors max-md:px-5 text-center"
+            className="px-14 max-md:px-10 max-sm:px-6 py-5 max-sm:py-2 text-base max-sm:text-sm font-bold leading-none text-white bg-sky-500 hover:bg-sky-600 rounded-xl transition-colors max-md:px-5 text-center"
           >
             إضافة خدمة جديدة
           </Link>

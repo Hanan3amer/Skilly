@@ -25,7 +25,7 @@ const ServiceEditForm = () => {
   const [categories, setCategories] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [deletedImages, setDeletedImages] = useState([]);
-  const [servicesData , setServicesData] = useState({})
+  const [servicesData, setServicesData] = useState({});
   // Fetch service data
   useEffect(() => {
     const fetchServiceData = async () => {
@@ -73,16 +73,19 @@ const ServiceEditForm = () => {
           }
 
           // Process images to match the format expected by ImageUpload
-          const processedImages = (serviceData.images?.map(image => {
-            setServicesData((servicesData) => ({...servicesData, [image?.img]: image?.id}))
-           return image?.img
-          }) || []).map(
-            (url, index) => ({
-              url: url,
-              alt: `Image ${index + 1}`,
-              file: null,
-            })
-          );
+          const processedImages = (
+            serviceData.images?.map((image) => {
+              setServicesData((servicesData) => ({
+                ...servicesData,
+                [image?.img]: image?.id,
+              }));
+              return image?.img;
+            }) || []
+          ).map((url, index) => ({
+            url: url,
+            alt: `Image ${index + 1}`,
+            file: null,
+          }));
 
           setFormData({
             title: serviceData.name || "",
@@ -180,7 +183,7 @@ const ServiceEditForm = () => {
 
   const handleDeleteImage = (url) => {
     console.log(url);
-    console.log(servicesData)
+    console.log(servicesData);
     setDeletedImages((prev) => [...prev, servicesData[url]]);
   };
 
@@ -213,7 +216,7 @@ const ServiceEditForm = () => {
             apiFormData.append("Images", image.file);
           }
         });
-        console.log(deletedImages)
+        console.log(deletedImages);
         deletedImages.forEach((image) => {
           apiFormData.append("ImagesToDeleteIds", image);
         });
@@ -266,7 +269,7 @@ const ServiceEditForm = () => {
   }
 
   return (
-    <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800">
+    <main className="flex flex-col items-center p-3 w-full bg-white ">
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -276,7 +279,7 @@ const ServiceEditForm = () => {
       <div className="w-full max-w-[1000px] mb-2 flex justify-between items-center">
         <button
           onClick={handleBack}
-          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
+          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600  transition-colors"
         >
           <svg
             width="20"
@@ -302,14 +305,12 @@ const ServiceEditForm = () => {
           </svg>
           <span>العودة</span>
         </button>
-        <h1 className="text-2xl font-bold text-sky-500 dark:text-sky-400">
-          تعديل الخدمة
-        </h1>
+        <h1 className="text-2xl font-bold text-sky-500 ">تعديل الخدمة</h1>
       </div>
-      <article className="p-5 w-full bg-gray-100 dark:bg-gray-700 rounded-xl border border-black dark:border-gray-600 max-w-[1000px] shadow-md">
+      <article className="p-5 w-full bg-gray-100  rounded-xl border border-black  max-w-[1000px] shadow-md">
         <form onSubmit={handleSubmit} className="flex flex-col items-end">
           <div className="w-full mb-4">
-            <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+            <h2 className="mb-2 text-xl font-bold text-black  text-right">
               عنوان الخدمه
             </h2>
             <input
@@ -318,10 +319,10 @@ const ServiceEditForm = () => {
               value={formData.title}
               onChange={handleChange}
               placeholder="عمل غرفة معيشة"
-              className={`p-4 w-full text-lg text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
+              className={`p-4 w-full text-lg text-right text-black  bg-white  rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
                 errors.title
                   ? "border border-red-500"
-                  : "border border-gray-300 dark:border-gray-600"
+                  : "border border-gray-300 "
               }`}
               dir="rtl"
             />
@@ -331,7 +332,7 @@ const ServiceEditForm = () => {
           </div>
           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="md:col-span-2">
-              <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+              <h2 className="mb-2 text-xl font-bold text-black  text-right">
                 وصف الخدمه
               </h2>
               <textarea
@@ -339,10 +340,10 @@ const ServiceEditForm = () => {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="تصميم بسيط ومريح يجمع بين الأناقة والعملية، مع ألوان متناغمة..."
-                className={`p-4 w-full text-lg text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg min-h-[100px] focus:outline-none focus:ring-1 focus:ring-sky-300 ${
+                className={`p-4 w-full text-lg text-right text-black  bg-white  rounded-lg min-h-[100px] focus:outline-none focus:ring-1 focus:ring-sky-300 ${
                   errors.description
                     ? "border border-red-500"
-                    : "border border-gray-300 dark:border-gray-600"
+                    : "border border-gray-300 "
                 }`}
                 dir="rtl"
               />
@@ -353,26 +354,24 @@ const ServiceEditForm = () => {
               )}
             </div>
             <div>
-              <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+              <h2 className="mb-2 text-xl font-bold text-black  text-right">
                 مدة التسليم
               </h2>
               <div
-                className={`flex justify-between items-center p-4 w-full bg-white dark:bg-gray-800 rounded-lg ${
+                className={`flex justify-between items-center p-4 w-full bg-white  rounded-lg ${
                   errors.deliveryTime
                     ? "border border-red-500"
-                    : "border border-gray-300 dark:border-gray-600"
+                    : "border border-gray-300 "
                 }`}
               >
-                <span className="text-lg font-bold text-sky-500 dark:text-sky-400">
-                  يوم
-                </span>
+                <span className="text-lg font-bold text-sky-500 ">يوم</span>
                 <input
                   type="text"
                   name="deliveryTime"
                   value={formData.deliveryTime}
                   onChange={handleChange}
                   placeholder="20"
-                  className={`w-full text-lg text-right text-black dark:text-white bg-transparent focus:outline-none ${
+                  className={`w-full text-lg text-right text-black  bg-transparent focus:outline-none ${
                     errors.deliveryTime ? "text-red-500" : ""
                   }`}
                 />
@@ -384,26 +383,24 @@ const ServiceEditForm = () => {
               )}
             </div>
             <div>
-              <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+              <h2 className="mb-2 text-xl font-bold text-black  text-right">
                 السعر
               </h2>
               <div
-                className={`flex justify-between items-center p-4 w-full bg-white dark:bg-gray-800 rounded-lg ${
+                className={`flex justify-between items-center p-4 w-full bg-white  rounded-lg ${
                   errors.price
                     ? "border border-red-500"
-                    : "border border-gray-300 dark:border-gray-600"
+                    : "border border-gray-300 "
                 }`}
               >
-                <span className="text-lg font-bold text-sky-500 dark:text-sky-400">
-                  ج.م
-                </span>
+                <span className="text-lg font-bold text-sky-500 ">ج.م</span>
                 <input
                   type="text"
                   name="price"
                   value={formData.price}
                   onChange={handleChange}
                   placeholder="1200"
-                  className={`w-full text-lg text-right text-black dark:text-white bg-transparent focus:outline-none ${
+                  className={`w-full text-lg text-right text-black  bg-transparent focus:outline-none ${
                     errors.price ? "text-red-500" : ""
                   }`}
                 />
@@ -414,17 +411,17 @@ const ServiceEditForm = () => {
             </div>
           </div>
           <div className="w-full mb-4">
-            <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+            <h2 className="mb-2 text-xl font-bold text-black  text-right">
               التصنيف
             </h2>
             <select
               name="categoryId"
               value={formData.categoryId}
               onChange={handleChange}
-              className={`p-4 w-full text-lg text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
+              className={`p-4 w-full text-lg text-right text-black  bg-white  rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 ${
                 errors.categoryId
                   ? "border border-red-500"
-                  : "border border-gray-300 dark:border-gray-600"
+                  : "border border-gray-300 "
               }`}
               dir="rtl"
             >
@@ -442,7 +439,7 @@ const ServiceEditForm = () => {
             )}
           </div>
           <div className="w-full mb-4">
-            <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+            <h2 className="mb-2 text-xl font-bold text-black  text-right">
               الملاحظات
             </h2>
             <textarea
@@ -450,12 +447,12 @@ const ServiceEditForm = () => {
               value={formData.notes}
               onChange={handleChange}
               placeholder="1- يمكن استخدام أجود أنواع الخشب الطبيعي أو المعالج. 2- تلبية جميع الأنماط..."
-              className="p-4 w-full text-lg text-right text-black dark:text-white bg-white dark:bg-gray-800 rounded-lg min-h-[80px] focus:outline-none focus:ring-1 focus:ring-sky-300 border border-gray-300 dark:border-gray-600"
+              className="p-4 w-full text-lg text-right text-black  bg-white  rounded-lg min-h-[80px] focus:outline-none focus:ring-1 focus:ring-sky-300 border border-gray-300 "
               dir="rtl"
             />
           </div>
           <section className="w-full mb-4">
-            <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+            <h2 className="mb-2 text-xl font-bold text-black  text-right">
               الصور
             </h2>
             <ImageUpload
@@ -468,12 +465,12 @@ const ServiceEditForm = () => {
             )}
           </section>
           <section className="w-full mb-5">
-            <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+            <h2 className="mb-2 text-xl font-bold text-black  text-right">
               الفيديو
             </h2>
             <VideoUpload
               onVideoUpdate={handleVideoUpdate}
-              initialVideo={{url: formData.video}}
+              initialVideo={{ url: formData.video }}
             />
           </section>
           <div className="flex justify-end">
@@ -483,7 +480,7 @@ const ServiceEditForm = () => {
               className={`text-xl font-bold text-white ${
                 submitting
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 cursor-pointer"
+                  : "bg-sky-500 hover:bg-sky-600  cursor-pointer"
               } rounded-lg py-2 px-6 transition-colors flex items-center`}
             >
               {submitting && (

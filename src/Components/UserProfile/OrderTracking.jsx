@@ -72,14 +72,14 @@ export default function OrderTracking({ requestId }) {
       <div className="bg-[#27AAE1] text-white p-3 md:p-5 text-center rounded-xl font-bold text-lg sm:text-xl md:text-2xl my-4">
         متابعة الطلب
       </div>
-      <ol className="relative border-s border-gray-200 dark:border-gray-700">
+      <ol className="relative border-s border-gray-200 ">
         {steps.map((step) => (
           <li key={step.id} className="mb-10 ms-4 relative">
             <div
-              className={`absolute -start-[33px] top-2 w-9 h-9 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center ${
+              className={`absolute -start-[33px] top-2 w-9 h-9 rounded-full border border-gray-300  flex items-center justify-center ${
                 step.id <= currentStep
                   ? "bg-[#27AAE1] text-white font-bold"
-                  : "bg-white text-gray-400 dark:bg-gray-700"
+                  : "bg-white text-gray-400 "
               }`}
             >
               <span className="text-sm">
@@ -97,7 +97,7 @@ export default function OrderTracking({ requestId }) {
                 >
                   {step.title}
                 </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 text-center">
+                <p className="text-sm text-gray-500  mt-1 text-center">
                   {step.desc}
                 </p>
               </div>

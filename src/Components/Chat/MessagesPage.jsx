@@ -109,11 +109,11 @@ const MessagesPage = () => {
   }
 
   return (
-    <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800">
+    <main className="flex flex-col items-center p-3 w-full bg-white">
       <div className="w-full max-w-[1000px] mb-2 flex justify-between items-center">
         <button
           onClick={handleBack}
-          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
+          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600  transition-colors"
         >
           <svg
             width="20"
@@ -139,36 +139,34 @@ const MessagesPage = () => {
           </svg>
           <span>العودة</span>
         </button>
-        <h1 className="text-2xl font-bold text-sky-500 dark:text-sky-400">
-          المحادثات
-        </h1>
+        <h1 className="text-2xl font-bold text-sky-500 ">المحادثات</h1>
       </div>
 
-      <article className="p-5 w-full bg-white dark:bg-gray-700 rounded-xl border border-black dark:border-gray-600 max-w-[1000px] shadow-md">
+      <article className="p-5 w-full bg-white  rounded-xl border border-black  max-w-[1000px] shadow-md">
         <div className="flex flex-col items-end mb-4">
-          <h2 className="mb-2 text-xl font-bold text-black dark:text-white text-right">
+          <h2 className="mb-2 text-xl font-bold text-black  text-right">
             جميع المحادثات
           </h2>
           <input
             type="search"
             placeholder="ابحث عن محادثة..."
-            className="p-4 w-full text-lg text-right text-black dark:text-white bg-gray-100 dark:bg-gray-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 dark:focus:ring-sky-500 dark:placeholder:text-gray-400"
+            className="p-4 w-full text-lg text-right text-black  bg-gray-100  rounded-lg focus:outline-none focus:ring-1 focus:ring-sky-300 "
             dir="rtl"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <div className="overflow-y-auto max-h-[600px] flex flex-col py-4 rounded-xl border border-solid border-gray-200 dark:border-gray-600">
+        <div className="overflow-y-auto max-h-[600px] flex flex-col py-4 rounded-xl border border-solid border-gray-200 ">
           {filteredChats.length === 0 ? (
-            <div className="text-center py-4 text-gray-500 dark:text-gray-400">
+            <div className="text-center py-4 text-gray-500 ">
               لا توجد محادثات
             </div>
           ) : (
             filteredChats.map((chat, index) => (
               <React.Fragment key={chat.id}>
                 <div
-                  className="flex flex-row-reverse gap-4 px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer transition-colors"
+                  className="flex flex-row-reverse gap-4 px-6 py-3 hover:bg-gray-50  cursor-pointer transition-colors"
                   onClick={() =>
                     handleOpenSingleChat(chat.id, chat.otherUserId)
                   }
@@ -179,14 +177,14 @@ const MessagesPage = () => {
                     className="object-cover shrink-0 aspect-square w-[50px] h-[50px] rounded-full"
                   />
                   <div className="flex flex-col flex-grow items-end">
-                    <h3 className="text-base font-bold text-black dark:text-white text-right">
+                    <h3 className="text-base font-bold text-black  text-right">
                       {chat.username}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 truncate max-w-full text-right">
+                    <p className="text-sm text-gray-600  truncate max-w-full text-right">
                       {chat.message}
                     </p>
                   </div>
-                  <span className="text-xs text-gray-400 dark:text-gray-400 whitespace-nowrap self-center">
+                  <span className="text-xs text-gray-400  whitespace-nowrap self-center">
                     {chat.timestamp}
                   </span>
                 </div>

@@ -31,53 +31,6 @@ export default function Chat() {
             <h4 className="font-bold text-[#27AAE1]">500 ج.م</h4>
           </div>
         </div>
-        {/* <div className="flex items-start gap-2.5 my-5">
-          <img className="w-10 h-10 rounded-full" src={user} alt="user image" />
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-bold text-gray-900 dark:text-white pl-3">
-              احمد ايمن
-            </span>
-            <div className="flex flex-col w-full max-w-sm leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
-              <div className="flex items-center space-x-2 rtl:space-x-reverse"></div>
-              <p className="text-xs font-normal py-2.5  dark:text-white text-gray-500">
-                رساله رساله رساله رساله رساله رساله رساله رساله رساله رساله
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex items-start gap-2.5" dir="rtl">
-          <img className="w-10 h-10 rounded-full" src={user} alt="user image" />
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-bold text-gray-700 dark:text-white ps-3">
-              محمد خالد
-            </span>
-            <div className="flex flex-col w-full max-w-sm leading-1.5 p-4 border-gray-200 bg-[#23255B] rounded-e-xl rounded-es-xl dark:bg-gray-700">
-              <div className="flex items-center space-x-2 rtl:space-x-reverse"></div>
-              <p className="text-xs font-normal py-2.5  dark:text-white text-white">
-                رساله رساله رساله رساله رساله رساله رساله رساله رساله رساله
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex items-start gap-2.5 my-5" dir="rtl">
-          <img className="w-10 h-10 rounded-full" src={user} alt="user image" />
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-bold text-gray-700 dark:text-white ps-3">
-              محمد خالد
-            </span>
-            <div className="flex flex-col w-full  leading-1.5 p-4 border-gray-200 bg-[#27a9e141] rounded-e-xl rounded-es-xl ">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center justify-between">
-                  <img src={money} />
-                  <p className="font-bold text-sm">عرض سعر</p>
-                </div>
-                <button className="bg-[#23255B] text-white rounded-lg px-5 py-2">
-                  عرض
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

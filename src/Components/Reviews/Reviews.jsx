@@ -61,7 +61,7 @@ export default function Reviews({ serviceID }) {
           dir="rtl"
         >
           <div className="mb-5">
-            <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-bold text-gray-900 ">
               كيف كانت تجربتك
             </label>
             <textarea
@@ -75,7 +75,7 @@ export default function Reviews({ serviceID }) {
           </div>
 
           <div className="mb-5 text-center">
-            <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-bold text-gray-900 ">
               التقييم
             </label>
             <div className="flex justify-center gap-1">

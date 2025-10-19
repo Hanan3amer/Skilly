@@ -226,11 +226,11 @@ const SingleChatPage = () => {
   }
 
   return (
-    <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800 min-h-screen">
+    <main className="flex flex-col items-center p-3 w-full bg-white  min-h-screen">
       <div className="w-full max-w-[1000px] mb-2 flex justify-between items-center">
         <button
           onClick={handleBack}
-          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300 transition-colors"
+          className="flex items-center gap-1 px-3 py-1 text-sky-500 hover:text-sky-600  transition-colors"
         >
           <svg
             width="20"
@@ -259,12 +259,12 @@ const SingleChatPage = () => {
       </div>
 
       <article
-        className="p-5 w-full bg-white dark:bg-gray-700 rounded-xl border border-black dark:border-gray-600 max-w-[1000px] shadow-md flex flex-col"
+        className="p-5 w-full bg-white  rounded-xl border border-black  max-w-[1000px] shadow-md flex flex-col"
         style={{ height: "calc(100vh - 100px)" }}
       >
-        <div className="flex gap-3 items-center justify-end border-b border-gray-200 dark:border-gray-500 pb-3 mb-3">
+        <div className="flex gap-3 items-center justify-end border-b border-gray-200  pb-3 mb-3">
           <div className="flex gap-3 items-center">
-            <h2 className="text-xl font-bold text-black dark:text-white text-right">
+            <h2 className="text-xl font-bold text-black  text-right">
               {contact.username}
             </h2>
             <img
@@ -277,9 +277,7 @@ const SingleChatPage = () => {
 
         <div className="flex-grow overflow-y-auto mb-4 p-2">
           {messages.length === 0 ? (
-            <div className="text-center py-4 text-gray-500 dark:text-gray-400">
-              لا توجد رسائل
-            </div>
+            <div className="text-center py-4 text-gray-500 ">لا توجد رسائل</div>
           ) : (
             messages.map((message) => (
               <div
@@ -297,9 +295,7 @@ const SingleChatPage = () => {
                 >
                   <div
                     className={`rounded-2xl p-3 ${
-                      message.isCurrentUser
-                        ? "bg-sky-100 dark:bg-sky-800 dark:text-white"
-                        : "bg-gray-100 dark:bg-gray-600 dark:text-white"
+                      message.isCurrentUser ? "bg-sky-100" : "bg-gray-100 "
                     }`}
                   >
                     {message.content && (
@@ -337,7 +333,7 @@ const SingleChatPage = () => {
                       </div>
                     )}
 
-                    <span className="text-xs text-gray-500 dark:text-gray-300 block mt-1 text-right">
+                    <span className="text-xs text-gray-500  block mt-1 text-right">
                       {message.timestamp}
                     </span>
                   </div>

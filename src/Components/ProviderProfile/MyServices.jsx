@@ -53,9 +53,7 @@ const MyServices = () => {
     if (!providerServices || providerServices.length === 0) {
       return (
         <div className="w-full text-center py-5">
-          <p className="text-gray-500 dark:text-gray-400">
-            لا توجد خدمات حالياً
-          </p>
+          <p className="text-gray-500 ">لا توجد خدمات حالياً</p>
         </div>
       );
     }
@@ -84,10 +82,7 @@ const MyServices = () => {
     !servicesLoading && !error && providerServices?.length > visibleServices;
 
   return (
-    <section
-      className="flex flex-col text-gray-800 dark:text-white"
-      id="my-services"
-    >
+    <section className="flex flex-col text-gray-800 " id="my-services">
       <div className="flex justify-between items-center mb-6 mt-5">
         <Link
           to="/addservice"
@@ -102,7 +97,7 @@ const MyServices = () => {
       {showMoreButton && (
         <button
           onClick={handleShowMore}
-          className="self-start mt-[40px] text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+          className="self-start mt-[40px] text-sm font-bold text-right text-black  hover:text-sky-600  transition-colors"
         >
           ... عرض المزيد
         </button>

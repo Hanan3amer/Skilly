@@ -54,7 +54,7 @@ export default function DiscountDetail() {
                 <div className="mb-5">
                   <label
                     htmlFor="base-input"
-                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-bold text-gray-900 "
                   >
                     عنوان الخدمه
                   </label>
@@ -70,7 +70,7 @@ export default function DiscountDetail() {
                 <div className="mb-5">
                   <label
                     htmlFor="message"
-                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-bold text-gray-900 "
                   >
                     وصف الخدمه
                   </label>
@@ -88,7 +88,7 @@ export default function DiscountDetail() {
                   <div className="relative w-full mb-5 group">
                     <label
                       htmlFor="base-input"
-                      className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-bold text-gray-900 "
                     >
                       السعر
                     </label>
@@ -104,7 +104,7 @@ export default function DiscountDetail() {
                   <div className="relative w-full mb-5 group">
                     <label
                       htmlFor="base-input"
-                      className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                      className="block mb-2 text-sm font-bold text-gray-900 "
                     >
                       مدة التسليم
                     </label>
@@ -121,7 +121,7 @@ export default function DiscountDetail() {
                 <div className="mb-5">
                   <label
                     htmlFor="message"
-                    className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-bold text-gray-900 "
                   >
                     الملاحظات
                   </label>
@@ -136,7 +136,7 @@ export default function DiscountDetail() {
                   />
                 </div>
                 <div className="mb-5">
-                  <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                  <label className="block mb-2 text-sm font-bold text-gray-900 ">
                     الفيديو
                   </label>
 

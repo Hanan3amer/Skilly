@@ -154,7 +154,7 @@ export default function Signin() {
                 value={formik.values.phoneNumber}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                 placeholder="رقم الهاتف"
               />
               {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
@@ -180,7 +180,7 @@ export default function Signin() {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                className="bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                 placeholder="كلمة المرور"
               />
               {formik.touched.password && formik.errors.password && (
@@ -198,13 +198,13 @@ export default function Signin() {
                 type="checkbox"
                 checked={formik.values.rememberMe}
                 onChange={formik.handleChange}
-                className="border border-[#3B9DD2] rounded-sm bg-white focus:ring-3 focus:ring-[#3B9DD2] dark:focus:ring-[#3B9DD2] accent-[#3B9DD2]"
+                className="border border-[#3B9DD2] rounded-sm bg-white focus:ring-3 focus:ring-[#3B9DD2]  accent-[#3B9DD2]"
               />
             </div>
             <div className="flex justify-between items-center w-full">
               <label
                 htmlFor="rememberMe"
-                className="ms-2 text-sm font-medium text-[#5B5B68] dark:text-gray-300"
+                className="ms-2 text-sm font-medium text-[#5B5B68] "
               >
                 تذكرني
               </label>
@@ -218,7 +218,7 @@ export default function Signin() {
           <div className="mx-auto text-center w-full">
             <button
               type="submit"
-              className="text-white bg-[#3B9DD2] hover:bg-[#5aadd9] focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full  px-10 py-2.5 text-center dark:bg-[#3B9DD2] dark:hover:bg-[#3B9DD2] dark:focus:ring-[#3B9DD2]"
+              className="text-white bg-[#3B9DD2] hover:bg-[#5aadd9] focus:ring-1 focus:outline-none focus:ring-[#3B9DD2] font-medium rounded-lg text-sm w-full  px-10 py-2.5 text-center "
             >
               تسجيل الدخول
             </button>

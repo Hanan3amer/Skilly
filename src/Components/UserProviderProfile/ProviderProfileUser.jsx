@@ -39,7 +39,7 @@ const ProviderProfileUser = () => {
   }, [id]);
 
   return (
-    <main className="overflow-hidden px-16 py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-white max-md:px-5 w-full ">
+    <main className="overflow-hidden px-16 py-20 bg-white  text-gray-800  max-md:px-5 w-full ">
       <div className="flex flex-col-reverse md:flex-row gap-5">
         <section className="w-full md:w-[73%]">
           <div className="flex flex-col mt-8 w-full max-md:mt-6">

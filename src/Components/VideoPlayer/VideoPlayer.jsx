@@ -35,10 +35,9 @@ const VideoPlayer = ({ videoUrl }) => {
     setError(true);
   };
 
-  // If no video URL is provided
   if (!videoUrl) {
     return (
-      <div className="w-full h-64 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400">
+      <div className="w-full h-64 bg-gray-100  rounded-lg flex items-center justify-center text-gray-500 ">
         <p>لا يوجد فيديو</p>
       </div>
     );

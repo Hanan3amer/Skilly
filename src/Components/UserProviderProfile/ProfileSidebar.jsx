@@ -31,7 +31,7 @@ const ProfileSidebar = ({ id }) => {
   if (loading) return <Loading />;
 
   return (
-    <div className="w-full max-md:mt-10 text-gray-800 dark:text-white">
+    <div className="w-full max-md:mt-10 text-gray-800 ">
       <UserInfo user={user} />
       <PersonalInfo user={user} />
     </div>

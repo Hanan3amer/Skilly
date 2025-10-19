@@ -63,7 +63,7 @@ export default function OfferPrice({ serviceID, onClose }) {
       >
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="mb-5">
-            <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-bold text-gray-900 ">
               السعر
             </label>
             <div className="relative w-full">
@@ -85,7 +85,7 @@ export default function OfferPrice({ serviceID, onClose }) {
             </div>
           </div>
           <div className="mb-5">
-            <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-bold text-gray-900 ">
               مدة التسليم
             </label>
             <div className="relative w-full">
@@ -109,7 +109,7 @@ export default function OfferPrice({ serviceID, onClose }) {
           </div>
         </div>
         <div className="mb-5">
-          <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+          <label className="block mb-2 text-sm font-bold text-gray-900 ">
             ملاحظات
           </label>
           <textarea

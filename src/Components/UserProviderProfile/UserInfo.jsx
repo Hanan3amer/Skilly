@@ -11,7 +11,7 @@ const UserInfo = ({ user }) => {
       </h1>
       <div className="flex gap-2.5 self-end mt-12 max-md:mt-10">
         <div className="my-auto">
-          <div className="flex gap-2.5 text-base leading-none text-black dark:text-white">
+          <div className="flex gap-2.5 text-base leading-none text-black ">
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/35d9b5eba8cd4f58f5ad0c1f1ae03259416012479d024e6d66462a2fbe04aaf5?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"
               className="object-contain shrink-0 aspect-square w-[25px]"
@@ -21,7 +21,7 @@ const UserInfo = ({ user }) => {
               {user?.firstName + " " + user?.lastName || "اسم المستخدم"}
             </h2>
           </div>
-          <div className="flex flex-col pr-3.5 pl-7 mt-1.5 w-full text-sm whitespace-nowrap text-blue-950 dark:text-blue-200 max-md:pl-5">
+          <div className="flex flex-col pr-3.5 pl-7 mt-1.5 w-full text-sm whitespace-nowrap text-blue-950  max-md:pl-5">
             <div className="flex gap-1.5 self-end max-md:mr-2.5">
               <span>{user?.review || "0"}</span>
               <img

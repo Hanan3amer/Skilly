@@ -150,15 +150,15 @@ function SingleGallery() {
   }
 
   return (
-    <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800">
+    <main className="flex flex-col items-center p-3 w-full bg-white ">
       <ToastContainer />
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-md w-full">
+          <div className="bg-white  rounded-lg shadow-xl p-6 max-w-md w-full">
             <h3 className="text-xl font-bold text-right text-red-600 mb-4">
               تأكيد الحذف
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-right mb-6">
+            <p className="text-gray-700  text-right mb-6">
               هل أنت متأكد من رغبتك في حذف هذه الخدمة؟ لا يمكن التراجع عن هذا
               الإجراء.
             </p>
@@ -175,7 +175,7 @@ function SingleGallery() {
             <div className="flex justify-start gap-3">
               <button
                 onClick={handleCancelDelete}
-                className="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-lg transition-colors"
+                className="px-4 py-2 bg-gray-200 hover:bg-gray-300   text-gray-700  rounded-lg transition-colors"
                 disabled={deleteLoading}
               >
                 إلغاء
@@ -217,18 +217,18 @@ function SingleGallery() {
       <div className="text-sky-500 text-lg font-bold text-right mb-4">
         معرض الأعمال
       </div>
-      <article className="p-5 w-full bg-white dark:bg-gray-700 rounded-xl border border-gray-200 dark:border-gray-600 max-w-[1000px] shadow-md">
-        <h1 className="text-xl font-bold text-black dark:text-white text-center mb-6">
+      <article className="p-5 w-full bg-white  rounded-xl border border-gray-200  max-w-[1000px] shadow-md">
+        <h1 className="text-xl font-bold text-black  text-center mb-6">
           {service.galleryName}
         </h1>
 
         {/* Details Section */}
         <div className="mb-6">
-          <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+          <h2 className="text-lg font-bold text-black  text-right mb-2">
             تفاصيل غرفة المعيشة
           </h2>
-          <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
-            <p className="text-sm text-black dark:text-white text-right">
+          <div className="p-4 bg-gray-100  rounded-lg">
+            <p className="text-sm text-black  text-right">
               {service.description}
             </p>
           </div>
@@ -236,19 +236,17 @@ function SingleGallery() {
 
         {/* Delivery Time */}
         <div className="mb-6">
-          <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+          <h2 className="text-lg font-bold text-black  text-right mb-2">
             مدة التسليم
           </h2>
-          <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
-            <p className="text-black dark:text-white text-right">
-              {service.deliverytime}
-            </p>
+          <div className="p-4 bg-gray-100  rounded-lg">
+            <p className="text-black  text-right">{service.deliverytime}</p>
           </div>
         </div>
 
         {/* Images Gallery */}
         <div className="mb-6">
-          <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+          <h2 className="text-lg font-bold text-black  text-right mb-2">
             الصور
           </h2>
           {service.images && service.images.length > 0 ? (
@@ -306,15 +304,14 @@ function SingleGallery() {
               )}
             </div>
           ) : (
-            <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
-              <p className="text-gray-500 dark:text-gray-400">لا توجد صور</p>
+            <div className="p-4 bg-gray-100  rounded-lg text-center">
+              <p className="text-gray-500 ">لا توجد صور</p>
             </div>
           )}
         </div>
 
-        {/* Video Section */}
         <div className="mb-6">
-          <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+          <h2 className="text-lg font-bold text-black  text-right mb-2">
             الفيديو
           </h2>
           {service.video ? (
@@ -352,8 +349,8 @@ function SingleGallery() {
               )}
             </div>
           ) : (
-            <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
-              <p className="text-gray-500 dark:text-gray-400">لا يوجد فيديو</p>
+            <div className="p-4 bg-gray-100  rounded-lg text-center">
+              <p className="text-gray-500 ">لا يوجد فيديو</p>
             </div>
           )}
         </div>

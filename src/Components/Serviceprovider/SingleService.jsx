@@ -225,15 +225,15 @@ function SingleService() {
   }
 
   return (
-    <main className="flex flex-col items-center p-3 w-full bg-white dark:bg-gray-800">
+    <main className="flex flex-col items-center p-3 w-full bg-white ">
       <ToastContainer className="text-center mx-auto" />
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-[#00000047] bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-md w-full">
+          <div className="bg-white  rounded-lg shadow-xl p-6 max-w-md w-full">
             <h3 className="text-xl font-bold text-right text-red-600 mb-4">
               تأكيد الحذف
             </h3>
-            <p className="text-gray-700 dark:text-gray-300 text-right mb-6">
+            <p className="text-gray-700  text-right mb-6">
               هل أنت متأكد من رغبتك في حذف هذه الخدمة؟ لا يمكن التراجع عن هذا
               الإجراء.
             </p>
@@ -250,7 +250,7 @@ function SingleService() {
             <div className="flex justify-start gap-3">
               <button
                 onClick={handleCancelDelete}
-                className="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-lg transition-colors"
+                className="px-4 py-2 bg-gray-200 hover:bg-gray-300   text-gray-700  rounded-lg transition-colors"
                 disabled={deleteLoading}
               >
                 إلغاء
@@ -289,7 +289,7 @@ function SingleService() {
         </div>
       )}
 
-      <article className="p-5 w-full bg-white dark:bg-gray-700 rounded-xl border max-w-[1000px] shadow-md">
+      <article className="p-5 w-full bg-white  rounded-xl border max-w-[1000px] shadow-md">
         <h1 className="mb-6 text-xl font-bold text-sky-500 text-center">
           {service.name}
         </h1>
@@ -319,60 +319,54 @@ function SingleService() {
               )}
             </div>
           ) : (
-            <div className="bg-gray-100 dark:bg-gray-600 rounded-lg h-64 flex items-center justify-center">
-              <p className="text-gray-500 dark:text-gray-400">لا توجد صور</p>
+            <div className="bg-gray-100  rounded-lg h-64 flex items-center justify-center">
+              <p className="text-gray-500 ">لا توجد صور</p>
             </div>
           )}
         </div>
 
         {!isRequest && (
           <div className="mb-6">
-            <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+            <h2 className="text-lg font-bold text-black  text-right mb-2">
               وصف الخدمة
             </h2>
-            <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
-              <p className="text-black dark:text-white text-right">
-                {service.description}
-              </p>
+            <div className="p-4 bg-gray-100  rounded-lg">
+              <p className="text-black  text-right">{service.description}</p>
             </div>
           </div>
         )}
 
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div>
-            <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+            <h2 className="text-lg font-bold text-black  text-right mb-2">
               سعر الخدمة
             </h2>
-            <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
-              <p className="text-black dark:text-white text-right">
-                {service.price} ج.م
-              </p>
+            <div className="p-4 bg-gray-100  rounded-lg">
+              <p className="text-black  text-right">{service.price} ج.م</p>
             </div>
           </div>
           <div>
-            <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+            <h2 className="text-lg font-bold text-black  text-right mb-2">
               مدة التسليم
             </h2>
-            <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
-              <p className="text-black dark:text-white text-right">
-                {service.deliverytime}
-              </p>
+            <div className="p-4 bg-gray-100  rounded-lg">
+              <p className="text-black  text-right">{service.deliverytime}</p>
             </div>
           </div>
         </div>
 
         <div className="mb-6">
-          <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+          <h2 className="text-lg font-bold text-black  text-right mb-2">
             ملاحظات
           </h2>
-          <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg">
-            <p className="text-black dark:text-white text-right">
+          <div className="p-4 bg-gray-100  rounded-lg">
+            <p className="text-black  text-right">
               {service.notes || "لا توجد ملاحظات"}
             </p>
           </div>
         </div>
 
-        <h2 className="text-lg font-bold text-black dark:text-white text-right mb-2">
+        <h2 className="text-lg font-bold text-black  text-right mb-2">
           الفيديو
         </h2>
         {service.video ? (
@@ -410,8 +404,8 @@ function SingleService() {
             )}
           </div>
         ) : (
-          <div className="p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
-            <p className="text-gray-500 dark:text-gray-400">لا يوجد فيديو</p>
+          <div className="p-4 bg-gray-100  rounded-lg text-center">
+            <p className="text-gray-500 ">لا يوجد فيديو</p>
           </div>
         )}
 
@@ -419,7 +413,7 @@ function SingleService() {
           {isCurrentWork ? (
             <button
               onClick={handleCompleteService}
-              className="text-xl font-bold text-white bg-sky-500 hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700 rounded-lg cursor-pointer py-2 px-6 transition-colors flex items-center"
+              className="text-xl font-bold text-white bg-sky-500 hover:bg-sky-600  rounded-lg cursor-pointer py-2 px-6 transition-colors flex items-center"
               disabled={completingService}
             >
               {completingService && (

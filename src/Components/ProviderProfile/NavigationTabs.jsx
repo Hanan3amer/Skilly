@@ -41,7 +41,7 @@ const NavigationTabs = ({ onTabChange }) => {
       <div className="hidden max-md:flex items-center justify-center absolute left-0 z-20 h-full pointer-events-none">
         <button
           type="button"
-          className="flex items-center justify-center h-10 w-8 bg-gradient-to-l from-transparent to-white dark:to-gray-900 rounded-l-xl pointer-events-auto"
+          className="flex items-center justify-center h-10 w-8 bg-gradient-to-l from-transparent to-white  rounded-l-xl pointer-events-auto"
           style={{ top: 0 }}
           onClick={() => scrollTabs("left")}
           tabIndex={-1}
@@ -67,7 +67,7 @@ const NavigationTabs = ({ onTabChange }) => {
       {/* Tabs */}
       <nav
         ref={navRef}
-        className="flex nowrap gap-6 justify-end max-md:justify-start self-end text-base leading-none text-right text-black dark:text-white w-full max-md:w-auto max-md:mr-2.5 overflow-x-auto whitespace-nowrap scrollbar-hide px-0 max-md:px-2 max-md:pl-8 max-md:pr-8 min-w-0"
+        className="flex nowrap gap-6 justify-end max-md:justify-start self-end text-base leading-none text-right text-black  w-full max-md:w-auto max-md:mr-2.5 overflow-x-auto whitespace-nowrap scrollbar-hide px-0 max-md:px-2 max-md:pl-8 max-md:pr-8 min-w-0"
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
@@ -81,7 +81,7 @@ const NavigationTabs = ({ onTabChange }) => {
             className={`px-7 py-5 rounded-xl border border-solid transition-all duration-300 whitespace-nowrap ${
               activeTab === tab.id
                 ? "text-white bg-sky-500 border-transparent"
-                : "bg-white dark:bg-gray-800 border-black dark:border-gray-600 border-opacity-30 hover:bg-gray-100 dark:hover:bg-gray-700"
+                : "bg-white  border-black  border-opacity-30 hover:bg-gray-100 "
             } max-md:px-3`}
           >
             <span className="font-bold">{tab.name}</span>
@@ -92,7 +92,7 @@ const NavigationTabs = ({ onTabChange }) => {
       <div className="hidden max-md:flex items-center justify-center absolute right-0 z-20 h-full pointer-events-none">
         <button
           type="button"
-          className="flex items-center justify-center h-10 w-8 bg-gradient-to-r from-transparent to-white dark:to-gray-900 rounded-r-xl pointer-events-auto"
+          className="flex items-center justify-center h-10 w-8 bg-gradient-to-r from-transparent to-white  rounded-r-xl pointer-events-auto"
           style={{ top: 0 }}
           onClick={() => scrollTabs("right")}
           tabIndex={-1}

@@ -31,7 +31,7 @@ const ServiceCard = ({
       }
       className="block w-full hover:shadow-lg transition-shadow rounded-xl overflow-hidden"
     >
-      <article className="flex flex-col grow items-end py-10 px-9 w-full text-xs text-right rounded-xl bg-neutral-100 dark:bg-gray-700 transition-colors duration-300 max-md:px-5 max-md:py-6 max-md:mt-7 max-md:max-w-full">
+      <article className="flex flex-col grow items-end py-10 px-9 w-full text-xs text-right rounded-xl bg-neutral-100  transition-colors duration-300 max-md:px-5 max-md:py-6 max-md:mt-7 max-md:max-w-full">
         <div className="w-full relative">
           {showVideo && hasVideo && videoUrl ? (
             <video
@@ -105,11 +105,11 @@ const ServiceCard = ({
           <div className="text-sm text-sky-500 font-medium">
             {deliveryTime && <span>وقت التسليم: {deliveryTime}</span>}
           </div>
-          <h3 className="text-sm md:text-base font-bold text-black dark:text-white">
+          <h3 className="text-sm md:text-base font-bold text-black ">
             {title}
           </h3>
         </div>
-        <p className="mt-2 text-blue-950 dark:text-gray-300">{description}</p>
+        <p className="mt-2 text-blue-950 ">{description}</p>
       </article>
     </Link>
   );

@@ -85,7 +85,7 @@ const VideoUpload = ({ onVideoUpdate, initialVideo = null }) => {
       className={`flex flex-col justify-center items-center p-1 border border-dashed w-full rounded-xl transition-all ${
         isDragging
           ? "bg-sky-50 border-2 border-sky-500"
-          : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600"
+          : "bg-white  border-gray-300 "
       }`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}

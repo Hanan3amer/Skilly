@@ -48,7 +48,7 @@ export default function Buyservice({
           <form className="max-w-md mx-auto mt-14" dir="rtl">
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="mb-5">
-                <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-bold text-gray-900 ">
                   سعر الخدمة
                 </label>
                 <input
@@ -59,7 +59,7 @@ export default function Buyservice({
                 />
               </div>
               <div className="mb-5">
-                <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">
+                <label className="block mb-2 text-sm font-bold text-gray-900 ">
                   مدة التسليم
                 </label>
                 <input

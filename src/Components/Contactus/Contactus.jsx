@@ -22,42 +22,42 @@ export default function Contactus() {
               <div className="mb-5">
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm font-bold text-gray-900 dark:text-white ps-2"
+                  className="block mb-2 text-sm font-bold text-gray-900  ps-2"
                 >
                   الاسم
                 </label>
                 <input
                   type="text"
                   id="name"
-                  className="bg-white outline-none text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700  dark:text-white"
+                  className="bg-white outline-none text-gray-900 text-sm rounded-lg  block w-full p-2.5   "
                   placeholder=""
                 />
               </div>
               <div className="mb-5">
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-bold text-gray-900 dark:text-white ps-2"
+                  className="block mb-2 text-sm font-bold text-gray-900  ps-2"
                 >
                   البريد الالكتروني
                 </label>
                 <input
                   type="email"
                   id="email"
-                  className="bg-white outline-none text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700  dark:text-white "
+                  className="bg-white outline-none text-gray-900 text-sm rounded-lg  block w-full p-2.5    "
                   placeholder=""
                 />
               </div>
               <div className="mb-5">
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm font-bold text-gray-900 dark:text-white ps-2"
+                  className="block mb-2 text-sm font-bold text-gray-900  ps-2"
                 >
                   موضوع الرسالة
                 </label>
                 <input
                   type="text"
                   id="name"
-                  className="bg-white outline-none text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700  dark:text-white "
+                  className="bg-white outline-none text-gray-900 text-sm rounded-lg  block w-full p-2.5    "
                   placeholder=""
                 />
               </div>
@@ -65,7 +65,7 @@ export default function Contactus() {
               <div className="mb-5">
                 <label
                   htmlFor="message"
-                  className="block mb-2 text-sm font-bold ps-2 text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-bold ps-2 text-gray-900 "
                 >
                   الرسالة
                 </label>

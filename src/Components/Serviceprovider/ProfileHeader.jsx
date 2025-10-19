@@ -64,7 +64,7 @@ const ProfileHeader = () => {
   return (
     <div className="flex gap-9 justify-end max-sm:gap-5 self-stretch my-auto max-md:mt-6 max-sm:mt-4">
       <div className="self-start mt-2.5">
-        <div className="flex gap-1 text-base leading-none text-black dark:text-white max-md:mr-0.5">
+        <div className="flex gap-1 text-base leading-none text-black  max-md:mr-0.5">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4f86bb2033be9c80b877253d9f2e3a40de7095b640900d01bb6acf81fb0a808?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"
             alt="Profile icon"
@@ -76,7 +76,7 @@ const ProfileHeader = () => {
           </div>
         </div>
         <div className="flex flex-col items-end pl-5 mt-1.5 w-full whitespace-nowrap">
-          <div className="flex gap-1.5 text-sm text-blue-950 dark:text-blue-200 my-1">
+          <div className="flex gap-1.5 text-sm text-blue-950  my-1">
             <span>{rating}</span>
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/5a335dbe69d831e0f85bef418a397e68b909260f13074c0caea1e32513668493?placeholderIfAbsent=true&apiKey=d8a8fe7915e44c6c92bb9b107a5f642c"
@@ -95,7 +95,7 @@ const ProfileHeader = () => {
               {chatCount}
             </div>
           </div>
-          <h2 className="mt-3 text-base leading-none text-right text-black dark:text-white max-md:mr-1.5">
+          <h2 className="mt-3 text-base leading-none text-right text-black  max-md:mr-1.5">
             {profession}
           </h2>
         </div>

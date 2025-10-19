@@ -223,7 +223,7 @@ const RequestService = () => {
           >
             <div className="mb-5">
               <label
-                className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-bold text-gray-900 "
                 htmlFor="Name"
               >
                 عنوان الخدمه
@@ -235,7 +235,7 @@ const RequestService = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.Name}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               />
               {formik.touched.Name && formik.errors.Name ? (
                 <div className="text-red-500 text-sm mt-1">
@@ -247,7 +247,7 @@ const RequestService = () => {
               <div className="relative w-full mb-5 group">
                 <label
                   htmlFor="base-input"
-                  className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-bold text-gray-900 "
                 >
                   السعر
                 </label>
@@ -258,7 +258,7 @@ const RequestService = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.Price}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 />
                 {formik.errors.Price && formik.touched.Price && (
                   <div className="text-red-500 text-sm mt-1">
@@ -269,7 +269,7 @@ const RequestService = () => {
               <div className="relative w-full mb-5 group">
                 <label
                   htmlFor="base-input"
-                  className="block mb-2 text-sm font-bold text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-bold text-gray-900 "
                 >
                   مدة التسليم
                 </label>
@@ -280,7 +280,7 @@ const RequestService = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   id="base-input"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 />
                 {formik.errors.Deliverytime && formik.touched.Deliverytime && (
                   <div className="text-red-500 text-sm mt-1">
@@ -304,7 +304,7 @@ const RequestService = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.startDate}
                 min={new Date().toISOString().split("T")[0]}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               />
               {formik.touched.startDate && formik.errors.startDate ? (
                 <div className="text-red-500 text-sm mt-1">
@@ -326,7 +326,7 @@ const RequestService = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.categoryId}
                 disabled={categories.length === 0}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
               >
                 <option value="">اختر القسم</option>
                 {categories.map((category) => (
@@ -360,7 +360,7 @@ const RequestService = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.Notes}
                 placeholder="اكتب ملاحظاتك هنا...."
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 rows={4}
               />
               {formik.touched.Notes && formik.errors.Notes ? (

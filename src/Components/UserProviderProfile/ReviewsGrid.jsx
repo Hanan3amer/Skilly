@@ -82,9 +82,7 @@ const ReviewsGrid = ({ id }) => {
     if (!reviews || reviews.length === 0) {
       return (
         <div className="w-full text-center py-6">
-          <p className="text-gray-500 dark:text-gray-400">
-            لا توجد تقييمات حالياً
-          </p>
+          <p className="text-gray-500 ">لا توجد تقييمات حالياً</p>
         </div>
       );
     }
@@ -112,7 +110,7 @@ const ReviewsGrid = ({ id }) => {
 
   return (
     <section
-      className="flex flex-col w-full text-gray-800 dark:text-white min-h-[300px]"
+      className="flex flex-col w-full text-gray-800  min-h-[300px]"
       id="reviews"
     >
       <div className="mt-5 w-full max-md:max-w-full">{renderReviews()}</div>
@@ -120,7 +118,7 @@ const ReviewsGrid = ({ id }) => {
       {showToggleButton && (
         <button
           onClick={toggleExpandView}
-          className="flex gap-px self-end mt-6 text-sm font-bold text-right text-black dark:text-white max-md:mr-2.5 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+          className="flex gap-px self-end mt-6 text-sm font-bold text-right text-black  max-md:mr-2.5 hover:text-sky-600  transition-colors"
         >
           {expandedView ? (
             <>

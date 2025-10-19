@@ -67,10 +67,7 @@ const CurrentWork = () => {
   }
 
   return (
-    <section
-      className="flex flex-col text-gray-800 dark:text-white"
-      id="current-work"
-    >
+    <section className="flex flex-col text-gray-800 " id="current-work">
       {loading ? (
         <div className="flex justify-center items-center p-10">
           <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-sky-500"></div>
@@ -101,7 +98,7 @@ const CurrentWork = () => {
             renderedServices.length !== services.length && (
               <button
                 onClick={() => setRenderedServices(services)}
-                className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+                className="self-start mt-4 text-sm font-bold text-right text-black  hover:text-sky-600  transition-colors"
               >
                 عرض المزيد ...
               </button>
@@ -110,7 +107,7 @@ const CurrentWork = () => {
             renderedServices.length === services.length && (
               <button
                 onClick={() => setRenderedServices(services.slice(0, 6))}
-                className="self-start mt-4 text-sm font-bold text-right text-black dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+                className="self-start mt-4 text-sm font-bold text-right text-black  hover:text-sky-600  transition-colors"
               >
                 عرض الأقل ...
               </button>

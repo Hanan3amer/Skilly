@@ -41,7 +41,7 @@ const ImageGallery = ({ images = [] }) => {
 
   if (loading) {
     return (
-      <div className="w-full h-80 flex justify-center items-center bg-gray-100 dark:bg-gray-700 rounded-lg">
+      <div className="w-full h-80 flex justify-center items-center bg-gray-100  rounded-lg">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-sky-500"></div>
       </div>
     );
@@ -49,7 +49,7 @@ const ImageGallery = ({ images = [] }) => {
 
   return (
     <div className="relative w-full">
-      <div className="w-full h-80 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 relative">
+      <div className="w-full h-80 overflow-hidden rounded-lg bg-gray-100  relative">
         {imagesWithFallback.length > 0 && (
           <img
             src={imagesWithFallback[currentIndex]}
@@ -64,12 +64,12 @@ const ImageGallery = ({ images = [] }) => {
           <>
             <button
               onClick={handlePrev}
-              className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white dark:bg-gray-800 rounded-full p-2 opacity-70 hover:opacity-100 transition-opacity"
+              className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white  rounded-full p-2 opacity-70 hover:opacity-100 transition-opacity"
               aria-label="Previous image"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-800 dark:text-white"
+                className="h-6 w-6 text-gray-800 "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -84,12 +84,12 @@ const ImageGallery = ({ images = [] }) => {
             </button>
             <button
               onClick={handleNext}
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white dark:bg-gray-800 rounded-full p-2 opacity-70 hover:opacity-100 transition-opacity"
+              className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white  rounded-full p-2 opacity-70 hover:opacity-100 transition-opacity"
               aria-label="Next image"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-800 dark:text-white"
+                className="h-6 w-6 text-gray-800 "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -116,7 +116,7 @@ const ImageGallery = ({ images = [] }) => {
               className={`w-3 h-3 rounded-full transition-all ${
                 currentIndex === index
                   ? "bg-sky-500 scale-125"
-                  : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400"
+                  : "bg-gray-300  hover:bg-gray-400"
               }`}
               aria-label={`Go to image ${index + 1}`}
             />

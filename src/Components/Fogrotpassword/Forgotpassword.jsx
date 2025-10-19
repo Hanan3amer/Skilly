@@ -64,7 +64,7 @@ export default function Forgotpassword() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   id="email"
-                  className="bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:ring-1 focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:ring-1 focus:border-[#3B9DD2] block w-full p-3   placeholder:text-[#5B5B68]"
                   placeholder="البريد الالكتروني"
                 />
               </div>

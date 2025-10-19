@@ -249,7 +249,7 @@ export default function ServiceProvider() {
                   name="firstName"
                   type="text"
                   id="firstName"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3    placeholder:text-[#5B5B68]"
                   placeholder="الاسم الأول"
                 />
               </div>
@@ -262,7 +262,7 @@ export default function ServiceProvider() {
                   name="lastName"
                   type="text"
                   id="lastName"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder="الاسم الأخير"
                 />
               </div>
@@ -277,7 +277,7 @@ export default function ServiceProvider() {
                   name="phoneNumber"
                   type="text"
                   id="phoneNumber"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder="رقم الهاتف"
                 />
               </div>
@@ -290,7 +290,7 @@ export default function ServiceProvider() {
                   name="email"
                   type="text"
                   id="email"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder="البريد الإلكتروني"
                 />
               </div>
@@ -303,7 +303,7 @@ export default function ServiceProvider() {
                   onBlur={formik.handleBlur}
                   name="Governorate"
                   id="Governorate"
-                  className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68] ${
+                  className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-2  placeholder:text-[#5B5B68] ${
                     formik.touched.Governorate && formik.errors.Governorate
                       ? "border-red-500"
                       : ""
@@ -330,7 +330,7 @@ export default function ServiceProvider() {
                   name="City"
                   id="City"
                   disabled={!formik.values.Governorate}
-                  className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68] ${
+                  className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:border focus:outline-none focus:border-[#3B9DD2] block w-full p-2  placeholder:text-[#5B5B68] ${
                     formik.touched.City && formik.errors.City
                       ? "border-red-500"
                       : ""
@@ -359,7 +359,7 @@ export default function ServiceProvider() {
                   name="StreetName"
                   type="text"
                   id="StreetName"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder="اسم الشارع"
                 />
                 {formik.touched.StreetName && formik.errors.StreetName && (
@@ -376,7 +376,7 @@ export default function ServiceProvider() {
                   name="Age"
                   type="text"
                   id="Age"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder="العمر"
                 />
                 {formik.touched.Age && formik.errors.Age && (
@@ -395,7 +395,7 @@ export default function ServiceProvider() {
                   name="NumberOfYearExperience"
                   type="text"
                   id="NumberOfYearExperience"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                   placeholder="عدد سنوات الخبرة"
                 />
                 {formik.touched.NumberOfYearExperience &&
@@ -412,7 +412,7 @@ export default function ServiceProvider() {
                   onBlur={formik.handleBlur}
                   name="categoryId"
                   id="categoryId"
-                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                  className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-2  placeholder:text-[#5B5B68]"
                 >
                   <option value="">اختر التصنيف</option>
                   {categories.map((category) => (
@@ -436,7 +436,7 @@ export default function ServiceProvider() {
                 name="BriefSummary"
                 id="BriefSummary"
                 rows="4"
-                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3B9DD2] dark:focus:border-[#3B9DD2] placeholder:text-[#5B5B68]"
+                className="bg-gray-100  text-gray-900 text-sm rounded-lg  focus:border focus:outline-none  focus:border-[#3B9DD2] block w-full p-3  placeholder:text-[#5B5B68]"
                 placeholder="نبذة مختصرة عنك"
               ></textarea>
               {formik.touched.BriefSummary && formik.errors.BriefSummary && (
